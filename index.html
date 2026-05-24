@@ -1,305 +1,826 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>위기 협약 시뮬레이터 — 명일방주: 엔드필드</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
+bash
 
-<div class="sim-wrapper">
+cat > /mnt/user-data/outputs/crisis-sim/style.css << 'CSSEOF'
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-  <!-- Header -->
-  <div class="sim-header">
-    <div class="title">// <span>위기 협약 재점화 실험 작전</span></div>
-    <div class="header-right">
-      <div class="pts-display">
-        <span class="pts-label">최고 기록</span>
-        <span class="pts-num" id="best-num">7</span>
-        <span class="pts-label">★</span>
-      </div>
-    </div>
-  </div>
+:root {
+  --red: #c0392b;
+  --red-bright: #e74c3c;
+  --bg-page: #0d0d0d;
+  --bg-card: #1e1e1e;
+  --bg-card-hover: #2a2a2a;
+  --bg-selected: #7a1515;
+  --border-card: #3a3a3a;
+  --border-selected: #e74c3c;
+  --text-main: #e0e0e0;
+  --text-red: #ff6b6b;
+  --gold: #f0a500;
+  --tier1: #e74c3c;
+  --tier2: #e67e22;
+  --tier3: #f39c12;
+  --line-blue: #3a6ea8;
+  --line-red: #8b1a1a;
+  --panel-w: 280px;
+  --card-w: 80px;
+  --card-h: 88px;
+}
 
-  <!-- Body -->
-  <div class="sim-body">
+body {
+  background: var(--bg-page);
+  color: var(--text-main);
+  font-family: 'Segoe UI', 'Malgun Gothic', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 12px;
+}
 
-    <!-- Grid -->
-    <div class="grid-area" id="grid-area"></div>
+/* ── Wrapper ── */
+.sim-wrapper {
+  display: flex;
+  flex-direction: column;
+  background: #131313;
+  border: 1px solid #2a2a2a;
+  border-radius: 2px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 1280px;
+}
 
-    <!-- Side Panel -->
-    <div class="side-panel">
-      <div class="panel-header">지표 선택</div>
-      <div class="panel-list" id="panel-list">
-        <div class="panel-empty">지표를 선택하면<br>여기에 표시됩니다</div>
-      </div>
-    </div>
+/* ── Header ── */
+.sim-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  background: #0f0f0f;
+  border-bottom: 1px solid #222;
+  flex-wrap: wrap;
+  gap: 8px;
+}
 
-  </div>
+.sim-header .title {
+  font-size: 12px;
+  color: #666;
+  letter-spacing: 1px;
+}
 
-  <!-- Footer -->
-  <div class="sim-footer">
-    <div class="footer-left">
-      <div class="best-record">최고 기록 <span>7</span> ★</div>
-    </div>
-    <div class="footer-center">
-      <span class="warn-text" id="warn-text">⚠ 현재 지표 난도가 높습니다. 신중하게 행동해 주세요.</span>
-    </div>
-    <div class="footer-right">
-      <button class="btn-reset" onclick="resetAll()">↺ 선택 초기화</button>
-      <div class="total-pts-display">
-        <span class="total-num" id="total-pts">0</span>
-        <span class="total-star">★</span>
-      </div>
-      <button class="btn-start">작전 시작 ▶</button>
-    </div>
-  </div>
+.sim-header .title span {
+  color: #ccc;
+  font-weight: 600;
+}
 
-</div>
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
-<script>
-/* ────────────────────────────────────────────
-   카드 데이터
-   conflict: true  → 충돌 (클릭 불가, 흐림)
-   locked: true    → 잠금 (추후 해금)
-   empty: true     → 빈 슬롯
-   pts             → 난이도 포인트
-──────────────────────────────────────────── */
-const ROWS = [
-  /* ── 난이도 1 ── */
-  {
-    tier: 1,
-    cards: [
-      { id:'1-1',  icon:'⚔',  name:'팀: 피로 I',          pts:3, desc:'오퍼레이터의 일반 공격 피해 -70%' },
-      { id:'1-2',  icon:'🛡',  name:'조작: 보호벽 I',       pts:1, desc:'각 적은 5초마다 방어 불능 또는 같은 유형의 아츠 부착을 1회만 부여받을 수 있음' },
-      { id:'1-3',  icon:'⏱',  name:'팀: 부러진 칼날 I',    pts:1, desc:'오퍼레이터가 궁극기를 1회 사용할 때마다, 이후 사용하는 궁극기 피해 -50%' },
-      { id:'1-4',  icon:'💢',  name:'팀: 부러진 칼날 II',   pts:2, desc:'오퍼레이터가 궁극기를 1회 사용할 때마다, 이후 사용하는 궁극기 피해 -100%' },
-      { id:'1-5',  icon:'⚔',  name:'팀: 피로 II',          pts:1, desc:'오퍼레이터 일반 공격 속도 -30%' },
-      { id:'1-6',  icon:'🗡',  name:'환경: 속박 I',          pts:3, desc:'회피 불가' },
-      { id:'1-7',  icon:'⚔',  name:'팀: 참수 I',            pts:1, desc:'오퍼레이터 체력 -30%' },
-      { id:'1-8',  icon:'🩺',  name:'환경: 쇠퇴 I',          pts:1, desc:'웨이브 사이에 치유 물질이 1개만 생성' },
-      { id:'1-9',  icon:'⛔',  name:'조작: 전략 제한 I',     pts:1, desc:'오퍼레이터 배치 인원 -1' },
-      { id:'1-10', icon:'🌐',  name:'환경: 잠식 I',          pts:1, desc:'적 이동 속도 +15%' },
-      { id:'1-11', icon:'⚔',  name:'팀: 무거운 짐 I',       pts:1, desc:'오퍼레이터 배치 코스트 +5' },
-      { id:'1-12', icon:'🩺',  name:'조작: 자원 부족 I',     pts:1, desc:'전투 시작 시 드론 2개 -' },
-      { id:'1-13', icon:'🔒',  name:'???',                   pts:2, locked:true },
-      { id:'1-14', icon:'🔒',  name:'???',                   pts:3, locked:true },
-    ]
-  },
-  /* ── 난이도 2 ── */
-  {
-    tier: 2,
-    cards: [
-      { id:'2-1',  icon:'⚔',  name:'팀: 피로 III',         pts:2, desc:'오퍼레이터 일반 공격 속도 -30%, 피해 -30%' },
-      { id:'2-2',  icon:'🛡',  name:'조작: 보호벽 II',      pts:1, desc:'적이 받는 피해 -20%' },
-      { id:'2-3',  icon:'⏱',  name:'팀: 부러진 칼날 III',  pts:1, desc:'궁극기 피해 -30%' },
-      { id:'2-4',  icon:'💢',  name:'팀: 부러진 칼날 IV',   pts:2, desc:'궁극기 재사용 대기 +30%' },
-      { id:'2-5',  icon:'🩺',  name:'환경: 쇠퇴 II',         pts:2, desc:'웨이브 사이에 치유 물질이 생성되지 않음' },
-      { id:'2-6',  icon:'🗡',  name:'환경: 속박 II',         pts:1, desc:'아츠 공격 범위 -20%' },
-      { id:'2-7',  icon:'⚔',  name:'팀: 참수 II',           pts:1, desc:'오퍼레이터 체력 -50%' },
-      { id:'2-8',  icon:'🎯',  name:'목표: 핵심 타격 II',   pts:1, desc:'핵심 적 처치 시 지역 보안도 +2' },
-      { id:'2-9',  icon:'⛔',  name:'조작: 전략 제한 II',   pts:2, desc:'오퍼레이터 배치 인원 -2' },
-      { id:'2-10', icon:'🌐',  name:'환경: 잠식 II',         pts:1, desc:'적 이동 속도 +30%' },
-      { id:'2-11', icon:'⚔',  name:'팀: 무거운 짐 II',      pts:1, desc:'오퍼레이터 배치 코스트 +10' },
-      { id:'2-12', icon:'🩺',  name:'조작: 자원 부족 II',    pts:1, desc:'전투 시작 시 드론 4개 -' },
-      { id:'2-13', icon:'🔒',  name:'???',                   pts:2, locked:true },
-      { id:'2-14', icon:'🔒',  name:'???',                   pts:3, locked:true },
-    ]
-  },
-  /* ── 난이도 3 ── */
-  {
-    tier: 3,
-    cards: [
-      { id:'3-1',  icon:'⚔',  name:'팀: 피로 IV',          pts:3, desc:'오퍼레이터 일반 공격 피해 -90%' },
-      { id:'3-2',  icon:'🌐',  name:'환경: 공황',            pts:2, desc:'아군 공격력 -20%', conflict:true },
-      { id:'3-3',  icon:'💢',  name:'팀: 부러진 칼날 V',    pts:2, desc:'궁극기 사용 불가', conflict:true },
-      { id:'3-4',  icon:'🩺',  name:'환경: 쇠퇴 III',        pts:2, desc:'치유 완전 차단', conflict:true },
-      { id:'3-5',  icon:'🗡',  name:'목표: 섬멸',            pts:3, desc:'모든 적 처치 요구' },
-      { id:'3-6',  icon:'🎯',  name:'목표: 핵심 타격 III',  pts:2, desc:'핵심 적 처치 시 지역 보안도 +3' },
-      { id:'3-7',  icon:'⛔',  name:'조작: 봉인 I',          pts:2, desc:'특정 오퍼레이터 사용 불가' },
-      { id:'3-8',  icon:'🔒',  name:'???',                   pts:3, locked:true },
-      { id:'3-9',  icon:'🔒',  name:'???',                   pts:3, locked:true },
-      { id:'3-10', icon:'',    name:'',                      pts:0, empty:true },
-      { id:'3-11', icon:'',    name:'',                      pts:0, empty:true },
-      { id:'3-12', icon:'',    name:'',                      pts:0, empty:true },
-      { id:'3-13', icon:'',    name:'',                      pts:0, empty:true },
-      { id:'3-14', icon:'',    name:'',                      pts:0, empty:true },
-    ]
+.pts-display {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  padding: 4px 10px;
+  border-radius: 2px;
+}
+
+.pts-display .pts-num {
+  font-size: 16px;
+  font-weight: 700;
+  color: #e0e0e0;
+}
+
+.pts-display .pts-label {
+  font-size: 10px;
+  color: #777;
+}
+
+/* ── 지표 선택 타이틀 바 ── */
+.section-title-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px 6px;
+  background: #0f0f0f;
+  border-bottom: 1px solid #1e1e1e;
+}
+
+.section-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #e8e8e8;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.section-title::before {
+  content: '';
+  display: block;
+  width: 4px;
+  height: 26px;
+  background: var(--tier1);
+  border-radius: 1px;
+}
+
+.section-title-dots {
+  display: flex;
+  gap: 3px;
+  margin-top: 2px;
+}
+
+.section-title-dots span {
+  width: 6px;
+  height: 6px;
+  background: #555;
+  border-radius: 50%;
+}
+
+.section-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-action {
+  background: #1e1e1e;
+  border: 1px solid #333;
+  color: #aaa;
+  padding: 6px 14px;
+  border-radius: 2px;
+  font-size: 11px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.12s, color 0.12s;
+  white-space: nowrap;
+}
+
+.btn-action:hover {
+  background: #2a2a2a;
+  color: #e0e0e0;
+}
+
+/* ── Body ── */
+.sim-body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+/* ── Grid Area ── */
+.grid-area {
+  flex: 1;
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  overflow-x: auto;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 19px,
+      rgba(255,255,255,0.015) 19px,
+      rgba(255,255,255,0.015) 20px
+    );
+}
+
+/* 행 구분선 */
+.row-divider {
+  height: 2px;
+  margin: 6px 0 6px 46px;
+  min-width: max-content;
+}
+
+.row-divider.blue { background: linear-gradient(to right, var(--line-blue), transparent 60%); }
+.row-divider.red  { background: linear-gradient(to right, var(--line-red),  transparent 60%); }
+
+.row-wrap {
+  display: flex;
+  align-items: stretch;
+  min-width: max-content;
+  padding: 6px 0;
+}
+
+.tier-bar {
+  width: 3px;
+  min-width: 3px;
+  border-radius: 1px;
+  margin-right: 8px;
+  align-self: stretch;
+}
+
+.tier-bar.t1 { background: var(--tier1); }
+.tier-bar.t2 { background: var(--tier2); }
+.tier-bar.t3 { background: var(--tier3); }
+
+.row-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  min-width: 30px;
+  gap: 1px;
+  margin-right: 8px;
+}
+
+.row-label .tier-num {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ddd;
+  line-height: 1;
+}
+
+.row-label .tier-star-wrap {
+  display: flex;
+  gap: 1px;
+}
+
+.row-label .tier-star-wrap span {
+  font-size: 7px;
+  color: #555;
+}
+
+.cards-row {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+/* ── Card ── */
+.card {
+  width: var(--card-w);
+  height: var(--card-h);
+  min-width: var(--card-w);
+  border-radius: 2px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.1s, background 0.1s;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  overflow: hidden;
+}
+
+/* 카드 상단 얇은 컬러 라인 */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: transparent;
+  transition: background 0.1s;
+}
+
+.card.selected::before { background: var(--border-selected); }
+
+.card:hover:not(.conflict):not(.locked):not(.empty) {
+  border-color: #666;
+  background: var(--bg-card-hover);
+}
+
+.card.selected {
+  background: var(--bg-selected);
+  border-color: var(--border-selected);
+}
+
+.card.conflict {
+  cursor: default;
+}
+
+.card.locked {
+  cursor: default;
+  background: #161616;
+  border-color: #2a2a2a;
+}
+
+.card.empty {
+  background: transparent;
+  border: 1px solid #1e1e1e;
+  cursor: default;
+}
+
+/* X 오버레이 (충돌/빈칸) */
+.card-x {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.card-x::before,
+.card-x::after {
+  content: '';
+  position: absolute;
+  width: 60%;
+  height: 1px;
+  background: #3a3a3a;
+}
+
+.card-x::before { transform: rotate(45deg); }
+.card-x::after  { transform: rotate(-45deg); }
+
+/* 충돌 라벨 */
+.card-conflict-label {
+  position: absolute;
+  bottom: 6px;
+  left: 0; right: 0;
+  text-align: center;
+  font-size: 9px;
+  color: #777;
+  letter-spacing: 0.5px;
+  pointer-events: none;
+}
+
+/* 카드 아이콘 영역 */
+.card-icon-wrap {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.card-icon {
+  font-size: 26px;
+  line-height: 1;
+  pointer-events: none;
+  filter: drop-shadow(0 0 6px rgba(255,255,255,0.08));
+}
+
+.card.selected .card-icon {
+  filter: drop-shadow(0 0 8px rgba(231,76,60,0.5));
+}
+
+.card.locked .card-icon {
+  font-size: 18px;
+  opacity: 0.4;
+}
+
+/* 좌상단 뱃지 (난이도 아이콘) */
+.card-badge {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  width: 14px;
+  height: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-badge-inner {
+  width: 10px;
+  height: 10px;
+  border-radius: 1px;
+  border: 1px solid currentColor;
+  opacity: 0.7;
+}
+
+.badge-t1 { color: var(--tier1); }
+.badge-t2 { color: var(--tier2); }
+.badge-t3 { color: var(--tier3); }
+
+/* 우상단 포인트 */
+.card-pts {
+  position: absolute;
+  top: 4px;
+  right: 5px;
+  font-size: 10px;
+  font-weight: 700;
+  color: #888;
+  line-height: 1;
+}
+
+.card.selected .card-pts { display: none; }
+
+/* 체크마크 (선택시) */
+.card-check {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 16px;
+  height: 16px;
+  background: var(--red-bright);
+  border-radius: 2px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: #fff;
+  font-weight: 900;
+}
+
+.card.selected .card-check { display: flex; }
+
+/* 잠금 뱃지 */
+.card-lock-badge {
+  position: absolute;
+  bottom: 4px;
+  left: 0; right: 0;
+  text-align: center;
+  font-size: 7px;
+  color: var(--gold);
+  letter-spacing: 0.3px;
+  opacity: 0.8;
+}
+
+/* ── Side Panel ── */
+.side-panel {
+  width: var(--panel-w);
+  min-width: var(--panel-w);
+  background: #0f0f0f;
+  border-left: 1px solid #222;
+  display: flex;
+  flex-direction: column;
+}
+
+.panel-header {
+  padding: 8px 12px;
+  border-bottom: 1px solid #1e1e1e;
+  font-size: 10px;
+  color: #555;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.panel-sort {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 10px;
+  color: #555;
+}
+
+.panel-sort select {
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  color: #888;
+  font-size: 10px;
+  padding: 2px 4px;
+  border-radius: 2px;
+  font-family: inherit;
+}
+
+.panel-list {
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: #2a2a2a transparent;
+}
+
+.panel-list::-webkit-scrollbar { width: 3px; }
+.panel-list::-webkit-scrollbar-thumb { background: #2a2a2a; border-radius: 2px; }
+
+.panel-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 10px;
+  border-bottom: 1px solid #191919;
+  transition: background 0.1s;
+  position: relative;
+}
+
+.panel-item:hover { background: #161616; }
+
+/* 난이도 뱃지 (패널) */
+.panel-tier-badge {
+  min-width: 28px;
+  height: 18px;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: 700;
+  color: #fff;
+  margin-top: 1px;
+  flex-shrink: 0;
+}
+
+.ptb-1 { background: var(--tier1); }
+.ptb-2 { background: var(--tier2); }
+.ptb-3 { background: var(--tier3); }
+
+.panel-item-icon {
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.panel-item-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.panel-item-name {
+  font-size: 11px;
+  font-weight: 600;
+  color: #ccc;
+  margin-bottom: 2px;
+}
+
+.panel-item-desc {
+  font-size: 10px;
+  color: #666;
+  line-height: 1.5;
+}
+
+.panel-item-desc em {
+  color: var(--gold);
+  font-style: normal;
+}
+
+.panel-del {
+  background: none;
+  border: 1px solid #2a2a2a;
+  color: #444;
+  cursor: pointer;
+  font-size: 12px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  flex-shrink: 0;
+  margin-top: 1px;
+  transition: border-color 0.1s, color 0.1s;
+}
+
+.panel-del:hover {
+  border-color: var(--red-bright);
+  color: var(--red-bright);
+}
+
+.panel-empty {
+  padding: 40px 16px;
+  text-align: center;
+  font-size: 11px;
+  color: #333;
+  line-height: 2;
+}
+
+/* ── Footer ── */
+.sim-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  background: #0a0a0a;
+  border-top: 1px solid #1e1e1e;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.best-record-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.best-record-num {
+  font-size: 32px;
+  font-weight: 700;
+  color: #e0e0e0;
+  line-height: 1;
+}
+
+.best-record-label {
+  font-size: 10px;
+  color: #555;
+  line-height: 1;
+}
+
+.btn-info {
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  color: #888;
+  padding: 6px 16px;
+  border-radius: 2px;
+  font-size: 11px;
+  cursor: pointer;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.12s;
+}
+
+.btn-info:hover { background: #222; }
+
+.footer-center {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.warn-text {
+  font-size: 11px;
+  color: var(--gold);
+  display: none;
+  align-items: center;
+  gap: 6px;
+}
+
+.warn-text.visible { display: flex; }
+
+.footer-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-reset {
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  color: #777;
+  padding: 8px 16px;
+  border-radius: 2px;
+  font-size: 12px;
+  cursor: pointer;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.12s, color 0.12s;
+  touch-action: manipulation;
+}
+
+.btn-reset:hover { background: #222; color: #ccc; }
+
+.total-pts-display {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  padding: 6px 14px;
+  border-radius: 2px;
+}
+
+.total-pts-display .total-num {
+  font-size: 24px;
+  font-weight: 700;
+  color: #e0e0e0;
+  min-width: 30px;
+  text-align: right;
+  line-height: 1;
+}
+
+.total-pts-display .total-star-icon {
+  font-size: 14px;
+  color: #555;
+}
+
+.btn-start {
+  background: var(--red);
+  border: none;
+  color: #fff;
+  padding: 10px 28px;
+  border-radius: 2px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 1px;
+  font-family: inherit;
+  transition: background 0.12s;
+  touch-action: manipulation;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-start:hover { background: var(--red-bright); }
+
+/* ── Tooltip (데스크탑) ── */
+@media (hover: hover) {
+  .card[data-tip] { position: relative; }
+  .card[data-tip]:hover .card-tooltip {
+    display: block;
   }
-];
-
-/* ────────────────────────────────────────────
-   상태
-──────────────────────────────────────────── */
-const selected = new Set();
-
-/* ────────────────────────────────────────────
-   그리드 렌더
-──────────────────────────────────────────── */
-function buildGrid() {
-  const area = document.getElementById('grid-area');
-  area.innerHTML = '';
-
-  ROWS.forEach(({ tier, cards }) => {
-    const wrap = document.createElement('div');
-    wrap.className = 'row-wrap';
-
-    /* 난이도 컬러 바 */
-    const bar = document.createElement('div');
-    bar.className = `tier-bar t${tier}`;
-    wrap.appendChild(bar);
-
-    /* 번호 레이블 */
-    const label = document.createElement('div');
-    label.className = 'row-label';
-    label.innerHTML = `<span class="tier-num">${tier}</span><span class="tier-star">★</span>`;
-    wrap.appendChild(label);
-
-    /* 카드 행 */
-    const row = document.createElement('div');
-    row.className = 'cards-row';
-
-    cards.forEach(card => {
-      const el = document.createElement('div');
-      el.className = 'card';
-
-      if (card.empty) {
-        el.classList.add('empty');
-        row.appendChild(el);
-        return;
-      }
-      if (card.locked)   el.classList.add('locked');
-      if (card.conflict) el.classList.add('conflict');
-      if (selected.has(card.id)) el.classList.add('selected');
-
-      /* 툴팁 */
-      if (card.desc && !card.locked) {
-        el.setAttribute('data-tip', card.desc);
-      }
-
-      /* 내부 HTML */
-      el.innerHTML = `
-        <div class="card-tier-badge badge-t${tier}">${tier}</div>
-        <div class="card-icon">${card.icon}</div>
-        <div class="card-check">✓</div>
-        ${!card.locked ? `<div class="card-pts">${card.pts}</div>` : ''}
-        <div class="card-bottom">${card.conflict ? '충돌' : card.locked ? 'LOCKED' : ''}</div>
-      `;
-
-      /* 클릭 이벤트 */
-      if (!card.locked && !card.conflict) {
-        el.addEventListener('click', () => toggleCard(card.id));
-      }
-
-      row.appendChild(el);
-    });
-
-    wrap.appendChild(row);
-    area.appendChild(wrap);
-  });
+  .card-tooltip {
+    display: none;
+    position: fixed;
+    background: #1a1a1a;
+    border: 1px solid #3a3a3a;
+    color: #ccc;
+    font-size: 11px;
+    padding: 8px 12px;
+    border-radius: 3px;
+    max-width: 220px;
+    line-height: 1.6;
+    z-index: 9999;
+    pointer-events: none;
+    white-space: pre-wrap;
+    transform: translate(6px, -110%);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.6);
+  }
+  .card-tooltip strong {
+    display: block;
+    color: #e0e0e0;
+    margin-bottom: 3px;
+    font-size: 11px;
+  }
 }
 
-/* ────────────────────────────────────────────
-   토글
-──────────────────────────────────────────── */
-function toggleCard(id) {
-  if (selected.has(id)) selected.delete(id);
-  else selected.add(id);
-  updateAll();
-}
-
-/* ────────────────────────────────────────────
-   패널 렌더
-──────────────────────────────────────────── */
-function updatePanel() {
-  const list = document.getElementById('panel-list');
-
-  if (selected.size === 0) {
-    list.innerHTML = '<div class="panel-empty">지표를 선택하면<br>여기에 표시됩니다</div>';
-    return;
+/* ════════════════════════
+   모바일 (≤ 768px)
+════════════════════════ */
+@media (max-width: 768px) {
+  :root {
+    --panel-w: 100%;
+    --card-w: 64px;
+    --card-h: 72px;
   }
 
-  list.innerHTML = '';
-  selected.forEach(id => {
-    const card = getCard(id);
-    if (!card) return;
+  body { padding: 0; }
 
-    const tier = getTier(id);
-    const item = document.createElement('div');
-    item.className = 'panel-item';
-    item.innerHTML = `
-      <div class="panel-item-icon">${card.icon}</div>
-      <div class="panel-item-content">
-        <div class="panel-item-name">${card.name}</div>
-        <div class="panel-item-desc">${card.desc || ''}</div>
-      </div>
-      <div class="panel-item-pts p${tier}">${card.pts}</div>
-      <button class="panel-del" title="제거">✕</button>
-    `;
-    item.querySelector('.panel-del').addEventListener('click', () => {
-      selected.delete(id);
-      updateAll();
-    });
-    list.appendChild(item);
-  });
+  .sim-wrapper {
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    min-height: 100dvh;
+  }
+
+  .section-title { font-size: 18px; }
+
+  .sim-body { flex-direction: column; }
+
+  .grid-area {
+    overflow-x: auto;
+    overflow-y: visible;
+    scrollbar-width: none;
+  }
+  .grid-area::-webkit-scrollbar { display: none; }
+
+  .side-panel {
+    width: 100%;
+    min-width: 100%;
+    border-left: none;
+    border-top: 1px solid #222;
+    max-height: 300px;
+  }
+
+  .footer-left { gap: 10px; }
+  .best-record-num { font-size: 24px; }
+  .btn-info { display: none; }
+
+  .footer-center { width: 100%; order: -1; }
+  .footer-right { width: 100%; justify-content: flex-end; }
+
+  .btn-start { padding: 10px 20px; font-size: 13px; }
 }
 
-/* ────────────────────────────────────────────
-   총합 & 경고
-──────────────────────────────────────────── */
-function updateTotal() {
-  let total = 0;
-  selected.forEach(id => {
-    const c = getCard(id);
-    if (c) total += c.pts;
-  });
-
-  document.getElementById('total-pts').textContent = total;
-
-  const warn = document.getElementById('warn-text');
-  if (total >= 15) warn.classList.add('visible');
-  else warn.classList.remove('visible');
+@media (max-width: 380px) {
+  :root {
+    --card-w: 54px;
+    --card-h: 62px;
+  }
+  .cards-row { gap: 4px; }
+  .card-icon { font-size: 20px; }
 }
-
-/* ────────────────────────────────────────────
-   전체 갱신
-──────────────────────────────────────────── */
-function updateAll() {
-  buildGrid();
-  updatePanel();
-  updateTotal();
-}
-
-/* ────────────────────────────────────────────
-   초기화
-──────────────────────────────────────────── */
-function resetAll() {
-  selected.clear();
-  updateAll();
-}
-
-/* ────────────────────────────────────────────
-   유틸
-──────────────────────────────────────────── */
-function getAllCards() {
-  return ROWS.flatMap(r => r.cards);
-}
-
-function getCard(id) {
-  return getAllCards().find(c => c.id === id);
-}
-
-function getTier(id) {
-  const row = ROWS.find(r => r.cards.some(c => c.id === id));
-  return row ? row.tier : 1;
-}
-
-/* ────────────────────────────────────────────
-   초기 실행
-──────────────────────────────────────────── */
-updateAll();
-</script>
-
-</body>
-</html>
+CSSEOF
+echo "CSS done"
