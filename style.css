@@ -881,6 +881,61 @@ body{
   height:64px;
 }
 
+/* ===== layout fix: 보드 스크롤바를 3난이도 바로 아래로 붙임 ===== */
+
+.sim-wrapper{
+  grid-template-rows:110px auto 1fr 88px;
+}
+
+.sim-body{
+  height:392px;
+  min-height:392px;
+  grid-template-columns:minmax(0,1fr);
+  padding-right:420px;
+}
+
+.board-wrap{
+  height:392px;
+  overflow-x:auto;
+  overflow-y:hidden;
+}
+
+.grid-area{
+  height:auto;
+  overflow:visible;
+}
+
+.row-wrap{
+  height:128px;
+}
+
+/* ===== 선택된 지표 패널을 오른쪽 전체 영역에 고정 ===== */
+
+.side-panel{
+  position:fixed;
+  right:0;
+  top:110px;
+  bottom:88px;
+  width:420px;
+  z-index:50;
+
+  border-left:1px solid rgba(255,255,255,.18);
+  background:rgba(0,0,0,.92);
+}
+
+/* 하단 3분할 리스트가 우측 패널 밑으로 들어가지 않게 */
+.constraint-list-area{
+  margin-right:420px;
+  height:auto;
+  min-height:230px;
+}
+
+/* footer는 그대로 전체 폭 사용 */
+.sim-footer{
+  position:relative;
+  z-index:60;
+}
+
 /* =========================
    MOBILE
 ========================= */
