@@ -224,8 +224,7 @@ body{
 
 .conn{
   position:absolute;
-  background:rgba(230,240,255,.7);
-  box-shadow:0 0 10px rgba(255,255,255,.8);
+  background:rgba(230,240,255,.55);
   pointer-events:none;
   z-index:1;
 }
@@ -271,7 +270,6 @@ body{
   width:4px;
   transform:translateX(-50%);
   background:rgba(230,240,255,.7);
-  box-shadow:0 0 10px rgba(255,255,255,.8);
   z-index:1;
   pointer-events:none;
 }
@@ -284,7 +282,6 @@ body{
 .line-active .conn,
 .connector-only.line-active.line-top.line-bottom::before{
   background:rgba(230,240,255,.7) !important;
-  box-shadow:0 0 10px rgba(255,255,255,.8) !important;
 }
 
 .group-conflict{
