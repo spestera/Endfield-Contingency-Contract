@@ -206,7 +206,7 @@ function isDisabled(card) {
   return false;
 }
 
-function removeDependentCards(removedId) {
+function removeDependentCards() {
   getAllCards().forEach(card => {
     if (!card.requiresAny) return;
 
@@ -296,6 +296,15 @@ function getCard(id) {
 function getTier(id) {
   return ROWS.find(r => r.cards.some(c => c.id === id))?.tier || 1;
 }
+
+const gridArea = document.getElementById('grid-area');
+
+gridArea.addEventListener('wheel', (e) => {
+  if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+    e.preventDefault();
+    gridArea.scrollLeft += e.deltaY;
+  }
+}, { passive: false });
 
 updateAll();
 </script>
