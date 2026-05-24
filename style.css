@@ -89,7 +89,7 @@ body{
 
   background:
     repeating-linear-gradient(
-      to bottom,
+      까지 bottom,
       #fff 0 8px,
       transparent 8px 12px
     );
@@ -800,6 +800,85 @@ body{
 
 .total-num{
   font-size:54px;
+}
+
+body{
+  overflow:hidden;
+}
+
+.sim-wrapper{
+  grid-template-rows:110px minmax(390px, 1fr) 230px 88px;
+}
+
+.sim-body{
+  grid-template-columns:minmax(0, 1fr) 420px;
+  min-height:390px;
+}
+
+.board-wrap{
+  min-height:390px;
+}
+
+.grid-area{
+  height:100%;
+  overflow-x:auto;
+  overflow-y:hidden;
+}
+
+.row-wrap{
+  height:128px;
+}
+
+/* 선택된 지표 패널을 오른쪽에 길게 유지 */
+.side-panel{
+  min-height:390px;
+  width:420px;
+}
+
+/* 하단 3분할 리스트는 너무 커지지 않게 축소 */
+.constraint-list-area{
+  height:230px;
+}
+
+.constraint-column-title{
+  padding:14px 22px;
+  font-size:20px;
+}
+
+.constraint-list{
+  padding:10px 12px;
+}
+
+.constraint-item{
+  min-height:54px;
+  padding:8px 10px;
+}
+
+.constraint-item-icon{
+  font-size:22px;
+}
+
+.constraint-item-name{
+  font-size:14px;
+}
+
+.constraint-item-desc{
+  font-size:12px;
+  -webkit-line-clamp:1;
+}
+
+.constraint-item-score{
+  height:22px;
+  font-size:12px;
+}
+
+/* footer도 조금 줄여서 보드 공간 확보 */
+.sim-footer{
+  height:88px;
+}
+
+.total-score{
+  height:64px;
 }
 
 /* =========================
