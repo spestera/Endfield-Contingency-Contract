@@ -491,9 +491,6 @@ function buildGrid(){
       if(card.lineLeft) el.classList.add('line-left');
       if(card.lineRight) el.classList.add('line-right');
 
-      if(card.group && isGroupSelected(card.group)){
-        el.classList.add('line-active');
-      }
 
       if(card.empty){
         el.classList.add('empty');
