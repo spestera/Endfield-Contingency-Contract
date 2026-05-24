@@ -35,7 +35,7 @@ const ROWS = [
       {
         id: '1-4',
         col: 4,
-        icon: '✹',
+        icon: 'assets/icons/활성1.png',
         name: '조작: 활성 I',
         pts: 1,
         group: 'g4',
@@ -45,7 +45,7 @@ const ROWS = [
       {
         id: '1-5',
         col: 5,
-        icon: '▣',
+        icon: 'assets/icons/억제1.png',
         name: '팀: 억제 I',
         pts: 1,
         group: 'g5',
@@ -55,7 +55,7 @@ const ROWS = [
       {
         id: '1-6',
         col: 6,
-        icon: '◒',
+        icon: 'assets/icons/참수1.png',
         name: '팀: 참수 I',
         pts: 1,
         group: 'g6',
@@ -65,7 +65,7 @@ const ROWS = [
       {
         id: '1-7',
         col: 7,
-        icon: '⌁',
+        icon: 'assets/icons/호흡.png',
         name: '환경: 호흡 불가',
         pts: 1,
         group: 'g7',
@@ -75,7 +75,7 @@ const ROWS = [
       {
         id: '1-8',
         col: 8,
-        icon: '✚',
+        icon: 'assets/icons/쇠퇴1.png',
         name: '환경: 쇠퇴 I',
         pts: 1,
         group: 'g8',
@@ -85,7 +85,7 @@ const ROWS = [
       {
         id: '1-9',
         col: 9,
-        icon: '◎',
+        icon: 'assets/icons/칼날1.png',
         name: '팀: 부러진 칼날 I',
         pts: 1,
         group: 'g9',
@@ -95,7 +95,7 @@ const ROWS = [
       {
         id: '1-10',
         col: 10,
-        icon: '◉',
+        icon: 'assets/icons/보호벽.png',
         name: '조작: 보호벽',
         pts: 1,
         desc: '각 적은 5초마다 방어불능 또는 같은 유형의 아츠부착을 1회만 부여받을 수 있음'
@@ -108,7 +108,7 @@ const ROWS = [
       {
         id: '1-15',
         col: 14,
-        icon: '◉',
+        icon: 'assets/icons/모름1.png',
         name: '조작: ??',
         pts: 1,
         unlockable: true,
@@ -118,7 +118,7 @@ const ROWS = [
       {
         id: '1-16',
         col: 15,
-        icon: '▧',
+        icon: 'assets/icons/독성1.png',
         name: '조작: 독성 I',
         pts: 1,
         group: 'unlock-group',
