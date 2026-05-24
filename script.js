@@ -10,11 +10,8 @@ const ROWS = [
         pts: 1,
         group: 'g1',
         lineBottom: true,
-
-        // 여기에 설명 작성
         desc: '오퍼레이터의 주요 능력치 -10%'
       },
-
       {
         id: '1-2',
         col: 2,
@@ -23,11 +20,8 @@ const ROWS = [
         pts: 1,
         group: 'g2',
         lineBottom: true,
-
-        // 여기에 설명 작성
         desc: '적이 주는 피해 +30%'
       },
-
       {
         id: '1-3',
         col: 3,
@@ -36,11 +30,8 @@ const ROWS = [
         pts: 1,
         group: 'g3',
         lineBottom: true,
-
-        // 여기에 설명 작성
         desc: '카운트다운 -100초'
       },
-
       {
         id: '1-4',
         col: 4,
@@ -51,7 +42,6 @@ const ROWS = [
         lineBottom: true,
         desc: '적 생명력 +50%'
       },
-
       {
         id: '1-5',
         col: 5,
@@ -62,7 +52,6 @@ const ROWS = [
         lineBottom: true,
         desc: '오퍼레이터가 적의 방어불능 또는 아츠부착 스택 수치를 증가시키면, 해당 오퍼레이터가 주는 해당 유형의 피해 -45%, 10초간 지속'
       },
-
       {
         id: '1-6',
         col: 6,
@@ -73,7 +62,6 @@ const ROWS = [
         lineBottom: true,
         desc: '메인 컨트롤 오퍼레이터가 받는 피해 +50%'
       },
-
       {
         id: '1-7',
         col: 7,
@@ -84,7 +72,6 @@ const ROWS = [
         lineBottom: true,
         desc: '기력 회복 속도 -50%'
       },
-
       {
         id: '1-8',
         col: 8,
@@ -95,7 +82,6 @@ const ROWS = [
         lineBottom: true,
         desc: '웨이브 사이에 치유 물질이 1개만 생성'
       },
-
       {
         id: '1-9',
         col: 9,
@@ -106,15 +92,12 @@ const ROWS = [
         lineBottom: true,
         desc: '오퍼레이터가 궁극기를 1회 사용할 때마다, 해당 오퍼레이터가 이후 사용하는 궁극기 피해 -50% 감소'
       },
-
       {
         id: '1-10',
         col: 10,
         icon: '◉',
         name: '조작: 보호벽',
         pts: 1,
-
-        // 독립 제약은 group이 없습니다.
         desc: '각 적은 5초마다 방어불능 또는 같은 유형의 아츠부착을 1회만 부여받을 수 있음'
       },
 
@@ -130,11 +113,8 @@ const ROWS = [
         pts: 1,
         unlockable: true,
         requiresAny: ['3-12', '3-13'],
-
-        // 노란 열쇠 중 하나를 선택해야 활성화됩니다.
         desc: '적에게 부착된 방어불능 또는 아츠부착 1단계마다 해당 적이 받는 부착 스택과 대응되는 데미지 -10%(해당 버프는 부착 지속시간 종료 0.1초후에 소멸)'
       },
-
       {
         id: '1-16',
         col: 15,
@@ -145,8 +125,6 @@ const ROWS = [
         unlockable: true,
         requiresAny: ['3-12', '3-13'],
         lineBottom: true,
-
-        // 해금 그룹은 I/II 중 하나만 선택됩니다.
         desc: '처치 당한 적이 독성 물질을 남기고 오퍼레이터가 독성 물질의 범위에 있을 때, 매초마다 최대 생명력의 2% 피해를 입음'
       }
     ]
@@ -166,7 +144,6 @@ const ROWS = [
         lineBottom: true,
         desc: '오퍼레이터의 주요 능력치 -20%'
       },
-
       {
         id: '2-2',
         col: 2,
@@ -177,7 +154,6 @@ const ROWS = [
         lineTop: true,
         desc: '적이 주는 피해 +80%'
       },
-
       {
         id: '2-3',
         col: 3,
@@ -189,7 +165,6 @@ const ROWS = [
         lineBottom: true,
         desc: '카운트다운 -200초'
       },
-
       {
         id: '2-4',
         col: 4,
@@ -201,7 +176,6 @@ const ROWS = [
         lineBottom: true,
         desc: '적 생명력 +100%'
       },
-
       {
         id: '2-5',
         col: 5,
@@ -212,7 +186,6 @@ const ROWS = [
         lineTop: true,
         desc: '오퍼레이터가 적의 방어불능 또는 아츠부착 스택 수치를 증가시키면, 해당 오퍼레이터가 주는 해당 유형의 피해 -90%, 10초간 지속'
       },
-
       {
         id: '2-6',
         col: 6,
@@ -224,8 +197,6 @@ const ROWS = [
         desc: '메인 컨트롤 오퍼레이터가 받는 피해 +100%'
       },
 
-      // 그룹7은 난이도 1과 3만 있어서,
-      // 난이도 2 칸은 빈칸이지만 세로선만 지나갑니다.
       {
         empty: true,
         col: 7,
@@ -245,7 +216,6 @@ const ROWS = [
         lineTop: true,
         desc: '웨이브 사이에 치유 물질이 생성되지 않음'
       },
-
       {
         id: '2-9',
         col: 9,
@@ -256,7 +226,6 @@ const ROWS = [
         lineTop: true,
         desc: '오퍼레이터가 궁극기를 1회 사용할 때마다, 해당 오퍼레이터가 이후 사용하는 궁극기 피해 -100% 감소'
       },
-
       {
         id: '2-10',
         col: 10,
@@ -265,7 +234,6 @@ const ROWS = [
         pts: 2,
         desc: '적 이동속도 관련 제약'
       },
-
       {
         id: '2-11',
         col: 11,
@@ -288,7 +256,6 @@ const ROWS = [
         requiresAny: ['3-12', '3-13'],
         desc: '전투가 시작된 후 메인 컨트롤 오퍼레이터 전환 불가'
       },
-
       {
         id: '2-16',
         col: 15,
@@ -330,7 +297,6 @@ const ROWS = [
         lineTop: true,
         desc: '카운트다운 -300초'
       },
-
       {
         id: '3-4',
         col: 4,
@@ -367,7 +333,6 @@ const ROWS = [
         pts: 3,
         desc: '오퍼레이터의 일반공격 피해 -70%'
       },
-
       {
         id: '3-11',
         col: 11,
@@ -376,7 +341,6 @@ const ROWS = [
         pts: 3,
         desc: '오퍼레이터가 받은 데미지에 비례한 수치만큼 최대 체력 감소(근거리:30%,원거리50%)'
       },
-
       {
         id: '3-12',
         col: 12,
@@ -386,11 +350,8 @@ const ROWS = [
         group: 'yellow-key',
         key: true,
         lineRight: true,
-
-        // 노란 열쇠 I/II 중 하나를 선택하면 해금 제약이 열립니다.
         desc: '오퍼레이터 연계스킬 쿨타임 -60%, 배틀스킬 피해 -60%'
       },
-
       {
         id: '3-13',
         col: 13,
@@ -468,8 +429,6 @@ function toggleCard(id){
     return;
   }
 
-  // 같은 group 안에서는 하나만 선택됩니다.
-  // 다른 그룹원을 클릭하면 기존 선택이 자동으로 해제됩니다.
   if(card.group){
     getAllCards()
       .filter(c =>
@@ -608,7 +567,6 @@ function renderPanel(){
         여기에 표시됩니다
       </div>
     `;
-
     return;
   }
 
@@ -630,8 +588,6 @@ function renderPanel(){
 
         <div>
           <div class="panel-name">${card.name}</div>
-
-          <!-- 여기에 각 카드의 desc가 표시됩니다. -->
           <div class="panel-desc">
             ${card.desc || '설명이 아직 입력되지 않았습니다.'}
           </div>
@@ -657,13 +613,11 @@ function updateTotal(){
 
   selected.forEach(id => {
     const c = getCard(id);
-
     if(c) total += c.pts;
   });
 
   document.getElementById('total-pts').textContent = total;
 
-  // 총점 25점 이상일 때만 경고 문구가 표시됩니다.
   document.getElementById('warn-text')
     .classList.toggle('visible', total >= 25);
 }
@@ -671,7 +625,6 @@ function updateTotal(){
 function updateAll(){
   buildGrid();
   renderPanel();
-  renderConstraintLists();
   updateTotal();
 }
 
@@ -683,56 +636,5 @@ boardWrap.addEventListener('wheel', (e) => {
     boardWrap.scrollLeft += e.deltaY;
   }
 }, { passive:false });
-
-function renderConstraintLists(){
-  const operatorList = document.getElementById('operator-list');
-  const enemyList = document.getElementById('enemy-list');
-  const environmentList = document.getElementById('environment-list');
-
-  if(!operatorList || !enemyList || !environmentList) return;
-
-  operatorList.innerHTML = '';
-  enemyList.innerHTML = '';
-  environmentList.innerHTML = '';
-
-  selectedOrder
-    .filter(id => selected.has(id))
-    .forEach(id => {
-      const card = getCard(id);
-      if(!card) return;
-
-      let target = null;
-
-      if(card.name.startsWith('팀:')){
-        target = operatorList;
-      }
-      else if(card.name.startsWith('조작:')){
-        target = enemyList;
-      }
-      else if(card.name.startsWith('환경:')){
-        target = environmentList;
-      }
-
-      if(!target) return;
-
-      const tier = getTier(card.id);
-
-      const item = document.createElement('div');
-      item.className = `constraint-item tier-${tier}`;
-
-      item.innerHTML = `
-        <div class="constraint-item-icon">${card.icon}</div>
-
-        <div class="constraint-item-info">
-          <div class="constraint-item-name">${card.name}</div>
-          <div class="constraint-item-desc">${card.desc || ''}</div>
-        </div>
-
-        <div class="constraint-item-score">${card.pts}★</div>
-      `;
-
-      target.appendChild(item);
-    });
-}
 
 updateAll();
