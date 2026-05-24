@@ -1,80 +1,410 @@
 const ROWS = [
   {
-    tier:1,
-    cards:[
-      {id:'1-1', col:1, icon:'▦', name:'그룹1-I', pts:1, group:'g1', lineBottom:true},
-      {id:'1-2', col:2, icon:'▲', name:'그룹2-I', pts:1, group:'g2', lineBottom:true},
-      {id:'1-3', col:3, icon:'◴', name:'그룹3-I', pts:1, group:'g3', lineBottom:true},
-      {id:'1-4', col:4, icon:'✹', name:'그룹4-I', pts:1, group:'g4', lineBottom:true},
-      {id:'1-5', col:5, icon:'▣', name:'그룹5-I', pts:1, group:'g5', lineBottom:true},
-      {id:'1-6', col:6, icon:'◒', name:'그룹6-I', pts:1, group:'g6', lineBottom:true},
-      {id:'1-7', col:7, icon:'⌁', name:'그룹7-I', pts:1, group:'g7', lineBottom:true},
-      {id:'1-8', col:8, icon:'✚', name:'그룹8-I', pts:1, group:'g8', lineBottom:true},
-      {id:'1-9', col:9, icon:'◎', name:'그룹9-I', pts:1, group:'g9', lineBottom:true},
+    tier: 1,
+    cards: [
+      {
+        id: '1-1',
+        col: 1,
+        icon: '▦',
+        name: '팀: 위축 I',
+        pts: 1,
+        group: 'g1',
+        lineBottom: true,
 
-      {id:'1-10', col:10, icon:'◉', name:'독립 제약 I', pts:1},
+        // 여기에 설명 작성
+        desc: '오퍼레이터의 주요 능력치 -10%'
+      },
 
-      {empty:true, col:11},
-      {empty:true, col:12},
-      {empty:true, col:13},
+      {
+        id: '1-2',
+        col: 2,
+        icon: '▲',
+        name: '조작: 공격 I',
+        pts: 1,
+        group: 'g2',
+        lineBottom: true,
 
-      {id:'1-15', col:14, icon:'◉', name:'해금 독립 I', pts:1, unlockable:true, requiresAny:['3-12','3-13']},
-      {id:'1-16', col:15, icon:'▧', name:'해금 그룹 I', pts:1, group:'unlock-group', unlockable:true, requiresAny:['3-12','3-13'], lineBottom:true}
+        // 여기에 설명 작성
+        desc: '적이 주는 피해 +30%'
+      },
+
+      {
+        id: '1-3',
+        col: 3,
+        icon: '◴',
+        name: '환경: 시간 제한 I',
+        pts: 1,
+        group: 'g3',
+        lineBottom: true,
+
+        // 여기에 설명 작성
+        desc: '카운트다운 -100초'
+      },
+
+      {
+        id: '1-4',
+        col: 4,
+        icon: '✹',
+        name: '조작: 활성 I',
+        pts: 1,
+        group: 'g4',
+        lineBottom: true,
+        desc: '적 생명력 +50%'
+      },
+
+      {
+        id: '1-5',
+        col: 5,
+        icon: '▣',
+        name: '팀: 억제 I',
+        pts: 1,
+        group: 'g5',
+        lineBottom: true,
+        desc: '오퍼레이터가 적의 방어불능 또는 아츠부착 스택 수치를 증가시키면, 해당 오퍼레이터가 주는 해당 유형의 피해 -45%, 10초간 지속'
+      },
+
+      {
+        id: '1-6',
+        col: 6,
+        icon: '◒',
+        name: '팀: 참수 I',
+        pts: 1,
+        group: 'g6',
+        lineBottom: true,
+        desc: '메인 컨트롤 오퍼레이터가 받는 피해 +50%'
+      },
+
+      {
+        id: '1-7',
+        col: 7,
+        icon: '⌁',
+        name: '환경: 호흡 불가',
+        pts: 1,
+        group: 'g7',
+        lineBottom: true,
+        desc: '기력 회복 속도 -50%'
+      },
+
+      {
+        id: '1-8',
+        col: 8,
+        icon: '✚',
+        name: '환경: 쇠퇴 I',
+        pts: 1,
+        group: 'g8',
+        lineBottom: true,
+        desc: '웨이브 사이에 치유 물질이 1개만 생성'
+      },
+
+      {
+        id: '1-9',
+        col: 9,
+        icon: '◎',
+        name: '팀: 부러진 칼날 I',
+        pts: 1,
+        group: 'g9',
+        lineBottom: true,
+        desc: '오퍼레이터가 궁극기를 1회 사용할 때마다, 해당 오퍼레이터가 이후 사용하는 궁극기 피해 -50% 감소'
+      },
+
+      {
+        id: '1-10',
+        col: 10,
+        icon: '◉',
+        name: '독립 제약 I',
+        pts: 1,
+
+        // 독립 제약은 group이 없습니다.
+        desc: ''
+      },
+
+      { empty: true, col: 11 },
+      { empty: true, col: 12 },
+      { empty: true, col: 13 },
+
+      {
+        id: '1-15',
+        col: 14,
+        icon: '◉',
+        name: '해금 독립 I',
+        pts: 1,
+        unlockable: true,
+        requiresAny: ['3-12', '3-13'],
+
+        // 노란 열쇠 중 하나를 선택해야 활성화됩니다.
+        desc: ''
+      },
+
+      {
+        id: '1-16',
+        col: 15,
+        icon: '▧',
+        name: '해금 그룹 I',
+        pts: 1,
+        group: 'unlock-group',
+        unlockable: true,
+        requiresAny: ['3-12', '3-13'],
+        lineBottom: true,
+
+        // 해금 그룹은 I/II 중 하나만 선택됩니다.
+        desc: ''
+      }
     ]
   },
 
   {
-    tier:2,
-    cards:[
-      {id:'2-1', col:1, icon:'▦', name:'그룹1-II', pts:2, group:'g1', lineTop:true, lineBottom:true},
-      {id:'2-2', col:2, icon:'▲', name:'그룹2-II', pts:2, group:'g2', lineTop:true},
-      {id:'2-3', col:3, icon:'◴', name:'그룹3-II', pts:2, group:'g3', lineTop:true, lineBottom:true},
-      {id:'2-4', col:4, icon:'✹', name:'그룹4-II', pts:2, group:'g4', lineTop:true, lineBottom:true},
-      {id:'2-5', col:5, icon:'▣', name:'그룹5-II', pts:2, group:'g5', lineTop:true},
-      {id:'2-6', col:6, icon:'◒', name:'그룹6-II', pts:2, group:'g6', lineTop:true},
+    tier: 2,
+    cards: [
+      {
+        id: '2-1',
+        col: 1,
+        icon: '▦',
+        name: '그룹1-II',
+        pts: 2,
+        group: 'g1',
+        lineTop: true,
+        lineBottom: true,
+        desc: ''
+      },
 
-      {empty:true, col:7, group:'g7', connectorOnly:true, lineTop:true, lineBottom:true},
+      {
+        id: '2-2',
+        col: 2,
+        icon: '▲',
+        name: '그룹2-II',
+        pts: 2,
+        group: 'g2',
+        lineTop: true,
+        desc: ''
+      },
 
-      {id:'2-8', col:8, icon:'✚', name:'그룹8-II', pts:2, group:'g8', lineTop:true},
-      {id:'2-9', col:9, icon:'◎', name:'그룹9-II', pts:2, group:'g9', lineTop:true},
+      {
+        id: '2-3',
+        col: 3,
+        icon: '◴',
+        name: '그룹3-II',
+        pts: 2,
+        group: 'g3',
+        lineTop: true,
+        lineBottom: true,
+        desc: ''
+      },
 
-      {id:'2-10', col:10, icon:'✹', name:'독립 제약 II-A', pts:2},
-      {id:'2-11', col:11, icon:'▨', name:'독립 제약 II-B', pts:2},
+      {
+        id: '2-4',
+        col: 4,
+        icon: '✹',
+        name: '그룹4-II',
+        pts: 2,
+        group: 'g4',
+        lineTop: true,
+        lineBottom: true,
+        desc: ''
+      },
 
-      {empty:true, col:12},
-      {empty:true, col:13},
+      {
+        id: '2-5',
+        col: 5,
+        icon: '▣',
+        name: '그룹5-II',
+        pts: 2,
+        group: 'g5',
+        lineTop: true,
+        desc: ''
+      },
 
-      {id:'2-15', col:14, icon:'◉', name:'해금 독립 II', pts:2, unlockable:true, requiresAny:['3-12','3-13']},
-      {id:'2-16', col:15, icon:'▧', name:'해금 그룹 II', pts:2, group:'unlock-group', unlockable:true, requiresAny:['3-12','3-13'], lineTop:true}
+      {
+        id: '2-6',
+        col: 6,
+        icon: '◒',
+        name: '그룹6-II',
+        pts: 2,
+        group: 'g6',
+        lineTop: true,
+        desc: ''
+      },
+
+      // 그룹7은 난이도 1과 3만 있어서,
+      // 난이도 2 칸은 빈칸이지만 세로선만 지나갑니다.
+      {
+        empty: true,
+        col: 7,
+        group: 'g7',
+        connectorOnly: true,
+        lineTop: true,
+        lineBottom: true
+      },
+
+      {
+        id: '2-8',
+        col: 8,
+        icon: '✚',
+        name: '그룹8-II',
+        pts: 2,
+        group: 'g8',
+        lineTop: true,
+        desc: ''
+      },
+
+      {
+        id: '2-9',
+        col: 9,
+        icon: '◎',
+        name: '그룹9-II',
+        pts: 2,
+        group: 'g9',
+        lineTop: true,
+        desc: ''
+      },
+
+      {
+        id: '2-10',
+        col: 10,
+        icon: '✹',
+        name: '독립 제약 II-A',
+        pts: 2,
+        desc: ''
+      },
+
+      {
+        id: '2-11',
+        col: 11,
+        icon: '▨',
+        name: '독립 제약 II-B',
+        pts: 2,
+        desc: ''
+      },
+
+      { empty: true, col: 12 },
+      { empty: true, col: 13 },
+
+      {
+        id: '2-15',
+        col: 14,
+        icon: '◉',
+        name: '해금 독립 II',
+        pts: 2,
+        unlockable: true,
+        requiresAny: ['3-12', '3-13'],
+        desc: ''
+      },
+
+      {
+        id: '2-16',
+        col: 15,
+        icon: '▧',
+        name: '해금 그룹 II',
+        pts: 2,
+        group: 'unlock-group',
+        unlockable: true,
+        requiresAny: ['3-12', '3-13'],
+        lineTop: true,
+        desc: ''
+      }
     ]
   },
 
   {
-    tier:3,
-    cards:[
-      {id:'3-1', col:1, icon:'▦', name:'그룹1-III', pts:3, group:'g1', lineTop:true},
+    tier: 3,
+    cards: [
+      {
+        id: '3-1',
+        col: 1,
+        icon: '▦',
+        name: '그룹1-III',
+        pts: 3,
+        group: 'g1',
+        lineTop: true,
+        desc: ''
+      },
 
-      {empty:true, col:2},
+      { empty: true, col: 2 },
 
-      {id:'3-3', col:3, icon:'◴', name:'그룹3-III', pts:3, group:'g3', lineTop:true},
-      {id:'3-4', col:4, icon:'✹', name:'그룹4-III', pts:3, group:'g4', lineTop:true},
+      {
+        id: '3-3',
+        col: 3,
+        icon: '◴',
+        name: '그룹3-III',
+        pts: 3,
+        group: 'g3',
+        lineTop: true,
+        desc: ''
+      },
 
-      {empty:true, col:5},
-      {empty:true, col:6},
+      {
+        id: '3-4',
+        col: 4,
+        icon: '✹',
+        name: '그룹4-III',
+        pts: 3,
+        group: 'g4',
+        lineTop: true,
+        desc: ''
+      },
 
-      {id:'3-7', col:7, icon:'◒', name:'그룹7-III', pts:3, group:'g7', lineTop:true},
+      { empty: true, col: 5 },
+      { empty: true, col: 6 },
 
-      {empty:true, col:8},
-      {empty:true, col:9},
+      {
+        id: '3-7',
+        col: 7,
+        icon: '◒',
+        name: '그룹7-III',
+        pts: 3,
+        group: 'g7',
+        lineTop: true,
+        desc: ''
+      },
 
-      {id:'3-10', col:10, icon:'⚔', name:'독립 제약 III-A', pts:3},
-      {id:'3-11', col:11, icon:'♟', name:'독립 제약 III-B', pts:3},
+      { empty: true, col: 8 },
+      { empty: true, col: 9 },
 
-      {id:'3-12', col:12, icon:'🔑', name:'노란 열쇠 I', pts:3, group:'yellow-key', key:true, lineRight:true},
-      {id:'3-13', col:13, icon:'🗝', name:'노란 열쇠 II', pts:3, group:'yellow-key', key:true, lineLeft:true},
+      {
+        id: '3-10',
+        col: 10,
+        icon: '⚔',
+        name: '독립 제약 III-A',
+        pts: 3,
+        desc: ''
+      },
 
-      {empty:true, col:14},
-      {empty:true, col:15}
+      {
+        id: '3-11',
+        col: 11,
+        icon: '♟',
+        name: '독립 제약 III-B',
+        pts: 3,
+        desc: ''
+      },
+
+      {
+        id: '3-12',
+        col: 12,
+        icon: '🔑',
+        name: '노란 열쇠 I',
+        pts: 3,
+        group: 'yellow-key',
+        key: true,
+        lineRight: true,
+
+        // 노란 열쇠 I/II 중 하나를 선택하면 해금 제약이 열립니다.
+        desc: ''
+      },
+
+      {
+        id: '3-13',
+        col: 13,
+        icon: '🗝',
+        name: '노란 열쇠 II',
+        pts: 3,
+        group: 'yellow-key',
+        key: true,
+        lineLeft: true,
+        desc: ''
+      },
+
+      { empty: true, col: 14 },
+      { empty: true, col: 15 }
     ]
   }
 ];
@@ -83,20 +413,20 @@ const selected = new Set();
 const selectedOrder = [];
 
 function getAllCards(){
-  return ROWS.flatMap(r=>r.cards);
+  return ROWS.flatMap(r => r.cards);
 }
 
 function getCard(id){
-  return getAllCards().find(c=>c.id===id);
+  return getAllCards().find(c => c.id === id);
 }
 
 function getTier(id){
-  return ROWS.find(r=>r.cards.some(c=>c.id===id))?.tier || 1;
+  return ROWS.find(r => r.cards.some(c => c.id === id))?.tier || 1;
 }
 
 function removeFromOrder(id){
   const i = selectedOrder.indexOf(id);
-  if(i !== -1) selectedOrder.splice(i,1);
+  if(i !== -1) selectedOrder.splice(i, 1);
 }
 
 function isGroupSelected(group){
@@ -110,6 +440,7 @@ function isDisabled(card){
   if(card.requiresAny){
     return !card.requiresAny.some(id => selected.has(id));
   }
+
   return false;
 }
 
@@ -124,11 +455,9 @@ function isGroupConflict(card){
 }
 
 function toggleCard(id){
-
   const card = getCard(id);
 
   if(!card) return;
-
   if(isDisabled(card)) return;
 
   if(selected.has(id)){
@@ -139,8 +468,9 @@ function toggleCard(id){
     return;
   }
 
+  // 같은 group 안에서는 하나만 선택됩니다.
+  // 다른 그룹원을 클릭하면 기존 선택이 자동으로 해제됩니다.
   if(card.group){
-
     getAllCards()
       .filter(c =>
         c.group === card.group &&
@@ -150,45 +480,34 @@ function toggleCard(id){
         selected.delete(c.id);
         removeFromOrder(c.id);
       });
-
   }
 
   selected.add(id);
   selectedOrder.push(id);
 
   removeDependentCards();
-
   updateAll();
 }
 
 function removeDependentCards(){
-
   getAllCards().forEach(card => {
-
     if(!card.requiresAny) return;
 
-    const unlocked =
-      card.requiresAny.some(id => selected.has(id));
+    const unlocked = card.requiresAny.some(id => selected.has(id));
 
     if(!unlocked){
       selected.delete(card.id);
       removeFromOrder(card.id);
     }
-
   });
-
 }
 
 function buildGrid(){
-
   const area = document.getElementById('grid-area');
-
   area.innerHTML = '';
 
-  ROWS.forEach(({tier,cards}) => {
-
+  ROWS.forEach(({tier, cards}) => {
     const wrap = document.createElement('div');
-
     wrap.className = 'row-wrap';
 
     wrap.innerHTML = `
@@ -201,15 +520,11 @@ function buildGrid(){
     `;
 
     const row = document.createElement('div');
-
     row.className = 'cards-row';
 
     cards.forEach(card => {
-
       const el = document.createElement('div');
-
       el.className = 'card';
-
       el.style.gridColumn = card.col;
 
       if(card.lineTop) el.classList.add('line-top');
@@ -222,7 +537,6 @@ function buildGrid(){
       }
 
       if(card.empty){
-
         el.classList.add('empty');
 
         if(card.connectorOnly){
@@ -239,32 +553,17 @@ function buildGrid(){
         `;
 
         row.appendChild(el);
-
         return;
       }
 
       const disabled = isDisabled(card);
       const conflict = isGroupConflict(card);
 
-      if(selected.has(card.id)){
-        el.classList.add('selected');
-      }
-
-      if(disabled){
-        el.classList.add('disabled');
-      }
-
-      if(conflict){
-        el.classList.add('group-conflict');
-      }
-
-      if(card.key){
-        el.classList.add('key-card');
-      }
-
-      if(card.unlockable){
-        el.classList.add('unlockable-card');
-      }
+      if(selected.has(card.id)) el.classList.add('selected');
+      if(disabled) el.classList.add('disabled');
+      if(conflict) el.classList.add('group-conflict');
+      if(card.key) el.classList.add('key-card');
+      if(card.unlockable) el.classList.add('unlockable-card');
 
       el.innerHTML = `
         <span class="conn top"></span>
@@ -289,27 +588,20 @@ function buildGrid(){
       }
 
       row.appendChild(el);
-
     });
 
     wrap.appendChild(row);
-
     area.appendChild(wrap);
-
   });
-
 }
 
 function renderPanel(){
-
   const list = document.getElementById('panel-list');
-
   const count = document.getElementById('selected-count');
 
   count.textContent = selected.size;
 
   if(selected.size === 0){
-
     list.innerHTML = `
       <div class="panel-empty">
         지표를 선택하면<br>
@@ -325,13 +617,10 @@ function renderPanel(){
   selectedOrder
     .filter(id => selected.has(id))
     .forEach(id => {
-
       const card = getCard(id);
-
       const tier = getTier(id);
 
       const item = document.createElement('div');
-
       item.className = `panel-item tier-${tier}`;
 
       item.innerHTML = `
@@ -341,8 +630,10 @@ function renderPanel(){
 
         <div>
           <div class="panel-name">${card.name}</div>
+
+          <!-- 여기에 각 카드의 desc가 표시됩니다. -->
           <div class="panel-desc">
-            선택된 제약입니다.
+            ${card.desc || '설명이 아직 입력되지 않았습니다.'}
           </div>
         </div>
 
@@ -351,65 +642,45 @@ function renderPanel(){
 
       item.querySelector('.panel-del')
         .addEventListener('click', () => {
-
           selected.delete(id);
-
           removeFromOrder(id);
-
           removeDependentCards();
-
           updateAll();
-
         });
 
       list.appendChild(item);
-
     });
-
 }
 
 function updateTotal(){
-
   let total = 0;
 
   selected.forEach(id => {
-
     const c = getCard(id);
 
     if(c) total += c.pts;
-
   });
 
-  document.getElementById('total-pts')
-    .textContent = total;
+  document.getElementById('total-pts').textContent = total;
 
+  // 총점 25점 이상일 때만 경고 문구가 표시됩니다.
   document.getElementById('warn-text')
     .classList.toggle('visible', total >= 25);
-
 }
 
 function updateAll(){
-
   buildGrid();
-
   renderPanel();
-
   updateTotal();
-
 }
 
 const gridArea = document.getElementById('grid-area');
 
 gridArea.addEventListener('wheel', (e) => {
-
   if(Math.abs(e.deltaY) > Math.abs(e.deltaX)){
-
     e.preventDefault();
-
     gridArea.scrollLeft += e.deltaY;
-
   }
-
-}, { passive:false });
+}, { passive: false });
 
 updateAll();
