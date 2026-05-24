@@ -581,6 +581,79 @@ body{
   accent-color:#ffcc33;
 }
 
+
+/* =========================
+   Intro Splash
+========================= */
+
+#intro-screen{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:#000;
+
+  animation:introFadeOut 2.6s forwards;
+}
+
+#intro-screen img{
+  width:min(720px,70vw);
+  max-width:90vw;
+
+  opacity:0;
+
+  animation:introLogo 2s ease forwards;
+}
+
+@keyframes introLogo{
+  0%{
+    opacity:0;
+    transform:scale(.96);
+    filter:blur(12px);
+  }
+
+  20%{
+    opacity:1;
+    transform:scale(1);
+    filter:blur(0);
+  }
+
+  72%{
+    opacity:1;
+    transform:scale(1);
+    filter:blur(0);
+  }
+
+  100%{
+    opacity:0;
+    transform:scale(1.02);
+    filter:blur(4px);
+  }
+}
+
+@keyframes introFadeOut{
+  0%{
+    opacity:1;
+    visibility:visible;
+  }
+
+  85%{
+    opacity:1;
+    visibility:visible;
+  }
+
+  100%{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+  }
+}
+
+
 @media (max-width:900px){
   body{
     overflow:auto;
