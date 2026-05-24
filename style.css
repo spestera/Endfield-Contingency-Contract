@@ -528,3 +528,228 @@ body{
   font-size:58px;
   font-weight:900;
 }
+
+@media (max-width: 900px){
+
+  body{
+    overflow:auto;
+  }
+
+  .sim-wrapper{
+    height:auto;
+    min-height:100dvh;
+    grid-template-rows:auto auto auto;
+  }
+
+  /* HEADER */
+
+  .sim-header{
+    padding:12px 14px 10px;
+  }
+
+  .small-title{
+    font-size:11px;
+    margin-bottom:6px;
+  }
+
+  .main-title{
+    font-size:28px;
+    padding-left:14px;
+  }
+
+  .main-title::before{
+    width:6px;
+    height:28px;
+  }
+
+  /* BODY */
+
+  .sim-body{
+    display:flex;
+    flex-direction:column;
+  }
+
+  .board-wrap{
+    width:100%;
+    overflow-x:auto;
+    overflow-y:hidden;
+    -webkit-overflow-scrolling:touch;
+  }
+
+  .grid-area{
+    overflow:visible;
+    min-width:max-content;
+    padding-bottom:10px;
+  }
+
+  /* ROW */
+
+  .row-wrap{
+    grid-template-columns:64px 1fr;
+    min-width:1220px;
+    height:92px;
+    border-bottom:3px solid rgba(120,120,130,.28);
+  }
+
+  .row-label{
+    gap:4px;
+  }
+
+  .tier-num{
+    font-size:28px;
+  }
+
+  .tier-icon{
+    font-size:12px;
+  }
+
+  .tier-bar{
+    width:5px;
+  }
+
+  /* CARDS */
+
+  .cards-row{
+    grid-template-columns:repeat(16,52px);
+    column-gap:26px;
+    padding-left:24px;
+  }
+
+  .card{
+    width:52px;
+    height:64px;
+  }
+
+  .connector-only{
+    width:52px;
+    height:64px;
+  }
+
+  .card-icon{
+    font-size:22px;
+  }
+
+  .card-check{
+    width:18px !important;
+    height:18px !important;
+    font-size:16px !important;
+  }
+
+  .card-pts{
+    font-size:9px;
+  }
+
+  .conflict-text{
+    font-size:11px !important;
+    top:14px !important;
+  }
+
+  .conflict-mark{
+    font-size:20px !important;
+  }
+
+  /* CONNECTION */
+
+  .card.line-top .conn.top{
+    top:-24px;
+    height:24px;
+    width:3px;
+  }
+
+  .card.line-bottom .conn.bottom{
+    bottom:-24px;
+    height:24px;
+    width:3px;
+  }
+
+  .connector-only.line-top.line-bottom::before{
+    width:3px;
+    top:-28px;
+    bottom:-28px;
+  }
+
+  .card.line-left .conn.left{
+    width:26px;
+    right:52px;
+    height:3px;
+  }
+
+  .card.line-right .conn.right{
+    width:26px;
+    left:52px;
+    height:3px;
+  }
+
+  /* PANEL */
+
+  .side-panel{
+    width:100%;
+    max-height:none;
+    border-left:none;
+    border-top:1px solid rgba(255,255,255,.15);
+    padding:6px;
+  }
+
+  .panel-header{
+    height:34px;
+    font-size:13px;
+  }
+
+  .panel-item{
+    min-height:72px;
+    grid-template-columns:42px 32px 1fr 28px;
+    gap:6px;
+    padding:6px;
+  }
+
+  .panel-score{
+    height:18px;
+    font-size:11px;
+  }
+
+  .panel-icon{
+    font-size:20px;
+  }
+
+  .panel-name{
+    font-size:13px;
+  }
+
+  .panel-desc{
+    font-size:11px;
+  }
+
+  .panel-del{
+    font-size:16px;
+  }
+
+  /* FOOTER */
+
+  .sim-footer{
+    grid-template-columns:1fr;
+    gap:10px;
+    padding:12px;
+  }
+
+  .warn-text{
+    font-size:12px;
+    line-height:1.5;
+  }
+
+  .total-score{
+    justify-self:stretch;
+    min-width:0;
+    width:100%;
+    height:58px;
+    border-radius:18px;
+  }
+
+  .total-label{
+    font-size:12px;
+  }
+
+  .total-num{
+    font-size:38px;
+  }
+
+}
