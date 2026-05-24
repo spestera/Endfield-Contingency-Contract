@@ -257,7 +257,7 @@ body{
   opacity:.18;
   background:rgba(18,18,18,.4);
   border-color:rgba(80,80,80,.18);
-  cursor:default;
+  cursor:기본;
 }
 
 .connector-only,
@@ -270,7 +270,7 @@ body{
   background:transparent !important;
   border-color:transparent !important;
   box-shadow:none !important;
-  cursor:default;
+  cursor:기본;
 }
 
 .connector-only .card-x{
@@ -479,6 +479,32 @@ body{
 .warn-text.visible{
   opacity:1;
   visibility:visible;
+}
+
+.connector-only.line-top.line-bottom::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -45px;
+  bottom: -45px;
+  width: 4px;
+  transform: translateX(-50%);
+  background: #9ca4ae;
+  box-shadow: 0 0 8px rgba(190,200,220,.45);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* 활성 그룹일 때 connector-only 선도 붉게 */
+.connector-only.line-active.line-top.line-bottom::before {
+  background: #ff2d2d;
+  box-shadow: 0 0 12px rgba(255,0,0,.8);
+}
+
+/* 기존 위/아래 조각선이 겹쳐서 끊겨 보이지 않게 */
+.connector-only .conn.top,
+.connector-only .conn.bottom {
+  display: none !important;
 }
 
 .total-score{
