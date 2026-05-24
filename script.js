@@ -672,4 +672,14 @@ if(bgm && musicToggle && musicVolume){
   });
 }
 
+window.addEventListener('load', () => {
+  const intro = document.getElementById('intro-screen');
+
+  setTimeout(() => {
+    if(intro){
+      intro.remove();
+    }
+  }, 2600);
+});
+
 updateAll();
