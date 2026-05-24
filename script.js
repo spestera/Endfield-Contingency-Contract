@@ -421,13 +421,14 @@ function toggleCard(id){
   if(!card) return;
   if(isDisabled(card)) return;
 
-  if(selected.has(id)){
+ if(selected.has(id)){
     selected.delete(id);
     removeFromOrder(id);
     removeDependentCards();
+    playSfx(sfxCancel);
     updateAll();
     return;
-  }
+  }  
 
   if(card.group){
     getAllCards()
@@ -443,7 +444,8 @@ function toggleCard(id){
 
   selected.add(id);
   selectedOrder.push(id);
-
+  playSfx(sfxSelect);
+  
   removeDependentCards();
   updateAll();
 }
@@ -681,5 +683,16 @@ window.addEventListener('load', () => {
     }
   }, 2600);
 });
+
+const sfxSelect = document.getElementById('sfx-select');
+const sfxCancel = document.getElementById('sfx-cancel');
+
+function playSfx(audio){
+  if(!audio) return;
+
+  audio.currentTime = 0;
+  audio.volume = 0.45;
+  audio.play().catch(() => {});
+}
 
 updateAll();
