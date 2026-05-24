@@ -16,7 +16,6 @@
   </header>
 
   <main class="sim-body">
-
     <section class="board-wrap">
       <div class="grid-area" id="grid-area"></div>
     </section>
@@ -35,14 +34,10 @@
         <div class="panel-empty">지표를 선택하면<br>여기에 표시됩니다</div>
       </div>
     </aside>
-
   </main>
 
   <footer class="sim-footer">
-    <div class="best-record">
-      <span class="best-num">7</span>
-      <span>최고 기록</span>
-    </div>
+    <div></div>
 
     <div class="warn-text" id="warn-text">
       ⚠ 현재 지표 난도가 높습니다. 신중하게 행동해 주세요.
@@ -155,21 +150,28 @@ function buildGrid() {
       }
 
       const disabled = isDisabled(card);
+      const groupConflict = isGroupConflict(card);
 
       if (selected.has(card.id)) el.classList.add('selected');
       if (card.locked) el.classList.add('locked');
       if (card.key) el.classList.add('key-card');
       if (card.yellowLock) el.classList.add('yellow-lock');
       if (disabled) el.classList.add('disabled');
+      if (groupConflict) el.classList.add('group-conflict');
+      if (card.group) el.classList.add('group-linked');
+
+      if (card.id === '3-11') el.classList.add('key-left');
+      if (card.id === '3-12') el.classList.add('key-right');
 
       el.innerHTML = `
         <div class="card-mini-badge">${card.key ? 'KEY' : card.yellowLock ? 'LOCK' : '▣'}</div>
         <div class="card-icon">${card.icon}</div>
         <div class="card-check">✓</div>
         <div class="card-pts">${card.pts}</div>
+        ${card.id === '3-11' ? '<div class="key-link"></div>' : ''}
       `;
 
-      if (!card.locked) {
+      if (!card.locked && !disabled && !groupConflict) {
         el.addEventListener('click', () => toggleCard(card.id));
       }
 
@@ -184,15 +186,13 @@ function buildGrid() {
 function toggleCard(id) {
   const card = getCard(id);
   if (!card || card.empty || card.locked) return;
-
   if (isDisabled(card)) return;
+  if (isGroupConflict(card)) return;
 
   if (selected.has(id)) {
     selected.delete(id);
     removeFromOrder(id);
-
     removeCardsDependingOn(id);
-
     updateAll();
     return;
   }
@@ -220,6 +220,17 @@ function isDisabled(card) {
   }
 
   return false;
+}
+
+function isGroupConflict(card) {
+  if (!card.group) return false;
+  if (selected.has(card.id)) return false;
+
+  return getAllCards().some(c =>
+    c.id !== card.id &&
+    c.group === card.group &&
+    selected.has(c.id)
+  );
 }
 
 function removeCardsDependingOn(removedId) {
@@ -284,6 +295,7 @@ function renderPanel() {
 
 function updateTotal() {
   let total = 0;
+
   selected.forEach(id => {
     const c = getCard(id);
     if (c) total += c.pts;
@@ -297,12 +309,6 @@ function updateAll() {
   buildGrid();
   renderPanel();
   updateTotal();
-}
-
-function resetAll() {
-  selected.clear();
-  selectedOrder.length = 0;
-  updateAll();
 }
 
 function removeFromOrder(id) {
