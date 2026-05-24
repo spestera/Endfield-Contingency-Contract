@@ -366,9 +366,9 @@ body{
 
 .panel-item{
   display:grid;
-  grid-template-columns:120px minmax(0,1fr) 46px;
+  grid-template-columns:92px minmax(0,1fr) 40px;
   grid-template-areas:"left content del";
-  gap:14px;
+  gap:10px;
   align-items:stretch;
   min-height:132px;
   padding:14px;
