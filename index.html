@@ -11,6 +11,25 @@
 <div class="sim-wrapper">
 
   <header class="sim-header">
+    <div class="music-player">
+      <span class="music-title">Endfield Contingency Contract</span>
+    
+      <button id="music-toggle" class="music-toggle" type="button">
+        ▶
+      </button>
+    
+      <input
+        id="music-volume"
+        class="music-volume"
+        type="range"
+        min="0"
+        max="1"
+        step="0.01"
+        value="0.4"
+      />
+    
+      <audio id="bgm" src="assets/bgm.mp3" loop></audio>
+    </div>
     <div class="small-title">// 위기 협약 재점화 실험 작전</div>
     <div class="main-title">지표 선택</div>
   </header>
