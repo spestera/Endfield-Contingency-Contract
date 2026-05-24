@@ -1,11 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>내 홈페이지</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Endfield CC Simulator</title>
+
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>안녕하세요</h1>
-  <p>첫 GitHub 홈페이지입니다.</p>
+
+<div class="container">
+
+  <div class="left-panel">
+
+    <div class="tier">
+      <div class="tier-label">1</div>
+
+      <div class="constraint-row">
+        <div class="constraint active">A</div>
+        <div class="constraint">B</div>
+        <div class="constraint">C</div>
+        <div class="constraint">D</div>
+      </div>
+    </div>
+
+    <div class="tier">
+      <div class="tier-label">2</div>
+
+      <div class="constraint-row">
+        <div class="constraint">E</div>
+        <div class="constraint locked">F</div>
+        <div class="constraint">G</div>
+        <div class="constraint">H</div>
+      </div>
+    </div>
+
+    <div class="tier">
+      <div class="tier-label">3</div>
+
+      <div class="constraint-row">
+        <div class="constraint">I</div>
+        <div class="constraint">J</div>
+        <div class="constraint locked">K</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="right-panel">
+    <h2>Constraint Info</h2>
+
+    <div class="info-box">
+      <h3>Enemy ATK Up</h3>
+      <p>적 공격력이 증가합니다.</p>
+    </div>
+  </div>
+
+</div>
+
 </body>
 </html>
