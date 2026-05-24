@@ -164,11 +164,39 @@ body {
     background 0.15s ease,
     border-color 0.15s ease,
     transform 0.12s ease;
+  isolation: isolate;
 }
+
 
 .card:hover {
   border-color: #ddd;
-  transform: translateY(-1px);
+}
+
+.card::before,
+.card::after {
+  transition: none !important;
+  filter: none !important;
+}
+
+.card.line-top::before,
+.card.line-bottom::after,
+.card.line-left::before,
+.card.line-right::after {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+.card.line-top::before {
+  transform: translateX(-50%) !important;
+}
+
+.card.line-bottom::after {
+  transform: translateX(-50%) !important;
+}
+
+.card.line-left::before,
+.card.line-right::after {
+  transform: translateY(-50%) !important;
 }
 
 .card.selected {
