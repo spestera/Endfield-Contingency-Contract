@@ -574,8 +574,6 @@ function buildGrid(){
         <div class="conflict-text">충돌</div>
         <div class="conflict-mark">⊘</div>
 
-        <div class="card-pts">${card.pts}</div>
-
         ${disabled ? '<div class="lock-mark">🔒</div>' : ''}
       `;
 
