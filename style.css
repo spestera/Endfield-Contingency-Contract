@@ -86,20 +86,25 @@ body {
   position: absolute;
   left: 0;
   top: 0;
-  width: 5px;
+  width: 6px;
   height: 100%;
+  z-index: 10;
+  box-shadow: 0 0 12px currentColor;
 }
 
 .tier-bar.t1 {
-  background: #ff9d00;
+  background: #ffb000;
+  color: #ffb000;
 }
 
 .tier-bar.t2 {
   background: #ff6a00;
+  color: #ff6a00;
 }
 
 .tier-bar.t3 {
   background: #ff1f2d;
+  color: #ff1f2d;
 }
 
 .row-label {
@@ -136,6 +141,7 @@ body {
   position: relative;
   width: 72px;
   height: 82px;
+
   background: linear-gradient(
     145deg,
     rgba(55,55,55,0.82),
@@ -256,7 +262,7 @@ body {
   opacity: 0.18;
   background: rgba(20,20,20,0.45);
   border-color: rgba(80,80,80,0.22);
-  cursor: 기본;
+  cursor: default;
 }
 
 .card-x::before,
@@ -282,25 +288,22 @@ body {
   transform: translate(-50%, -50%) rotate(-45deg);
 }
 
-/* 세로 연결선 */
-
 .card.line-top::before,
 .card.line-bottom::after {
   content: "";
 
   position: absolute;
-
   left: 50%;
   transform: translateX(-50%);
 
   width: 4px;
   height: 22px;
 
-  background: #6f7378;
+  background: #858b93;
+  box-shadow: 0 0 8px rgba(180,190,205,0.45);
 
-  opacity: 0.9;
-
-  z-index: -1;
+  pointer-events: none;
+  z-index: -2;
 }
 
 .card.line-top::before {
@@ -311,7 +314,10 @@ body {
   bottom: -23px;
 }
 
-/* 노란 키 가로 연결 */
+.card:hover::before,
+.card:hover::after {
+  filter: none;
+}
 
 .card.line-left::before,
 .card.line-right::after {
@@ -327,6 +333,9 @@ body {
   background: #d6a900;
 
   box-shadow: 0 0 8px rgba(255,210,0,0.45);
+
+  pointer-events: none;
+  z-index: -2;
 }
 
 .card.line-left::before {
