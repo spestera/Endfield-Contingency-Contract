@@ -372,6 +372,11 @@ const ROWS = [
 
 const selected = new Set();
 const selectedOrder = [];
+let lastSelectedId = null;
+
+const exitingPanelItems = new Map();
+const PANEL_EXIT_MS = 240;
+
 
 function getAllCards(){
   return ROWS.flatMap(r => r.cards);
@@ -388,6 +393,35 @@ function getTier(id){
 function removeFromOrder(id){
   const i = selectedOrder.indexOf(id);
   if(i !== -1) selectedOrder.splice(i, 1);
+}
+
+function startPanelExit(id){
+  if(exitingPanelItems.has(id)) return;
+
+  const card = getCard(id);
+  if(!card) return;
+
+  exitingPanelItems.set(id, {
+    card,
+    tier: getTier(id)
+  });
+
+  setTimeout(() => {
+    exitingPanelItems.delete(id);
+    removeFromOrder(id);
+    updateAll();
+  }, PANEL_EXIT_MS);
+}
+
+function deselectCard(id, animate = true){
+  selected.delete(id);
+
+  if(animate){
+    startPanelExit(id);
+  }
+  else{
+    removeFromOrder(id);
+  }
 }
 
 function isGroupSelected(group){
@@ -421,14 +455,13 @@ function toggleCard(id){
   if(!card) return;
   if(isDisabled(card)) return;
 
- if(selected.has(id)){
-    selected.delete(id);
-    removeFromOrder(id);
+  if(selected.has(id)){
+    deselectCard(id, true);
     removeDependentCards();
     playSfx(sfxCancel);
     updateAll();
     return;
-  }  
+  }
 
   if(card.group){
     getAllCards()
@@ -437,16 +470,20 @@ function toggleCard(id){
         selected.has(c.id)
       )
       .forEach(c => {
-        selected.delete(c.id);
-        removeFromOrder(c.id);
+        deselectCard(c.id, true);
       });
   }
 
   selected.add(id);
-  selectedOrder.push(id);
-  playSfx(sfxSelect);
-  
+
+  if(!selectedOrder.includes(id)){
+    selectedOrder.push(id);
+  }
+
+  lastSelectedId = id;
+
   removeDependentCards();
+  playSfx(sfxSelect);
   updateAll();
 }
 
@@ -456,9 +493,8 @@ function removeDependentCards(){
 
     const unlocked = card.requiresAny.some(id => selected.has(id));
 
-    if(!unlocked){
-      selected.delete(card.id);
-      removeFromOrder(card.id);
+    if(!unlocked && selected.has(card.id)){
+      deselectCard(card.id, true);
     }
   });
 }
@@ -572,13 +608,22 @@ function renderPanel(){
   list.innerHTML = '';
 
   selectedOrder
-    .filter(id => selected.has(id))
+    .filter(id => selected.has(id) || exitingPanelItems.has(id))
     .forEach(id => {
-      const card = getCard(id);
-      const tier = getTier(id);
-
+      const exiting = exitingPanelItems.get(id);
+      const card = exiting ? exiting.card : getCard(id);
+      const tier = exiting ? exiting.tier : getTier(id);
+      
       const item = document.createElement('div');
       item.className = `panel-item tier-${tier}`;
+      
+      if(id === lastSelectedId && selected.has(id)){
+        item.classList.add('new-item');
+      }
+      
+      if(exitingPanelItems.has(id) && !selected.has(id)){
+        item.classList.add('removing-item');
+      }
 
       item.innerHTML = `
         <div class="panel-score">${card.pts}★</div>
@@ -597,9 +642,9 @@ function renderPanel(){
 
       item.querySelector('.panel-del')
         .addEventListener('click', () => {
-          selected.delete(id);
-          removeFromOrder(id);
+          deselectCard(id, true);
           removeDependentCards();
+          playSfx(sfxCancel);
           updateAll();
         });
 
