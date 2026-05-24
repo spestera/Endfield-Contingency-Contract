@@ -620,6 +620,8 @@ function updateTotal(){
 
   document.getElementById('warn-text')
     .classList.toggle('visible', total >= 25);
+  document.querySelector('.total-score')
+  .classList.toggle('danger', total >= 25);
 }
 
 function updateAll(){
@@ -636,5 +638,12 @@ boardWrap.addEventListener('wheel', (e) => {
     boardWrap.scrollLeft += e.deltaY;
   }
 }, { passive:false });
+
+
+function resetSelected(){
+  selected.clear();
+  selectedOrder.length = 0;
+  updateAll();
+}
 
 updateAll();
