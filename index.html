@@ -9,120 +9,98 @@
 </head>
 <body>
 
-<div class="container">
+<div class="page">
 
-  <div class="left-panel">
+  <div class="top-bar">
+    ENDFIELD / CONTINGENCY CONTRACT
+  </div>
 
-    <!-- Tier 1 -->
-    <div class="tier">
+  <!-- TREE BOARD -->
+  <div class="board">
 
-      <div class="tier-label red">1</div>
+    <!-- CONNECTION LINES -->
+    <svg class="lines">
 
-      <div class="tree-row">
+      <!-- row 1 -->
+      <line x1="120" y1="80" x2="220" y2="80" />
+      <line x1="320" y1="80" x2="420" y2="80" />
+      <line x1="520" y1="80" x2="620" y2="80" />
 
-        <div class="constraint active">
-          <span>A</span>
-        </div>
+      <!-- row 2 -->
+      <line x1="220" y1="80" x2="220" y2="220" />
+      <line x1="420" y1="80" x2="420" y2="220" />
 
-        <div class="line"></div>
+      <line x1="220" y1="220" x2="320" y2="220" />
+      <line x1="420" y1="220" x2="520" y2="220" />
 
-        <div class="constraint">
-          <span>B</span>
-        </div>
+      <!-- row 3 -->
+      <line x1="320" y1="220" x2="320" y2="360" />
+      <line x1="520" y1="220" x2="520" y2="360" />
 
-        <div class="line"></div>
+      <line x1="320" y1="360" x2="420" y2="360" />
+      <line x1="520" y1="360" x2="620" y2="360" />
 
-        <div class="constraint">
-          <span>C</span>
-        </div>
+    </svg>
 
-        <div class="line"></div>
+    <!-- NODES -->
 
-        <div class="constraint locked">
-          <span>D</span>
-        </div>
-
-      </div>
+    <!-- TIER 1 -->
+    <div class="node active" style="left:80px; top:50px;">
+      A
     </div>
 
-    <!-- Tier 2 -->
-    <div class="tier">
-
-      <div class="tier-label orange">2</div>
-
-      <div class="tree-row">
-
-        <div class="constraint">
-          <span>E</span>
-        </div>
-
-        <div class="line"></div>
-
-        <div class="constraint active">
-          <span>F</span>
-        </div>
-
-        <div class="line"></div>
-
-        <div class="constraint">
-          <span>G</span>
-        </div>
-
-        <div class="line"></div>
-
-        <div class="constraint">
-          <span>H</span>
-        </div>
-
-      </div>
+    <div class="node" style="left:280px; top:50px;">
+      B
     </div>
 
-    <!-- Tier 3 -->
-    <div class="tier">
+    <div class="node" style="left:480px; top:50px;">
+      C
+    </div>
 
-      <div class="tier-label red">3</div>
+    <div class="node locked" style="left:680px; top:50px;">
+      D
+    </div>
 
-      <div class="tree-row">
+    <!-- TIER 2 -->
+    <div class="node" style="left:280px; top:190px;">
+      E
+    </div>
 
-        <div class="constraint locked">
-          <span>I</span>
-        </div>
+    <div class="node active" style="left:480px; top:190px;">
+      F
+    </div>
 
-        <div class="line"></div>
+    <!-- TIER 3 -->
+    <div class="node locked" style="left:380px; top:330px;">
+      G
+    </div>
 
-        <div class="constraint">
-          <span>J</span>
-        </div>
-
-        <div class="line"></div>
-
-        <div class="constraint active">
-          <span>K</span>
-        </div>
-
-      </div>
+    <div class="node" style="left:580px; top:330px;">
+      H
     </div>
 
   </div>
 
-  <!-- RIGHT PANEL -->
-  <div class="right-panel">
+  <!-- SELECTED -->
+  <div class="selected-panel">
 
-    <div class="panel-header">
-      CONSTRAINT INFO
+    <div class="selected-title">
+      SELECTED CONSTRAINTS
     </div>
 
-    <div class="info-card">
+    <div class="selected-list">
 
-      <h2>Enemy Attack Up</h2>
-
-      <div class="tag">
-        RISK +2
+      <div class="selected-item">
+        Enemy ATK Up
       </div>
 
-      <p>
-        모든 적의 공격력이 증가합니다.
-      </p>
+      <div class="selected-item">
+        DP Recovery Down
+      </div>
+
+      <div class="selected-item">
+        Risk +2
+      </div>
 
     </div>
 
