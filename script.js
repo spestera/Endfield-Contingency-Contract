@@ -126,7 +126,7 @@ const ROWS = [
         id: '1-15',
         col: 14,
         icon: '◉',
-        name: '해금 제약 I',
+        name: '조작: ??',
         pts: 1,
         unlockable: true,
         requiresAny: ['3-12', '3-13'],
