@@ -650,7 +650,7 @@ function renderPanel(){
           updateAll();
         });
 
-      list.appendChild(item);
+      list.prepend(item);
     });
 }
 
