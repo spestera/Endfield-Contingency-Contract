@@ -366,16 +366,16 @@ body{
 
 .panel-item{
   display:grid;
-  grid-template-columns:110px minmax(0,1fr) 40px;
-  grid-template-areas:
-    "left content del";
+  grid-template-columns:120px minmax(0,1fr) 46px;
+  grid-template-areas:"left content del";
   gap:14px;
-  align-items:start;
-  min-height:118px;
+  align-items:stretch;
+  min-height:132px;
   padding:14px;
   margin-bottom:10px;
   background:linear-gradient(90deg,rgba(255,255,255,.15),rgba(255,255,255,.04));
   border-left:5px solid #ff7a00;
+  overflow:hidden;
 }
 
 
@@ -392,34 +392,50 @@ body{
   color:#111;
 }
 
-.panel-item.tier-2{
-  border-left-color:#ff7a00;
+.panel-item.tier-1 .panel-score{
+  background:#ffd400;
+  color:#111;
 }
 
-.panel-item.tier-3{
-  border-left-color:#ff2030;
+.panel-item.tier-2 .panel-score{
+  background:#ff7a00;
+  color:#fff;
 }
 
 .panel-item.tier-3 .panel-score{
   background:#ff2030;
+  color:#fff;
 }
 
 .panel-content{
   grid-area:content;
   min-width:0;
+  align-self:start;
 }
 
 .panel-score{
   grid-area:left;
-  width:72px;
-  height:28px;
+  justify-self:start;
+  align-self:start;
+  width:86px;
+  height:30px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+  font-size:18px;
+  background:#ff7a00;
+  color:#fff;
 }
 
 .panel-icon{
   grid-area:left;
   align-self:end;
   justify-self:center;
-  margin-top:42px;
+  margin:0 0 6px 0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
 .panel-name{
@@ -443,13 +459,15 @@ body{
 
 .panel-del{
   grid-area:del;
+  align-self:center;
+  justify-self:center;
   width:34px;
-  height:72px;
+  height:76px;
   border:none;
   border-radius:4px;
   background:#efefef;
   color:#444;
-  font-size:26px;
+  font-size:28px;
   font-weight:900;
   cursor:pointer;
   display:flex;
@@ -802,8 +820,8 @@ body{
 }
 
 .panel-icon img{
-  width:42px;
-  height:42px;
+  width:46px;
+  height:46px;
   object-fit:contain;
   display:block;
 }
