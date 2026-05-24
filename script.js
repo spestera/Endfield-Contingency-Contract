@@ -136,7 +136,7 @@ const ROWS = [
       {
         id: '2-1',
         col: 1,
-        icon: '▦',
+        icon: 'assets/icons/위축2.png',
         name: '팀: 위축 II',
         pts: 2,
         group: 'g1',
@@ -147,7 +147,7 @@ const ROWS = [
       {
         id: '2-2',
         col: 2,
-        icon: '▲',
+        icon: 'assets/icons/공격2.png',
         name: '조작: 공격 II',
         pts: 2,
         group: 'g2',
@@ -157,7 +157,7 @@ const ROWS = [
       {
         id: '2-3',
         col: 3,
-        icon: '◴',
+        icon: 'assets/icons/시간2.png',
         name: '환경: 시간 제한 II',
         pts: 2,
         group: 'g3',
@@ -168,7 +168,7 @@ const ROWS = [
       {
         id: '2-4',
         col: 4,
-        icon: '✹',
+        icon: 'assets/icons/활성2.png',
         name: '조작: 활성 II',
         pts: 2,
         group: 'g4',
@@ -179,7 +179,7 @@ const ROWS = [
       {
         id: '2-5',
         col: 5,
-        icon: '▣',
+        icon: 'assets/icons/억제2.png',
         name: '팀: 억제 II',
         pts: 2,
         group: 'g5',
@@ -189,7 +189,7 @@ const ROWS = [
       {
         id: '2-6',
         col: 6,
-        icon: '◒',
+        icon: 'assets/icons/참수2.png',
         name: '팀: 참수 II',
         pts: 2,
         group: 'g6',
@@ -209,7 +209,7 @@ const ROWS = [
       {
         id: '2-8',
         col: 8,
-        icon: '✚',
+        icon: 'assets/icons/쇠퇴2.png',
         name: '환경: 쇠퇴 II',
         pts: 2,
         group: 'g8',
@@ -219,7 +219,7 @@ const ROWS = [
       {
         id: '2-9',
         col: 9,
-        icon: '◎',
+        icon: 'assets/icons/칼날2.png',
         name: '팀: 부러진 칼날 II',
         pts: 2,
         group: 'g9',
@@ -229,7 +229,7 @@ const ROWS = [
       {
         id: '2-10',
         col: 10,
-        icon: '✹',
+        icon: 'assets/icons/모름2.png',
         name: '조작: ??',
         pts: 2,
         desc: '적 이동속도 관련 제약'
@@ -237,7 +237,7 @@ const ROWS = [
       {
         id: '2-11',
         col: 11,
-        icon: '▨',
+        icon: 'assets/icons/모름3.png',
         name: '조작: ??',
         pts: 2,
         desc: '메인 컨트롤 오퍼레이터가 최대 HP의 10% 이상으로 회복하거나 20% 이상에 해당하는 보호막을 얻을 때, 전장의 모든 적도 최대 HP의 8%를 회복한다'
@@ -249,7 +249,7 @@ const ROWS = [
       {
         id: '2-15',
         col: 14,
-        icon: '◉',
+        icon: 'assets/icons/분리.png',
         name: '환경: 분리',
         pts: 2,
         unlockable: true,
@@ -259,7 +259,7 @@ const ROWS = [
       {
         id: '2-16',
         col: 15,
-        icon: '▧',
+        icon: 'assets/icons/독성2.png',
         name: '조작: 독성 II',
         pts: 2,
         group: 'unlock-group',
@@ -277,7 +277,7 @@ const ROWS = [
       {
         id: '3-1',
         col: 1,
-        icon: '▦',
+        icon: 'assets/icons/위축3.png',
         name: '팀: 위축 III',
         pts: 3,
         group: 'g1',
@@ -290,7 +290,7 @@ const ROWS = [
       {
         id: '3-3',
         col: 3,
-        icon: '◴',
+        icon: 'assets/icons/시간3.png',
         name: '환경: 시간 제한 III',
         pts: 3,
         group: 'g3',
@@ -300,7 +300,7 @@ const ROWS = [
       {
         id: '3-4',
         col: 4,
-        icon: '✹',
+        icon: 'assets/icons/활성3.png',
         name: '조작: 활성 III',
         pts: 3,
         group: 'g4',
@@ -314,7 +314,7 @@ const ROWS = [
       {
         id: '3-7',
         col: 7,
-        icon: '⌁',
+        icon: 'assets/icons/속박.png',
         name: '환경: 속박',
         pts: 3,
         group: 'g7',
@@ -328,7 +328,7 @@ const ROWS = [
       {
         id: '3-10',
         col: 10,
-        icon: '⚔',
+        icon: 'assets/icons/피로.png',
         name: '팀: 피로',
         pts: 3,
         desc: '오퍼레이터의 일반공격 피해 -70%'
@@ -336,7 +336,7 @@ const ROWS = [
       {
         id: '3-11',
         col: 11,
-        icon: '♟',
+        icon: 'assets/icons/쇠퇴.png',
         name: '팀: 쇠퇴',
         pts: 3,
         desc: '오퍼레이터가 받은 데미지에 비례한 수치만큼 최대 체력 감소(근거리:30%,원거리50%)'
@@ -344,7 +344,7 @@ const ROWS = [
       {
         id: '3-12',
         col: 12,
-        icon: '🔑',
+        icon: 'assets/icons/가속.png',
         name: '환경: 가속',
         pts: 3,
         group: 'yellow-key',
@@ -355,7 +355,7 @@ const ROWS = [
       {
         id: '3-13',
         col: 13,
-        icon: '🔑',
+        icon: 'assets/icons/충격.png',
         name: '환경: 충격',
         pts: 3,
         group: 'yellow-key',
