@@ -5,7 +5,7 @@ const ROWS = [
       {
         id: '1-1',
         col: 1,
-        icon: '▦',
+        icon: 'assets/icons/위축1.png',
         name: '팀: 위축 I',
         pts: 1,
         group: 'g1',
@@ -15,7 +15,7 @@ const ROWS = [
       {
         id: '1-2',
         col: 2,
-        icon: '▲',
+        icon: 'assets/icons/공격1.png',
         name: '조작: 공격 I',
         pts: 1,
         group: 'g2',
@@ -25,7 +25,7 @@ const ROWS = [
       {
         id: '1-3',
         col: 3,
-        icon: '◴',
+        icon: 'assets/icons/시간1.png',
         name: '환경: 시간 제한 I',
         pts: 1,
         group: 'g3',
@@ -565,7 +565,9 @@ function buildGrid(){
         <span class="conn left"></span>
         <span class="conn right"></span>
 
-        <div class="card-icon">${card.icon}</div>
+        <div class="card-icon">
+          <img src="${card.icon}" alt="${card.name}">
+        </div>
 
         <div class="card-check">✓</div>
 
@@ -628,7 +630,9 @@ function renderPanel(){
       item.innerHTML = `
         <div class="panel-score">${card.pts}★</div>
 
-        <div class="panel-icon">${card.icon}</div>
+        <div class="panel-icon">
+          <img src="${card.icon}" alt="${card.name}">
+        </div>
 
           <div class="panel-content">
             <div class="panel-name">${card.name}</div>
