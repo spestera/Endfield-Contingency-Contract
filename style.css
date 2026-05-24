@@ -370,8 +370,8 @@ body{
   grid-template-areas:"left content del";
   gap:10px;
   align-items:stretch;
-  min-height:132px;
-  padding:14px;
+  min-height:82px;
+  padding:8px 10px;
   margin-bottom:10px;
   background:linear-gradient(90deg,rgba(255,255,255,.15),rgba(255,255,255,.04));
   border-left:5px solid #ff7a00;
@@ -441,8 +441,8 @@ body{
 .panel-name{
   font-size:18px;
   font-weight:900;
-  margin-bottom:6px;
-  line-height:1.25;
+  margin-bottom:2px;
+  line-height:1.05;
 }
 
 .panel-desc{
@@ -450,7 +450,7 @@ body{
   white-space:normal;
   word-break:keep-all;
   overflow-wrap:anywhere;
-  line-height:1.5;
+  line-height:1.15;
   max-height:none;
   height:auto;
   overflow:visible;
