@@ -48,74 +48,71 @@ const ROWS = [
   {
     tier: 1,
     cards: [
-      { id:'1-1', col:1, icon:'▦', name:'팀: 위축 I', pts:1, group:'weak', lineBottom:true, desc:'오퍼레이터의 주요 능력치가 감소합니다.' },
-      { id:'1-2', col:2, icon:'▴', name:'조작: 증압 I', pts:1, group:'pressure', lineBottom:true, desc:'적의 주요 능력이 강화됩니다.' },
-      { id:'1-3', col:3, icon:'◴', name:'환경: 시간 제한 I', pts:1, group:'time', lineBottom:true, desc:'제한 시간이 감소합니다.' },
-      { id:'1-4', col:4, icon:'✹', name:'조작: 활동 I', pts:1, group:'activity', lineBottom:true, desc:'적 실드량이 증가합니다.' },
-      { id:'1-5', col:5, icon:'▣', name:'팀: 압박 I', pts:1, group:'oppress', lineBottom:true, desc:'오퍼레이터의 전투 성능이 감소합니다.' },
-      { id:'1-6', col:6, icon:'◒', name:'팀: 참수 I', pts:1, group:'execute', lineBottom:true, desc:'메인 스킬을 오퍼레이터가 받는 피해가 증가합니다.' },
-      { id:'1-7', col:7, icon:'⌁', name:'환경: 호흡 불가', pts:1, group:'breath', lineBottom:true, desc:'기계 회복 속도가 감소합니다.' },
-      { id:'1-8', col:8, icon:'✚', name:'환경: 쇠퇴 I', pts:1, group:'decay', lineBottom:true, desc:'웨이브 사이에 치유 물질이 1개만 생성됩니다.' },
-      { id:'1-9', col:9, icon:'◎', name:'팀: 무거운 짐 I', pts:1, group:'cost', lineBottom:true, desc:'오퍼레이터 배치 비용이 증가합니다.' },
+      { id:'1-1', col:1, icon:'▦', name:'팀: 위축 I', pts:1, group:'g1', lineBottom:true, desc:'오퍼레이터의 주요 능력치가 감소합니다.' },
+      { id:'1-2', col:2, icon:'▴', name:'조작: 증압 I', pts:1, group:'g2', lineBottom:true, desc:'적의 주요 능력이 강화됩니다.' },
+      { id:'1-3', col:3, icon:'◴', name:'환경: 시간 제한 I', pts:1, group:'g3', lineBottom:true, desc:'제한 시간이 감소합니다.' },
+      { id:'1-4', col:4, icon:'✹', name:'조작: 활동 I', pts:1, group:'g4', lineBottom:true, desc:'적 실드량이 증가합니다.' },
+      { id:'1-5', col:5, icon:'▣', name:'팀: 압박 I', pts:1, group:'g5', lineBottom:true, desc:'오퍼레이터의 전투 성능이 감소합니다.' },
+      { id:'1-6', col:6, icon:'◒', name:'팀: 참수 I', pts:1, group:'g6', lineBottom:true, desc:'오퍼레이터가 받는 피해가 증가합니다.' },
+      { id:'1-7', col:7, icon:'⌁', name:'환경: 호흡 불가 I', pts:1, group:'g7', lineBottom:true, desc:'회복 관련 성능이 감소합니다.' },
+      { id:'1-8', col:8, icon:'✚', name:'환경: 쇠퇴 I', pts:1, group:'g8', lineBottom:true, desc:'웨이브 사이 치유 물질이 제한됩니다.' },
+      { id:'1-9', col:9, icon:'◎', name:'팀: 무거운 짐 I', pts:1, group:'g9', lineBottom:true, desc:'오퍼레이터 배치 비용이 증가합니다.' },
 
-      { empty:true, col:10 },
+      { id:'1-10', col:10, icon:'◉', name:'독립 지표 I', pts:1, desc:'그룹에 속하지 않는 독립 제약입니다.' },
       { empty:true, col:11 },
       { empty:true, col:12 },
+      { empty:true, col:13 },
 
-      { id:'1-13', col:13, icon:'▧', name:'잠금 지표 A', pts:2, locked:true },
-      { id:'1-14', col:14, icon:'◉', name:'잠금 지표 B', pts:2, locked:true },
+      { id:'1-14', col:14, icon:'▧', name:'해금 그룹 I', pts:2, group:'unlock-group', unlockable:true, requiresAny:['3-12','3-13'], lineBottom:true, desc:'노란 열쇠 선택 후 활성화되는 그룹형 해금 제약입니다.' },
+      { id:'1-15', col:15, icon:'◉', name:'해금 독립 I', pts:2, unlockable:true, requiresAny:['3-12','3-13'], desc:'노란 열쇠 선택 후 활성화되는 독립 해금 제약입니다.' }
     ]
   },
   {
     tier: 2,
     cards: [
-      { id:'2-1', col:1, icon:'▦', name:'팀: 위축 II', pts:2, group:'weak', lineTop:true, lineBottom:true, desc:'오퍼레이터의 주요 능력치가 크게 감소합니다.' },
-      { id:'2-2', col:2, icon:'▴', name:'조작: 증압 II', pts:2, group:'pressure', lineTop:true, desc:'적의 주요 능력이 크게 강화됩니다.' },
-      { id:'2-3', col:3, icon:'◴', name:'환경: 시간 제한 II', pts:2, group:'time', lineTop:true, desc:'제한 시간이 더 감소합니다.' },
-      { id:'2-4', col:4, icon:'✹', name:'조작: 활동 II', pts:2, group:'activity', lineTop:true, lineBottom:true, desc:'적 실드량이 크게 증가합니다.' },
-      { id:'2-5', col:5, icon:'▣', name:'팀: 압박 II', pts:2, group:'oppress', lineTop:true, desc:'오퍼레이터의 전투 성능이 크게 감소합니다.' },
-      { id:'2-6', col:6, icon:'◒', name:'팀: 참수 II', pts:2, group:'execute', lineTop:true, desc:'오퍼레이터가 받는 피해가 크게 증가합니다.' },
+      { id:'2-1', col:1, icon:'▦', name:'팀: 위축 II', pts:2, group:'g1', lineTop:true, lineBottom:true, desc:'오퍼레이터의 주요 능력치가 크게 감소합니다.' },
+      { id:'2-2', col:2, icon:'▴', name:'조작: 증압 II', pts:2, group:'g2', lineTop:true, desc:'적의 주요 능력이 크게 강화됩니다.' },
+      { id:'2-3', col:3, icon:'◴', name:'환경: 시간 제한 II', pts:2, group:'g3', lineTop:true, lineBottom:true, desc:'제한 시간이 더 감소합니다.' },
+      { id:'2-4', col:4, icon:'✹', name:'조작: 활동 II', pts:2, group:'g4', lineTop:true, lineBottom:true, desc:'적 실드량이 크게 증가합니다.' },
+      { id:'2-5', col:5, icon:'▣', name:'팀: 압박 II', pts:2, group:'g5', lineTop:true, desc:'오퍼레이터의 전투 성능이 크게 감소합니다.' },
+      { id:'2-6', col:6, icon:'◒', name:'팀: 참수 II', pts:2, group:'g6', lineTop:true, desc:'오퍼레이터가 받는 피해가 크게 증가합니다.' },
 
-      { empty:true, col:7 },
+      { empty:true, col:7, connectorOnly:true, lineTop:true, lineBottom:true },
 
-      { id:'2-8', col:8, icon:'✚', name:'환경: 쇠퇴 II', pts:2, group:'decay', lineTop:true, desc:'웨이브 사이의 치유 물질이 생성되지 않습니다.' },
-      { id:'2-9', col:9, icon:'◎', name:'팀: 무거운 짐 II', pts:2, group:'cost', lineTop:true, lineBottom:true, desc:'오퍼레이터 배치 비용이 크게 증가합니다.' },
+      { id:'2-8', col:8, icon:'✚', name:'환경: 쇠퇴 II', pts:2, group:'g8', lineTop:true, desc:'치유 물질 생성이 더 제한됩니다.' },
+      { id:'2-9', col:9, icon:'◎', name:'팀: 무거운 짐 II', pts:2, group:'g9', lineTop:true, desc:'오퍼레이터 배치 비용이 크게 증가합니다.' },
 
-      { id:'2-10', col:10, icon:'◉', name:'특수: 주시 I', pts:1, desc:'특정 적 또는 기믹이 강화됩니다.' },
-      { id:'2-11', col:11, icon:'◌', name:'특수: 주시 II', pts:2, desc:'추가 특수 조건이 적용됩니다.' },
+      { id:'2-10', col:10, icon:'✹', name:'독립 지표 II-A', pts:2, desc:'그룹에 속하지 않는 독립 제약입니다.' },
+      { id:'2-11', col:11, icon:'▧', name:'독립 지표 II-B', pts:2, desc:'그룹에 속하지 않는 독립 제약입니다.' },
 
       { empty:true, col:12 },
+      { empty:true, col:13 },
 
-      { id:'2-13', col:13, icon:'◎', name:'잠금 지표 C', pts:2, locked:true },
-      { id:'2-14', col:14, icon:'◉', name:'잠금 지표 D', pts:2, locked:true },
+      { id:'2-14', col:14, icon:'▧', name:'해금 그룹 II', pts:3, group:'unlock-group', unlockable:true, requiresAny:['3-12','3-13'], lineTop:true, desc:'노란 열쇠 선택 후 활성화되는 그룹형 해금 제약입니다.' },
+      { id:'2-15', col:15, icon:'◉', name:'해금 독립 II', pts:3, unlockable:true, requiresAny:['3-12','3-13'], desc:'노란 열쇠 선택 후 활성화되는 독립 해금 제약입니다.' }
     ]
   },
   {
     tier: 3,
     cards: [
-      { id:'3-1', col:1, icon:'▦', name:'팀: 위축 III', pts:3, group:'weak', lineTop:true, desc:'오퍼레이터의 주요 능력치가 대폭 감소합니다.' },
-
+      { id:'3-1', col:1, icon:'▦', name:'팀: 위축 III', pts:3, group:'g1', lineTop:true, desc:'오퍼레이터의 주요 능력치가 대폭 감소합니다.' },
       { empty:true, col:2 },
-      { empty:true, col:3 },
-
-      { id:'3-4', col:4, icon:'✹', name:'조작: 활동 III', pts:3, group:'activity', lineTop:true, desc:'적 실드량이 대폭 증가합니다.' },
-
+      { id:'3-3', col:3, icon:'◴', name:'환경: 시간 제한 III', pts:3, group:'g3', lineTop:true, desc:'제한 시간이 대폭 감소합니다.' },
+      { id:'3-4', col:4, icon:'✹', name:'조작: 활동 III', pts:3, group:'g4', lineTop:true, desc:'적 실드량이 대폭 증가합니다.' },
       { empty:true, col:5 },
       { empty:true, col:6 },
-
-      { id:'3-7', col:7, icon:'◒', name:'환경: 속박', pts:3, desc:'회피 불가 상태가 적용됩니다.' },
-
+      { id:'3-7', col:7, icon:'◒', name:'환경: 속박', pts:3, group:'g7', lineTop:true, desc:'회피 불가 상태가 적용됩니다.' },
       { empty:true, col:8 },
+      { empty:true, col:9 },
 
-      { id:'3-9', col:9, icon:'⚔', name:'팀: 무거운 짐 III', pts:3, group:'cost', lineTop:true, desc:'오퍼레이터 배치 비용이 대폭 증가합니다.' },
+      { id:'3-10', col:10, icon:'⚔', name:'독립 지표 III-A', pts:3, desc:'그룹에 속하지 않는 독립 제약입니다.' },
+      { id:'3-11', col:11, icon:'♟', name:'독립 지표 III-B', pts:3, desc:'그룹에 속하지 않는 독립 제약입니다.' },
 
-      { id:'3-10', col:10, icon:'♟', name:'팀: 퇴로', pts:3, desc:'오퍼레이터 퇴각 관련 제약이 적용됩니다.' },
+      { id:'3-12', col:12, icon:'🔑', name:'노란 열쇠 I', pts:3, group:'yellow-key', key:true, lineRight:true, desc:'둘 중 하나만 선택 가능한 노란 열쇠 제약입니다.' },
+      { id:'3-13', col:13, icon:'🗝', name:'노란 열쇠 II', pts:3, group:'yellow-key', key:true, lineLeft:true, desc:'둘 중 하나만 선택 가능한 노란 열쇠 제약입니다.' },
 
-      { id:'3-11', col:11, icon:'🔑', name:'특수: 순행', pts:3, group:'yellow-key', key:true, lineRight:true, desc:'둘 중 하나만 선택 가능한 노란 열쇠 지표입니다.' },
-      { id:'3-12', col:12, icon:'🗝', name:'특수: 역행', pts:3, group:'yellow-key', key:true, lineLeft:true, desc:'둘 중 하나만 선택 가능한 노란 열쇠 지표입니다.' },
-
-      { id:'3-13', col:13, icon:'▧', name:'해금 지표 A', pts:3, requiresAny:['3-11','3-12'], unlockable:true, desc:'노란 열쇠 지표 중 하나를 선택해야 활성화됩니다.' },
-      { id:'3-14', col:14, icon:'◉', name:'해금 지표 B', pts:3, requiresAny:['3-11','3-12'], unlockable:true, desc:'노란 열쇠 지표 중 하나를 선택해야 활성화됩니다.' },
+      { empty:true, col:14 },
+      { empty:true, col:15 }
     ]
   }
 ];
@@ -149,7 +146,12 @@ function buildGrid() {
 
       if (card.empty) {
         el.classList.add('empty');
-        el.innerHTML = '<div class="card-x"></div>';
+        if (card.connectorOnly) el.classList.add('connector-only');
+        if (card.lineTop) el.classList.add('line-top');
+        if (card.lineBottom) el.classList.add('line-bottom');
+        if (card.lineLeft) el.classList.add('line-left');
+        if (card.lineRight) el.classList.add('line-right');
+        el.innerHTML = card.connectorOnly ? '' : '<div class="card-x"></div>';
         row.appendChild(el);
         return;
       }
