@@ -159,7 +159,7 @@ body{
 .card.selected{
   background:linear-gradient(180deg,#ff0000 0%,#c30000 100%);
   border-color:#ff6b6b;
-  box-shadow:0 0 6px rgba(255,0,0,.35);
+  box-shadow:none;
 }
 
 .card-icon{
