@@ -366,16 +366,16 @@ body{
 
 .panel-item{
   display:grid;
-  grid-template-columns:72px 54px minmax(0,1fr) 56px;
+  grid-template-columns:110px minmax(0,1fr) 40px;
+  grid-template-areas:
+    "left content del";
   gap:14px;
-  align-items:flex-start;
+  align-items:start;
   min-height:118px;
-  height:auto;
   padding:14px;
   margin-bottom:10px;
   background:linear-gradient(90deg,rgba(255,255,255,.15),rgba(255,255,255,.04));
   border-left:5px solid #ff7a00;
-  overflow:visible;
 }
 
 
@@ -405,25 +405,21 @@ body{
 }
 
 .panel-content{
+  grid-area:content;
   min-width:0;
-  width:100%;
 }
 
 .panel-score{
-  height:24px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:900;
-  background:#ff7a00;
+  grid-area:left;
+  width:72px;
+  height:28px;
 }
 
 .panel-icon{
-  display:flex;
-  align-items:flex-end;
-  justify-content:center;
-  padding-top:34px;
-  font-size:32px;
+  grid-area:left;
+  align-self:end;
+  justify-self:center;
+  margin-top:42px;
 }
 
 .panel-name{
@@ -446,16 +442,16 @@ body{
 }
 
 .panel-del{
-  width:42px;
+  grid-area:del;
+  width:34px;
   height:72px;
   border:none;
   border-radius:4px;
   background:#efefef;
   color:#444;
-  font-size:30px;
+  font-size:26px;
   font-weight:900;
   cursor:pointer;
-  transition:.15s;
   display:flex;
   align-items:center;
   justify-content:center;
