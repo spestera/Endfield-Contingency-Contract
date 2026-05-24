@@ -485,21 +485,6 @@ body{
   font-size:54px;
 }
 
-/* 선택된 지표 설명이 길 때 패널 밖으로 튀어나오지 않게 */
-.panel-item{
-  grid-template-columns:64px 44px minmax(0,1fr) 28px;
-  align-items:start;
-}
-
-
-.panel-desc{
-  white-space:normal;
-  word-break:keep-all;
-  overflow-wrap:anywhere;
-  max-height:4.5em;
-  overflow-y:auto;
-  padding-right:4px;
-}
 
 /* 선택 초기화 버튼 */
 .reset-btn{
