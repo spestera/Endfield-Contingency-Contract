@@ -111,11 +111,11 @@ const ROWS = [
         id: '1-10',
         col: 10,
         icon: '◉',
-        name: '독립 제약 I',
+        name: '조작: 보호벽 I',
         pts: 1,
 
         // 독립 제약은 group이 없습니다.
-        desc: ''
+        desc: '각 적은 5초마다 방어불능 또는 같은 유형의 아츠부착을 1회만 부여받을 수 있음'
       },
 
       { empty: true, col: 11 },
@@ -126,20 +126,20 @@ const ROWS = [
         id: '1-15',
         col: 14,
         icon: '◉',
-        name: '해금 독립 I',
+        name: '해금 제약 I',
         pts: 1,
         unlockable: true,
         requiresAny: ['3-12', '3-13'],
 
         // 노란 열쇠 중 하나를 선택해야 활성화됩니다.
-        desc: ''
+        desc: '적에게 부착된 방어불능 또는 아츠부착 1단계마다 해당 적이 받는 부착 스택과 대응되는 데미지 -10%(해당 버프는 부착 지속시간 종료 0.1초후에 소멸)'
       },
 
       {
         id: '1-16',
         col: 15,
         icon: '▧',
-        name: '해금 그룹 I',
+        name: '조작: 독성 I',
         pts: 1,
         group: 'unlock-group',
         unlockable: true,
@@ -147,7 +147,7 @@ const ROWS = [
         lineBottom: true,
 
         // 해금 그룹은 I/II 중 하나만 선택됩니다.
-        desc: ''
+        desc: '처치 당한 적이 독성 물질을 남기고 오퍼레이터가 독성 물질의 범위에 있을 때, 매초마다 최대 생명력의 2% 피해를 입음'
       }
     ]
   },
@@ -159,69 +159,69 @@ const ROWS = [
         id: '2-1',
         col: 1,
         icon: '▦',
-        name: '그룹1-II',
+        name: '팀: 위축 II',
         pts: 2,
         group: 'g1',
         lineTop: true,
         lineBottom: true,
-        desc: ''
+        desc: '오퍼레이터의 주요 능력치 -20%'
       },
 
       {
         id: '2-2',
         col: 2,
         icon: '▲',
-        name: '그룹2-II',
+        name: '조작: 공격 II',
         pts: 2,
         group: 'g2',
         lineTop: true,
-        desc: ''
+        desc: '적이 주는 피해 +80%'
       },
 
       {
         id: '2-3',
         col: 3,
         icon: '◴',
-        name: '그룹3-II',
+        name: '환경: 시간 제한 II',
         pts: 2,
         group: 'g3',
         lineTop: true,
         lineBottom: true,
-        desc: ''
+        desc: '카운트다운 -200초'
       },
 
       {
         id: '2-4',
         col: 4,
         icon: '✹',
-        name: '그룹4-II',
+        name: '조작: 활성 II',
         pts: 2,
         group: 'g4',
         lineTop: true,
         lineBottom: true,
-        desc: ''
+        desc: '적 생명력 +100%'
       },
 
       {
         id: '2-5',
         col: 5,
         icon: '▣',
-        name: '그룹5-II',
+        name: '팀: 억제 II',
         pts: 2,
         group: 'g5',
         lineTop: true,
-        desc: ''
+        desc: '오퍼레이터가 적의 방어불능 또는 아츠부착 스택 수치를 증가시키면, 해당 오퍼레이터가 주는 해당 유형의 피해 -90%, 10초간 지속'
       },
 
       {
         id: '2-6',
         col: 6,
         icon: '◒',
-        name: '그룹6-II',
+        name: '팀: 참수 II',
         pts: 2,
         group: 'g6',
         lineTop: true,
-        desc: ''
+        desc: '메인 컨트롤 오퍼레이터가 받는 피해 +50%'
       },
 
       // 그룹7은 난이도 1과 3만 있어서,
@@ -239,22 +239,22 @@ const ROWS = [
         id: '2-8',
         col: 8,
         icon: '✚',
-        name: '그룹8-II',
+        name: '환경: 쇠퇴 II',
         pts: 2,
         group: 'g8',
         lineTop: true,
-        desc: ''
+        desc: '웨이브 사이에 치유 물질이 생성되지 않음'
       },
 
       {
         id: '2-9',
         col: 9,
         icon: '◎',
-        name: '그룹9-II',
+        name: '팀: 부러진 칼날 II',
         pts: 2,
         group: 'g9',
         lineTop: true,
-        desc: ''
+        desc: '오퍼레이터가 궁극기를 1회 사용할 때마다, 해당 오퍼레이터가 이후 사용하는 궁극기 피해 -100% 감소'
       },
 
       {
@@ -263,7 +263,7 @@ const ROWS = [
         icon: '✹',
         name: '독립 제약 II-A',
         pts: 2,
-        desc: ''
+        desc: '적 이동속도 관련 제약'
       },
 
       {
@@ -272,7 +272,7 @@ const ROWS = [
         icon: '▨',
         name: '독립 제약 II-B',
         pts: 2,
-        desc: ''
+        desc: '메인 컨트롤 오퍼레이터가 최대 HP의 10% 이상으로 회복하거나 20% 이상에 해당하는 보호막을 얻을 때, 전장의 모든 적도 최대 HP의 8%를 회복한다'
       },
 
       { empty: true, col: 12 },
@@ -282,24 +282,24 @@ const ROWS = [
         id: '2-15',
         col: 14,
         icon: '◉',
-        name: '해금 독립 II',
+        name: '환경: 분리',
         pts: 2,
         unlockable: true,
         requiresAny: ['3-12', '3-13'],
-        desc: ''
+        desc: '전투가 시작된 후 메인 컨트롤 오퍼레이터 전환 불가'
       },
 
       {
         id: '2-16',
         col: 15,
         icon: '▧',
-        name: '해금 그룹 II',
+        name: '조작: 독성 II',
         pts: 2,
         group: 'unlock-group',
         unlockable: true,
         requiresAny: ['3-12', '3-13'],
         lineTop: true,
-        desc: ''
+        desc: '처치 당한 적이 독성 물질을 남기고 오퍼레이터가 독성 물질의 범위에 있을 때, 매초마다 최대 생명력의 5% 피해를 입음'
       }
     ]
   },
@@ -311,11 +311,11 @@ const ROWS = [
         id: '3-1',
         col: 1,
         icon: '▦',
-        name: '그룹1-III',
+        name: '팀: 위축 III',
         pts: 3,
         group: 'g1',
         lineTop: true,
-        desc: ''
+        desc: '오퍼레이터의 주요 능력치 -40%'
       },
 
       { empty: true, col: 2 },
@@ -324,22 +324,22 @@ const ROWS = [
         id: '3-3',
         col: 3,
         icon: '◴',
-        name: '그룹3-III',
+        name: '환경: 시간 제한 III',
         pts: 3,
         group: 'g3',
         lineTop: true,
-        desc: ''
+        desc: '카운트다운 -300초'
       },
 
       {
         id: '3-4',
         col: 4,
         icon: '✹',
-        name: '그룹4-III',
+        name: '조작: 활성 III',
         pts: 3,
         group: 'g4',
         lineTop: true,
-        desc: ''
+        desc: '적 생명력 +200%'
       },
 
       { empty: true, col: 5 },
@@ -349,11 +349,11 @@ const ROWS = [
         id: '3-7',
         col: 7,
         icon: '◒',
-        name: '그룹7-III',
+        name: '환경: 속박',
         pts: 3,
         group: 'g7',
         lineTop: true,
-        desc: ''
+        desc: '회피 불가'
       },
 
       { empty: true, col: 8 },
@@ -363,44 +363,44 @@ const ROWS = [
         id: '3-10',
         col: 10,
         icon: '⚔',
-        name: '독립 제약 III-A',
+        name: '팀: 피로',
         pts: 3,
-        desc: ''
+        desc: '오퍼레이터의 일반공격 피해 -70%'
       },
 
       {
         id: '3-11',
         col: 11,
         icon: '♟',
-        name: '독립 제약 III-B',
+        name: '팀: 쇠퇴',
         pts: 3,
-        desc: ''
+        desc: '오퍼레이터가 받은 데미지에 비례한 수치만큼 최대 체력 감소(근거리:30%,원거리50%)'
       },
 
       {
         id: '3-12',
         col: 12,
         icon: '🔑',
-        name: '노란 열쇠 I',
+        name: '환경: 가속',
         pts: 3,
         group: 'yellow-key',
         key: true,
         lineRight: true,
 
         // 노란 열쇠 I/II 중 하나를 선택하면 해금 제약이 열립니다.
-        desc: ''
+        desc: '오퍼레이터 연계스킬 쿨타임 -60%, 배틀스킬 피해 -60%'
       },
 
       {
         id: '3-13',
         col: 13,
-        icon: '🗝',
-        name: '노란 열쇠 II',
+        icon: '🔑',
+        name: '환경: 충격',
         pts: 3,
         group: 'yellow-key',
         key: true,
         lineLeft: true,
-        desc: ''
+        desc: '오퍼레이터 일반공격, 배틀스킬,연계스킬, 궁극기 이외의 피해 +100%, 배틀스킬 피해 -60%'
       },
 
       { empty: true, col: 14 },
