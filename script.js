@@ -348,7 +348,7 @@ const ROWS = [
       {
         id: '3-7',
         col: 7,
-        icon: '◒',
+        icon: '⌁',
         name: '환경: 속박',
         pts: 3,
         group: 'g7',
