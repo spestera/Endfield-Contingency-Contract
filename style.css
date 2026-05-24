@@ -230,6 +230,7 @@ body {
   line-height: 18px;
   text-align: center;
   font-weight: 800;
+  z-index: 8;
 }
 
 .card-check {
@@ -249,6 +250,7 @@ body {
   line-height: 23px;
   text-align: center;
   font-weight: 900;
+  z-index: 9;
 }
 
 .card-pts {
@@ -308,6 +310,7 @@ body {
 .card.key-card::before,
 .card.key-card::after {
   background: #d6a900;
+  box-shadow: 0 0 6px rgba(255,210,0,0.45);
 }
 
 .card.yellow-lock {
@@ -316,6 +319,59 @@ body {
 
 .card.yellow-lock.disabled {
   opacity: 0.36;
+}
+
+.key-link {
+  position: absolute;
+  left: 72px;
+  top: 50%;
+  width: 28px;
+  height: 3px;
+  background: #d6a900;
+  box-shadow: 0 0 7px rgba(255,210,0,0.55);
+  transform: translateY(-50%);
+  z-index: -1;
+}
+
+.card.group-linked::before,
+.card.group-linked::after {
+  display: block;
+  background: #73777d;
+  box-shadow: 0 0 5px rgba(255,255,255,0.25);
+}
+
+.card.group-conflict {
+  opacity: 0.72;
+  cursor: not-allowed;
+}
+
+.card.group-conflict::after {
+  content: "충돌";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.48);
+  color: #fff;
+  font-size: 16px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+.card.group-conflict::before {
+  content: "⊘";
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #ff4545;
+  font-size: 26px;
+  z-index: 6;
+  background: none;
+  width: auto;
+  height: auto;
+  box-shadow: none;
 }
 
 .side-panel {
@@ -411,24 +467,12 @@ body {
 
 .sim-footer {
   display: grid;
-  grid-template-columns: 210px 1fr 240px;
+  grid-template-columns: 1fr 1fr 260px;
   align-items: center;
   background:
     linear-gradient(90deg, rgba(5,5,7,0.95), rgba(80,20,25,0.74), rgba(180,0,20,0.95));
   margin: 0 -18px;
   padding: 0 28px;
-}
-
-.best-record {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: #fff;
-}
-
-.best-num {
-  font-size: 48px;
-  font-weight: 900;
 }
 
 .warn-text {
@@ -444,14 +488,24 @@ body {
 
 .total-score {
   justify-self: end;
+  min-width: 220px;
+  height: 72px;
+  padding: 0 28px;
+  border-radius: 999px 0 0 999px;
+  background: linear-gradient(90deg, rgba(255,150,35,0.95), #d60018);
+  box-shadow: 0 0 28px rgba(255,80,0,0.55);
   display: flex;
   align-items: center;
-  gap: 8px;
-  color: #fff;
+  justify-content: center;
+  gap: 10px;
 }
 
 .total-score span:first-child {
-  font-size: 56px;
-  color: #ffb347;
+  font-size: 58px;
+  color: #fff;
   font-weight: 900;
+}
+
+.total-score span:last-child {
+  font-size: 28px;
 }
