@@ -739,5 +739,24 @@ function playSfx(audio){
   audio.volume = 0.45;
   audio.play().catch(() => {});
 }
+let bgmStarted = false;
+
+function startBgmOnce(){
+  if(bgmStarted) return;
+  if(!bgm) return;
+
+  bgmStarted = true;
+  bgm.play()
+    .then(() => {
+      if(musicToggle){
+        musicToggle.textContent = '⏸';
+      }
+    })
+    .catch(() => {
+      bgmStarted = false;
+    });
+}
+
+document.addEventListener('click', startBgmOnce, { once:true });
 
 updateAll();
