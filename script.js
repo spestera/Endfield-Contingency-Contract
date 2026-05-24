@@ -474,7 +474,7 @@ function buildGrid(){
 
       <div class="row-label">
         <span class="tier-num">${tier}</span>
-        <span class="tier-icon">▰</span>
+        <span class="tier-icon">★</span>
       </div>
     `;
 
