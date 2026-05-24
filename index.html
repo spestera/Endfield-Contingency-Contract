@@ -3,13 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>위기 협약 시뮬레이터 — 명일방주: 엔드필드</title>
+  <title>Endfield CC Simulator</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
 <div class="sim-wrapper">
-
   <header class="sim-header">
     <div class="small-title">// 위기 협약 재점화 실험 작전</div>
     <h1>지표 선택</h1>
@@ -17,38 +16,31 @@
 
   <main class="sim-body">
     <section class="board-wrap">
-      <div class="grid-area" id="grid-area"></div>
+      <div id="grid-area" class="grid-area"></div>
     </section>
 
     <aside class="side-panel">
       <div class="panel-header">
         <span>선택된 지표</span>
-        <select id="panel-sort-sel" onchange="renderPanel()">
-          <option value="order">선택 순서</option>
-          <option value="tier">난이도순</option>
-          <option value="pts">점수순</option>
-        </select>
+        <span id="selected-count">0</span>
       </div>
-
-      <div class="panel-list" id="panel-list">
+      <div id="panel-list" class="panel-list">
         <div class="panel-empty">지표를 선택하면<br>여기에 표시됩니다</div>
       </div>
     </aside>
   </main>
 
   <footer class="sim-footer">
-    <div></div>
-
     <div class="warn-text" id="warn-text">
       ⚠ 현재 지표 난도가 높습니다. 신중하게 행동해 주세요.
     </div>
 
     <div class="total-score">
-      <span id="total-pts">0</span>
+      <span>총 합계</span>
+      <strong id="total-pts">0</strong>
       <span>★</span>
     </div>
   </footer>
-
 </div>
 
 <script>
@@ -56,58 +48,74 @@ const ROWS = [
   {
     tier: 1,
     cards: [
-      { id:'1-1', icon:'▦', name:'팀: 피로 I', pts:1, desc:'오퍼레이터 일반 공격 피해 -30%', group:'fatigue' },
-      { id:'1-2', icon:'▴', name:'환경: 압박 I', pts:1, desc:'적 공격 패턴 강화', group:'pressure' },
-      { id:'1-3', icon:'◴', name:'팀: 부러진 칼날 I', pts:1, desc:'궁극기 피해 -30%', group:'blade' },
-      { id:'1-4', icon:'✹', name:'환경: 파열 I', pts:1, desc:'적 피해량 증가', group:'rupture' },
-      { id:'1-5', icon:'▣', name:'조작: 제한 I', pts:1, desc:'전투 조건 제한', group:'limit' },
-      { id:'1-6', icon:'◒', name:'환경: 속박 I', pts:1, desc:'회피 성능 감소', group:'bind' },
-      { id:'1-7', icon:'✚', name:'환경: 쇠퇴 I', pts:1, desc:'치유 물질 1개만 생성', group:'decay' },
-      { id:'1-8', icon:'◎', name:'목표: 핵심 타격 I', pts:1, desc:'핵심 적 강화', group:'target' },
-      { id:'1-9', icon:'▧', name:'조작: 자원 부족 I', pts:1, desc:'초기 자원 감소', group:'resource' },
-      { empty:true },
-      { empty:true },
-      { empty:true },
-      { id:'1-13', icon:'□', name:'잠금 지표 I', pts:2, locked:true },
-      { id:'1-14', icon:'◉', name:'해금 지표', pts:3, yellowLock:true, requiresAny:['3-11','3-12'], desc:'노란 열쇠 지표 중 하나를 선택해야 활성화됩니다.' },
+      { id:'1-1',  col:1,  icon:'▦', name:'그룹 1 - I', pts:1, group:'g1', lineBottom:true, desc:'1번 세로 그룹 I' },
+      { id:'1-2',  col:2,  icon:'▴', name:'그룹 2 - I', pts:1, group:'g2', lineBottom:true, desc:'2번 세로 그룹 I' },
+      { id:'1-3',  col:3,  icon:'◴', name:'그룹 3 - I', pts:1, group:'g3', lineBottom:true, desc:'3번 세로 그룹 I' },
+      { id:'1-4',  col:4,  icon:'✹', name:'그룹 4 - I', pts:1, group:'g4', lineBottom:true, desc:'4번 세로 그룹 I' },
+      { id:'1-5',  col:5,  icon:'▣', name:'그룹 5 - I', pts:1, group:'g5', lineBottom:true, desc:'5번 세로 그룹 I' },
+      { id:'1-6',  col:6,  icon:'◒', name:'그룹 6 - I', pts:1, group:'g6', lineBottom:true, desc:'6번 세로 그룹 I' },
+      { id:'1-7',  col:7,  icon:'⌁', name:'그룹 7 - I', pts:1, group:'g7', lineBottom:true, desc:'7번 세로 그룹 I' },
+      { id:'1-8',  col:8,  icon:'✚', name:'그룹 8 - I', pts:1, group:'g8', lineBottom:true, desc:'8번 세로 그룹 I' },
+      { id:'1-9',  col:9,  icon:'◎', name:'그룹 9 - I', pts:1, group:'g9', lineBottom:true, desc:'9번 세로 그룹 I' },
+
+      { empty:true, col:10 },
+      { empty:true, col:11 },
+      { empty:true, col:12 },
+
+      { id:'1-13', col:13, icon:'▧', name:'잠금 지표 A', pts:2, locked:true },
+      { id:'1-14', col:14, icon:'◉', name:'잠금 지표 B', pts:2, locked:true },
     ]
   },
   {
     tier: 2,
     cards: [
-      { id:'2-1', icon:'▦', name:'팀: 피로 II', pts:2, desc:'오퍼레이터 일반 공격 피해 -50%', group:'fatigue' },
-      { id:'2-2', icon:'▴', name:'환경: 압박 II', pts:2, desc:'적 공격 패턴 추가 강화', group:'pressure' },
-      { id:'2-3', icon:'◴', name:'팀: 부러진 칼날 II', pts:2, desc:'궁극기 피해 -50%', group:'blade' },
-      { id:'2-4', icon:'✹', name:'환경: 파열 II', pts:2, desc:'적 피해량 추가 증가', group:'rupture' },
-      { id:'2-5', icon:'▣', name:'조작: 제한 II', pts:2, desc:'전투 조건 추가 제한', group:'limit' },
-      { id:'2-6', icon:'◒', name:'환경: 속박 II', pts:2, desc:'회피 불가', group:'bind' },
-      { empty:true },
-      { id:'2-8', icon:'✚', name:'환경: 쇠퇴 II', pts:2, desc:'치유 물질 생성 감소', group:'decay' },
-      { id:'2-9', icon:'◎', name:'목표: 핵심 타격 II', pts:2, desc:'핵심 적 추가 강화', group:'target' },
-      { id:'2-10', icon:'✹', name:'환경: 파열 III', pts:2, desc:'강화 적 추가 출현', group:'rupture-extra' },
-      { id:'2-11', icon:'▧', name:'조작: 자원 부족 II', pts:2, desc:'초기 자원 추가 감소', group:'resource' },
-      { empty:true },
-      { id:'2-13', icon:'◴', name:'잠금 지표 II', pts:2, locked:true },
-      { id:'2-14', icon:'◉', name:'잠금 지표 III', pts:3, locked:true },
+      { id:'2-1',  col:1,  icon:'▦', name:'그룹 1 - II', pts:2, group:'g1', lineTop:true, lineBottom:true, desc:'1번 세로 그룹 II' },
+      { id:'2-2',  col:2,  icon:'▴', name:'그룹 2 - II', pts:2, group:'g2', lineTop:true, desc:'2번 세로 그룹 II' },
+      { id:'2-3',  col:3,  icon:'◴', name:'그룹 3 - II', pts:2, group:'g3', lineTop:true, desc:'3번 세로 그룹 II' },
+      { id:'2-4',  col:4,  icon:'✹', name:'그룹 4 - II', pts:2, group:'g4', lineTop:true, lineBottom:true, desc:'4번 세로 그룹 II' },
+      { id:'2-5',  col:5,  icon:'▣', name:'그룹 5 - II', pts:2, group:'g5', lineTop:true, desc:'5번 세로 그룹 II' },
+      { id:'2-6',  col:6,  icon:'◒', name:'그룹 6 - II', pts:2, group:'g6', lineTop:true, desc:'6번 세로 그룹 II' },
+
+      { empty:true, col:7 },
+
+      { id:'2-8',  col:8,  icon:'✚', name:'그룹 8 - II', pts:2, group:'g8', lineTop:true, desc:'8번 세로 그룹 II' },
+      { id:'2-9',  col:9,  icon:'◎', name:'그룹 9 - II', pts:2, group:'g9', lineTop:true, lineBottom:true, desc:'9번 세로 그룹 II' },
+
+      { id:'2-10', col:10, icon:'✹', name:'단독 지표 1', pts:2, desc:'그룹이 아닌 단독 지표입니다.' },
+      { id:'2-11', col:11, icon:'▧', name:'단독 지표 2', pts:2, desc:'그룹이 아닌 단독 지표입니다.' },
+
+      { empty:true, col:12 },
+
+      { id:'2-13', col:13, icon:'◎', name:'잠금 지표 C', pts:2, locked:true },
+      { id:'2-14', col:14, icon:'◉', name:'잠금 지표 D', pts:2, locked:true },
     ]
   },
   {
     tier: 3,
     cards: [
-      { id:'3-1', icon:'▦', name:'팀: 피로 III', pts:3, desc:'오퍼레이터 일반 공격 피해 -70%', group:'fatigue' },
-      { empty:true },
-      { empty:true },
-      { id:'3-4', icon:'✹', name:'환경: 파열 IV', pts:3, desc:'적 공격력 대폭 증가', group:'rupture' },
-      { empty:true },
-      { empty:true },
-      { id:'3-7', icon:'◒', name:'환경: 속박 III', pts:3, desc:'회피 불가', group:'bind' },
-      { empty:true },
-      { id:'3-9', icon:'⚔', name:'팀: 참수 I', pts:3, desc:'오퍼레이터 체력 대폭 감소' },
-      { id:'3-10', icon:'♟', name:'조작: 봉인 I', pts:3, desc:'특정 오퍼레이터 사용 불가' },
-      { id:'3-11', icon:'🔑', name:'특수 열쇠 I', pts:3, key:true, group:'yellow-key', desc:'해금 지표 선택 조건을 충족합니다.' },
-      { id:'3-12', icon:'🗝', name:'특수 열쇠 II', pts:3, key:true, group:'yellow-key', desc:'해금 지표 선택 조건을 충족합니다.' },
-      { empty:true },
-      { empty:true },
+      { id:'3-1',  col:1,  icon:'▦', name:'그룹 1 - III', pts:3, group:'g1', lineTop:true, desc:'1번 세로 그룹 III' },
+
+      { empty:true, col:2 },
+      { empty:true, col:3 },
+
+      { id:'3-4',  col:4,  icon:'✹', name:'그룹 4 - III', pts:3, group:'g4', lineTop:true, desc:'4번 세로 그룹 III' },
+
+      { empty:true, col:5 },
+      { empty:true, col:6 },
+
+      { id:'3-7',  col:7,  icon:'◒', name:'단독 지표 3', pts:3, desc:'그룹이 아닌 단독 지표입니다.' },
+
+      { empty:true, col:8 },
+
+      { id:'3-9',  col:9,  icon:'⚔', name:'그룹 9 - III', pts:3, group:'g9', lineTop:true, desc:'9번 세로 그룹 III' },
+
+      { id:'3-10', col:10, icon:'♟', name:'단독 지표 4', pts:3, desc:'그룹이 아닌 단독 지표입니다.' },
+
+      { id:'3-11', col:11, icon:'🔑', name:'노란 열쇠 I', pts:3, group:'yellow-key', key:true, lineRight:true, desc:'둘 중 하나만 선택 가능한 노란 열쇠 그룹입니다.' },
+      { id:'3-12', col:12, icon:'🗝', name:'노란 열쇠 II', pts:3, group:'yellow-key', key:true, lineLeft:true, desc:'둘 중 하나만 선택 가능한 노란 열쇠 그룹입니다.' },
+
+      { empty:true, col:13 },
+      { empty:true, col:14 },
     ]
   }
 ];
@@ -123,17 +131,13 @@ function buildGrid() {
     const wrap = document.createElement('div');
     wrap.className = `row-wrap row-tier-${tier}`;
 
-    const bar = document.createElement('div');
-    bar.className = `tier-bar t${tier}`;
-    wrap.appendChild(bar);
-
-    const label = document.createElement('div');
-    label.className = 'row-label';
-    label.innerHTML = `
-      <span class="tier-num">${tier}</span>
-      <span class="tier-icon">▰</span>
+    wrap.innerHTML = `
+      <div class="tier-bar t${tier}"></div>
+      <div class="row-label">
+        <span class="tier-num">${tier}</span>
+        <span class="tier-icon">▰</span>
+      </div>
     `;
-    wrap.appendChild(label);
 
     const row = document.createElement('div');
     row.className = 'cards-row';
@@ -144,34 +148,36 @@ function buildGrid() {
 
       if (card.empty) {
         el.classList.add('empty');
+        el.style.gridColumn = card.col;
         el.innerHTML = '<div class="card-x"></div>';
         row.appendChild(el);
         return;
       }
 
+      const conflict = isGroupConflict(card);
       const disabled = isDisabled(card);
-      const groupConflict = isGroupConflict(card);
+
+      el.style.gridColumn = card.col;
 
       if (selected.has(card.id)) el.classList.add('selected');
+      if (conflict) el.classList.add('group-conflict');
+      if (disabled) el.classList.add('disabled');
       if (card.locked) el.classList.add('locked');
       if (card.key) el.classList.add('key-card');
-      if (card.yellowLock) el.classList.add('yellow-lock');
-      if (disabled) el.classList.add('disabled');
-      if (groupConflict) el.classList.add('group-conflict');
-      if (card.group) el.classList.add('group-linked');
-
-      if (card.id === '3-11') el.classList.add('key-left');
-      if (card.id === '3-12') el.classList.add('key-right');
+      if (card.lineTop) el.classList.add('line-top');
+      if (card.lineBottom) el.classList.add('line-bottom');
+      if (card.lineLeft) el.classList.add('line-left');
+      if (card.lineRight) el.classList.add('line-right');
 
       el.innerHTML = `
-        <div class="card-mini-badge">${card.key ? 'KEY' : card.yellowLock ? 'LOCK' : '▣'}</div>
+        <div class="card-mini-badge">${card.key ? 'KEY' : card.locked ? 'LOCK' : '▣'}</div>
         <div class="card-icon">${card.icon}</div>
         <div class="card-check">✓</div>
+        <div class="card-conflict-mark">충돌</div>
         <div class="card-pts">${card.pts}</div>
-        ${card.id === '3-11' ? '<div class="key-link"></div>' : ''}
       `;
 
-      if (!card.locked && !disabled && !groupConflict) {
+      if (!card.locked && !disabled) {
         el.addEventListener('click', () => toggleCard(card.id));
       }
 
@@ -185,25 +191,21 @@ function buildGrid() {
 
 function toggleCard(id) {
   const card = getCard(id);
-  if (!card || card.empty || card.locked) return;
-  if (isDisabled(card)) return;
-  if (isGroupConflict(card)) return;
+  if (!card || card.locked || isDisabled(card)) return;
 
   if (selected.has(id)) {
     selected.delete(id);
     removeFromOrder(id);
-    removeCardsDependingOn(id);
     updateAll();
     return;
   }
 
   if (card.group) {
     getAllCards()
-      .filter(c => c.id !== id && c.group === card.group)
+      .filter(c => c.group === card.group)
       .forEach(c => {
         selected.delete(c.id);
         removeFromOrder(c.id);
-        removeCardsDependingOn(c.id);
       });
   }
 
@@ -212,19 +214,8 @@ function toggleCard(id) {
   updateAll();
 }
 
-function isDisabled(card) {
-  if (card.locked) return true;
-
-  if (card.requiresAny) {
-    return !card.requiresAny.some(id => selected.has(id));
-  }
-
-  return false;
-}
-
 function isGroupConflict(card) {
-  if (!card.group) return false;
-  if (selected.has(card.id)) return false;
+  if (!card.group || selected.has(card.id)) return false;
 
   return getAllCards().some(c =>
     c.id !== card.id &&
@@ -233,69 +224,55 @@ function isGroupConflict(card) {
   );
 }
 
-function removeCardsDependingOn(removedId) {
-  getAllCards().forEach(card => {
-    if (card.requiresAny && card.requiresAny.includes(removedId)) {
-      const stillValid = card.requiresAny.some(id => selected.has(id));
-      if (!stillValid) {
-        selected.delete(card.id);
-        removeFromOrder(card.id);
-      }
-    }
-  });
+function isDisabled(card) {
+  if (card.locked) return true;
+  return false;
 }
 
 function renderPanel() {
   const list = document.getElementById('panel-list');
+  const count = document.getElementById('selected-count');
+
+  count.textContent = selected.size;
 
   if (selected.size === 0) {
     list.innerHTML = '<div class="panel-empty">지표를 선택하면<br>여기에 표시됩니다</div>';
     return;
   }
 
-  const sortMode = document.getElementById('panel-sort-sel')?.value || 'order';
-  let ids = [...selected];
-
-  if (sortMode === 'order') {
-    ids = selectedOrder.filter(id => selected.has(id));
-  } else if (sortMode === 'tier') {
-    ids.sort((a, b) => getTier(a) - getTier(b));
-  } else if (sortMode === 'pts') {
-    ids.sort((a, b) => (getCard(b)?.pts || 0) - (getCard(a)?.pts || 0));
-  }
-
   list.innerHTML = '';
 
-  ids.forEach(id => {
-    const card = getCard(id);
-    const tier = getTier(id);
+  selectedOrder
+    .filter(id => selected.has(id))
+    .forEach(id => {
+      const card = getCard(id);
+      const tier = getTier(id);
 
-    const item = document.createElement('div');
-    item.className = `panel-item tier-${tier}`;
-    item.innerHTML = `
-      <div class="panel-score">${card.pts}★</div>
-      <div class="panel-icon">${card.icon}</div>
-      <div class="panel-content">
-        <div class="panel-name">${card.name}</div>
-        <div class="panel-desc">${card.desc || ''}</div>
-      </div>
-      <button class="panel-del">🗑</button>
-    `;
+      const item = document.createElement('div');
+      item.className = `panel-item tier-${tier}`;
 
-    item.querySelector('.panel-del').addEventListener('click', () => {
-      selected.delete(id);
-      removeFromOrder(id);
-      removeCardsDependingOn(id);
-      updateAll();
+      item.innerHTML = `
+        <div class="panel-score">${card.pts}★</div>
+        <div class="panel-icon">${card.icon}</div>
+        <div class="panel-content">
+          <div class="panel-name">${card.name}</div>
+          <div class="panel-desc">${card.desc || ''}</div>
+        </div>
+        <button class="panel-del">×</button>
+      `;
+
+      item.querySelector('.panel-del').addEventListener('click', () => {
+        selected.delete(id);
+        removeFromOrder(id);
+        updateAll();
+      });
+
+      list.appendChild(item);
     });
-
-    list.appendChild(item);
-  });
 }
 
 function updateTotal() {
   let total = 0;
-
   selected.forEach(id => {
     const c = getCard(id);
     if (c) total += c.pts;
