@@ -685,25 +685,21 @@ gridArea.addEventListener('wheel', (e) => {
 }, { passive: false });
 
 function renderConstraintLists(){
+  const operatorList = document.getElementById('operator-list');
+  const enemyList = document.getElementById('enemy-list');
+  const environmentList = document.getElementById('environment-list');
 
-  const operatorList =
-    document.getElementById('operator-list');
-
-  const enemyList =
-    document.getElementById('enemy-list');
-
-  const environmentList =
-    document.getElementById('environment-list');
-
-  if(!operatorList) return;
+  if(!operatorList || !enemyList || !environmentList) return;
 
   operatorList.innerHTML = '';
   enemyList.innerHTML = '';
   environmentList.innerHTML = '';
 
-  getAllCards()
-    .filter(card => !card.empty)
-    .forEach(card => {
+  selectedOrder
+    .filter(id => selected.has(id))
+    .forEach(id => {
+      const card = getCard(id);
+      if(!card) return;
 
       let target = null;
 
@@ -722,34 +718,21 @@ function renderConstraintLists(){
       const tier = getTier(card.id);
 
       const item = document.createElement('div');
-
-      item.className =
-        `constraint-item tier-${tier}`;
+      item.className = `constraint-item tier-${tier}`;
 
       item.innerHTML = `
-        <div class="constraint-item-icon">
-          ${card.icon}
-        </div>
+        <div class="constraint-item-icon">${card.icon}</div>
 
         <div class="constraint-item-info">
-          <div class="constraint-item-name">
-            ${card.name}
-          </div>
-
-          <div class="constraint-item-desc">
-            ${card.desc || ''}
-          </div>
+          <div class="constraint-item-name">${card.name}</div>
+          <div class="constraint-item-desc">${card.desc || ''}</div>
         </div>
 
-        <div class="constraint-item-score">
-          ${card.pts}★
-        </div>
+        <div class="constraint-item-score">${card.pts}★</div>
       `;
 
       target.appendChild(item);
-
     });
-
 }
 
 updateAll();
