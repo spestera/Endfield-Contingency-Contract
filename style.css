@@ -601,8 +601,10 @@ body{
 }
 
 #intro-screen img{
-  width:min(720px,70vw);
-  max-width:90vw;
+  width:100vw;
+  height:100vh;
+
+  object-fit:cover;
 
   opacity:0;
 
