@@ -675,14 +675,14 @@ function updateAll(){
   updateTotal();
 }
 
-const gridArea = document.getElementById('grid-area');
+const boardWrap = document.querySelector('.board-wrap');
 
-gridArea.addEventListener('wheel', (e) => {
+boardWrap.addEventListener('wheel', (e) => {
   if(Math.abs(e.deltaY) > Math.abs(e.deltaX)){
     e.preventDefault();
-    gridArea.scrollLeft += e.deltaY;
+    boardWrap.scrollLeft += e.deltaY;
   }
-}, { passive: false });
+}, { passive:false });
 
 function renderConstraintLists(){
   const operatorList = document.getElementById('operator-list');
