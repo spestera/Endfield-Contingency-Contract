@@ -366,12 +366,12 @@ body{
 
 .panel-item{
   display:grid;
-  grid-template-columns:64px 44px minmax(0,1fr) 28px;
-  gap:10px;
+  grid-template-columns:72px 54px minmax(0,1fr) 56px;
+  gap:14px;
   align-items:flex-start;
-  min-height:96px;
+  min-height:118px;
   height:auto;
-  padding:10px;
+  padding:14px;
   margin-bottom:10px;
   background:linear-gradient(90deg,rgba(255,255,255,.15),rgba(255,255,255,.04));
   border-left:5px solid #ff7a00;
@@ -419,6 +419,10 @@ body{
 }
 
 .panel-icon{
+  display:flex;
+  align-items:flex-end;
+  justify-content:center;
+  padding-top:34px;
   font-size:32px;
 }
 
@@ -442,11 +446,24 @@ body{
 }
 
 .panel-del{
+  width:42px;
+  height:72px;
   border:none;
-  background:none;
-  color:#fff;
-  font-size:24px;
+  border-radius:4px;
+  background:#efefef;
+  color:#444;
+  font-size:30px;
+  font-weight:900;
   cursor:pointer;
+  transition:.15s;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.panel-del:hover{
+  background:#fff;
+  color:#000;
 }
 
 .constraint-list-area{
