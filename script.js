@@ -646,4 +646,33 @@ function resetSelected(){
   updateAll();
 }
 
+
+const bgm = document.getElementById('bgm');
+const musicToggle = document.getElementById('music-toggle');
+const musicVolume = document.getElementById('music-volume');
+
+if(bgm && musicToggle && musicVolume){
+  bgm.volume = Number(musicVolume.value);
+
+  musicToggle.addEventListener('click', async () => {
+    try{
+      if(bgm.paused){
+        await bgm.play();
+        musicToggle.textContent = '⏸';
+      }
+      else{
+        bgm.pause();
+        musicToggle.textContent = '▶';
+      }
+    }
+    catch(error){
+      console.warn('음악 재생 실패:', error);
+    }
+  });
+
+  musicVolume.addEventListener('input', () => {
+    bgm.volume = Number(musicVolume.value);
+  });
+}
+
 updateAll();
