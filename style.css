@@ -224,9 +224,10 @@ body{
 
 .conn{
   position:absolute;
-  background:rgba(230,240,255,.7);
+  background:#dfe7f2;
   pointer-events:none;
   z-index:1;
+  box-shadow:none;
 }
 
 .card.line-top .conn.top{
@@ -269,7 +270,8 @@ body{
   bottom:-45px;
   width:4px;
   transform:translateX(-50%);
-  background:rgba(230,240,255,.7);
+  background:#dfe7f2;
+  box-shadow:none;
   z-index:1;
   pointer-events:none;
 }
@@ -281,7 +283,8 @@ body{
 
 .line-active .conn,
 .connector-only.line-active.line-top.line-bottom::before{
-  background:rgba(230,240,255,.7) !important;
+  background:#dfe7f2 !important;
+  box-shadow:none !important;
 }
 
 .group-conflict{
