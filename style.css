@@ -77,7 +77,7 @@ body {
   position: relative;
   display: grid;
   grid-template-columns: 92px 1fr;
-  min-width: 1280px;
+  min-width: 1480px;
   height: 118px;
   border-bottom: 4px solid rgba(120,120,130,0.28);
 }
@@ -131,7 +131,7 @@ body {
 .cards-row {
   position: relative;
   display: grid;
-  grid-template-columns: repeat(14, 72px);
+  grid-template-columns: repeat(16, 72px);
   column-gap: 28px;
   align-items: center;
   padding-left: 34px;
@@ -198,6 +198,7 @@ body {
   position: relative;
   font-size: 30px;
   color: #eee;
+  z-index: 3;
 }
 
 .card.selected .card-icon {
@@ -259,7 +260,7 @@ body {
   font-weight: 900;
   align-items: center;
   justify-content: center;
-  z-index: 5;
+  z-index: 8;
 }
 
 .card-pts {
@@ -268,6 +269,7 @@ body {
   bottom: 4px;
   color: #ccc;
   font-size: 11px;
+  z-index: 4;
 }
 
 .lock-mark {
@@ -276,6 +278,7 @@ body {
   bottom: 5px;
   font-size: 13px;
   color: #ffd000;
+  z-index: 5;
 }
 
 .card.empty {
@@ -283,6 +286,13 @@ body {
   background: rgba(20,20,20,0.45);
   border-color: rgba(80,80,80,0.22);
   cursor: default;
+}
+
+.card.connector-only {
+  opacity: 1;
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
 }
 
 .card-x::before,
@@ -304,53 +314,57 @@ body {
   transform: translate(-50%, -50%) rotate(-45deg);
 }
 
-.card.line-top::before,
-.card.line-bottom::after {
-  content: "";
+.conn {
+  display: none;
   position: absolute;
+  pointer-events: none;
+  z-index: -2;
+  transition: none !important;
+  filter: none !important;
+}
+
+.card.line-top .conn.top {
+  display: block;
   left: 50%;
-  transform: translateX(-50%);
+  top: -23px;
   width: 4px;
-  height: 22px;
+  height: 23px;
+  transform: translateX(-50%);
   background: #858b93;
   box-shadow: 0 0 8px rgba(180,190,205,0.45);
-  pointer-events: none;
-  z-index: -2;
-  transition: none !important;
-  filter: none !important;
 }
 
-.card.line-top::before {
-  top: -23px;
-}
-
-.card.line-bottom::after {
+.card.line-bottom .conn.bottom {
+  display: block;
+  left: 50%;
   bottom: -23px;
+  width: 4px;
+  height: 23px;
+  transform: translateX(-50%);
+  background: #858b93;
+  box-shadow: 0 0 8px rgba(180,190,205,0.45);
 }
 
-.card.line-left::before,
-.card.line-right::after {
-  content: "";
-  position: absolute;
+.card.line-left .conn.left {
+  display: block;
+  right: 72px;
   top: 50%;
-  transform: translateY(-50%);
+  width: 28px;
   height: 4px;
+  transform: translateY(-50%);
   background: #d6a900;
   box-shadow: 0 0 8px rgba(255,210,0,0.45);
-  pointer-events: none;
-  z-index: -2;
-  transition: none !important;
-  filter: none !important;
 }
 
-.card.line-left::before {
-  right: 72px;
-  width: 28px;
-}
-
-.card.line-right::after {
+.card.line-right .conn.right {
+  display: block;
   left: 72px;
+  top: 50%;
   width: 28px;
+  height: 4px;
+  transform: translateY(-50%);
+  background: #d6a900;
+  box-shadow: 0 0 8px rgba(255,210,0,0.45);
 }
 
 .side-panel {
