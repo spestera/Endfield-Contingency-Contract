@@ -2,346 +2,60 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Endfield CC Simulator</title>
-  <link rel="stylesheet" href="style.css" />
+
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
 <div class="sim-wrapper">
+
   <header class="sim-header">
     <div class="small-title">// 위기 협약 재점화 실험 작전</div>
-    <h1>지표 선택</h1>
+    <div class="main-title">지표 선택</div>
   </header>
 
   <main class="sim-body">
+
     <section class="board-wrap">
       <div id="grid-area" class="grid-area"></div>
     </section>
 
     <aside class="side-panel">
+
       <div class="panel-header">
         <span>선택된 지표</span>
         <span id="selected-count">0</span>
       </div>
+
       <div id="panel-list" class="panel-list">
-        <div class="panel-empty">지표를 선택하면<br>여기에 표시됩니다</div>
+        <div class="panel-empty">
+          지표를 선택하면<br>
+          여기에 표시됩니다
+        </div>
       </div>
+
     </aside>
+
   </main>
 
   <footer class="sim-footer">
+
     <div class="warn-text" id="warn-text">
       ⚠ 현재 지표 난도가 높습니다. 신중하게 행동해 주세요.
     </div>
 
     <div class="total-score">
-      <span>총 합계</span>
-      <strong id="total-pts">0</strong>
+      <span class="total-label">총 합계</span>
+      <span class="total-num" id="total-pts">0</span>
       <span>★</span>
     </div>
+
   </footer>
+
 </div>
 
-<script>
-const ROWS = [
-  {
-    tier: 1,
-    cards: [
-      { id:'1-1', col:1, icon:'▦', name:'팀: 위축 I', pts:1, group:'g1', lineBottom:true, desc:'오퍼레이터의 주요 능력치가 감소합니다.' },
-      { id:'1-2', col:2, icon:'▴', name:'조작: 증압 I', pts:1, group:'g2', lineBottom:true, desc:'적의 주요 능력이 강화됩니다.' },
-      { id:'1-3', col:3, icon:'◴', name:'환경: 시간 제한 I', pts:1, group:'g3', lineBottom:true, desc:'제한 시간이 감소합니다.' },
-      { id:'1-4', col:4, icon:'✹', name:'조작: 활동 I', pts:1, group:'g4', lineBottom:true, desc:'적 실드량이 증가합니다.' },
-      { id:'1-5', col:5, icon:'▣', name:'팀: 압박 I', pts:1, group:'g5', lineBottom:true, desc:'오퍼레이터의 전투 성능이 감소합니다.' },
-      { id:'1-6', col:6, icon:'◒', name:'팀: 참수 I', pts:1, group:'g6', lineBottom:true, desc:'오퍼레이터가 받는 피해가 증가합니다.' },
-      { id:'1-7', col:7, icon:'⌁', name:'환경: 호흡 불가 I', pts:1, group:'g7', lineBottom:true, desc:'회복 관련 성능이 감소합니다.' },
-      { id:'1-8', col:8, icon:'✚', name:'환경: 쇠퇴 I', pts:1, group:'g8', lineBottom:true, desc:'웨이브 사이 치유 물질이 제한됩니다.' },
-      { id:'1-9', col:9, icon:'◎', name:'팀: 무거운 짐 I', pts:1, group:'g9', lineBottom:true, desc:'오퍼레이터 배치 비용이 증가합니다.' },
-
-      { id:'1-10', col:10, icon:'◉', name:'독립 지표 I', pts:1, desc:'그룹에 속하지 않는 독립 제약입니다.' },
-      { empty:true, col:11 },
-      { empty:true, col:12 },
-      { empty:true, col:13 },
-
-      { id:'1-14', col:14, icon:'▧', name:'해금 그룹 I', pts:2, group:'unlock-group', unlockable:true, requiresAny:['3-12','3-13'], lineBottom:true, desc:'노란 열쇠 선택 후 활성화되는 그룹형 해금 제약입니다.' },
-      { id:'1-15', col:15, icon:'◉', name:'해금 독립 I', pts:2, unlockable:true, requiresAny:['3-12','3-13'], desc:'노란 열쇠 선택 후 활성화되는 독립 해금 제약입니다.' }
-    ]
-  },
-  {
-    tier: 2,
-    cards: [
-      { id:'2-1', col:1, icon:'▦', name:'팀: 위축 II', pts:2, group:'g1', lineTop:true, lineBottom:true, desc:'오퍼레이터의 주요 능력치가 크게 감소합니다.' },
-      { id:'2-2', col:2, icon:'▴', name:'조작: 증압 II', pts:2, group:'g2', lineTop:true, desc:'적의 주요 능력이 크게 강화됩니다.' },
-      { id:'2-3', col:3, icon:'◴', name:'환경: 시간 제한 II', pts:2, group:'g3', lineTop:true, lineBottom:true, desc:'제한 시간이 더 감소합니다.' },
-      { id:'2-4', col:4, icon:'✹', name:'조작: 활동 II', pts:2, group:'g4', lineTop:true, lineBottom:true, desc:'적 실드량이 크게 증가합니다.' },
-      { id:'2-5', col:5, icon:'▣', name:'팀: 압박 II', pts:2, group:'g5', lineTop:true, desc:'오퍼레이터의 전투 성능이 크게 감소합니다.' },
-      { id:'2-6', col:6, icon:'◒', name:'팀: 참수 II', pts:2, group:'g6', lineTop:true, desc:'오퍼레이터가 받는 피해가 크게 증가합니다.' },
-
-      { empty:true, col:7, connectorOnly:true, lineTop:true, lineBottom:true },
-
-      { id:'2-8', col:8, icon:'✚', name:'환경: 쇠퇴 II', pts:2, group:'g8', lineTop:true, desc:'치유 물질 생성이 더 제한됩니다.' },
-      { id:'2-9', col:9, icon:'◎', name:'팀: 무거운 짐 II', pts:2, group:'g9', lineTop:true, desc:'오퍼레이터 배치 비용이 크게 증가합니다.' },
-
-      { id:'2-10', col:10, icon:'✹', name:'독립 지표 II-A', pts:2, desc:'그룹에 속하지 않는 독립 제약입니다.' },
-      { id:'2-11', col:11, icon:'▧', name:'독립 지표 II-B', pts:2, desc:'그룹에 속하지 않는 독립 제약입니다.' },
-
-      { empty:true, col:12 },
-      { empty:true, col:13 },
-
-      { id:'2-14', col:14, icon:'▧', name:'해금 그룹 II', pts:3, group:'unlock-group', unlockable:true, requiresAny:['3-12','3-13'], lineTop:true, desc:'노란 열쇠 선택 후 활성화되는 그룹형 해금 제약입니다.' },
-      { id:'2-15', col:15, icon:'◉', name:'해금 독립 II', pts:3, unlockable:true, requiresAny:['3-12','3-13'], desc:'노란 열쇠 선택 후 활성화되는 독립 해금 제약입니다.' }
-    ]
-  },
-  {
-    tier: 3,
-    cards: [
-      { id:'3-1', col:1, icon:'▦', name:'팀: 위축 III', pts:3, group:'g1', lineTop:true, desc:'오퍼레이터의 주요 능력치가 대폭 감소합니다.' },
-      { empty:true, col:2 },
-      { id:'3-3', col:3, icon:'◴', name:'환경: 시간 제한 III', pts:3, group:'g3', lineTop:true, desc:'제한 시간이 대폭 감소합니다.' },
-      { id:'3-4', col:4, icon:'✹', name:'조작: 활동 III', pts:3, group:'g4', lineTop:true, desc:'적 실드량이 대폭 증가합니다.' },
-      { empty:true, col:5 },
-      { empty:true, col:6 },
-      { id:'3-7', col:7, icon:'◒', name:'환경: 속박', pts:3, group:'g7', lineTop:true, desc:'회피 불가 상태가 적용됩니다.' },
-      { empty:true, col:8 },
-      { empty:true, col:9 },
-
-      { id:'3-10', col:10, icon:'⚔', name:'독립 지표 III-A', pts:3, desc:'그룹에 속하지 않는 독립 제약입니다.' },
-      { id:'3-11', col:11, icon:'♟', name:'독립 지표 III-B', pts:3, desc:'그룹에 속하지 않는 독립 제약입니다.' },
-
-      { id:'3-12', col:12, icon:'🔑', name:'노란 열쇠 I', pts:3, group:'yellow-key', key:true, lineRight:true, desc:'둘 중 하나만 선택 가능한 노란 열쇠 제약입니다.' },
-      { id:'3-13', col:13, icon:'🗝', name:'노란 열쇠 II', pts:3, group:'yellow-key', key:true, lineLeft:true, desc:'둘 중 하나만 선택 가능한 노란 열쇠 제약입니다.' },
-
-      { empty:true, col:14 },
-      { empty:true, col:15 }
-    ]
-  }
-];
-
-const selected = new Set();
-const selectedOrder = [];
-
-function buildGrid() {
-  const area = document.getElementById('grid-area');
-  area.innerHTML = '';
-
-  ROWS.forEach(({ tier, cards }) => {
-    const wrap = document.createElement('div');
-    wrap.className = `row-wrap row-tier-${tier}`;
-
-    wrap.innerHTML = `
-      <div class="tier-bar t${tier}"></div>
-      <div class="row-label">
-        <span class="tier-num">${tier}</span>
-        <span class="tier-icon">▰</span>
-      </div>
-    `;
-
-    const row = document.createElement('div');
-    row.className = 'cards-row';
-
-    cards.forEach(card => {
-      const el = document.createElement('div');
-      el.className = 'card';
-      el.style.gridColumn = card.col;
-
-      if (card.empty) {
-        el.classList.add('empty');
-        if (card.connectorOnly) el.classList.add('connector-only');
-        if (card.lineTop) el.classList.add('line-top');
-        if (card.lineBottom) el.classList.add('line-bottom');
-        if (card.lineLeft) el.classList.add('line-left');
-        if (card.lineRight) el.classList.add('line-right');
-        el.innerHTML = card.connectorOnly ? '' : '<div class="card-x"></div>';
-        row.appendChild(el);
-        return;
-      }
-
-      const disabled = isDisabled(card);
-      const groupConflict = isGroupConflict(card);
-
-      if (selected.has(card.id)) el.classList.add('selected');
-      if (disabled) el.classList.add('disabled');
-      if (card.locked) el.classList.add('locked');
-      if (card.key) el.classList.add('key-card');
-      if (card.unlockable) el.classList.add('unlockable-card');
-      if (groupConflict) el.classList.add('group-conflict');
-
-      if (card.lineTop) el.classList.add('line-top');
-      if (card.lineBottom) el.classList.add('line-bottom');
-      if (card.lineLeft) el.classList.add('line-left');
-      if (card.lineRight) el.classList.add('line-right');
-
-      el.innerHTML = `
-        <div class="card-icon">${card.icon}</div>
-        <div class="card-check">✓</div>
-        <div class="conflict-text">충돌</div>
-        <div class="conflict-mark">⊘</div>
-        <div class="card-pts">${card.pts}</div>
-        ${card.locked || disabled ? '<div class="lock-mark">🔒</div>' : ''}
-      `;
-
-      if (!card.locked && !disabled) {
-        el.addEventListener('click', () => toggleCard(card.id));
-      }
-
-      row.appendChild(el);
-    });
-
-    wrap.appendChild(row);
-    area.appendChild(wrap);
-  });
-}
-
-function toggleCard(id) {
-  const card = getCard(id);
-  if (!card || card.locked || isDisabled(card)) return;
-
-  if (selected.has(id)) {
-    selected.delete(id);
-    removeFromOrder(id);
-    removeDependentCards();
-    updateAll();
-    return;
-  }
-
-  if (card.group) {
-    getAllCards()
-      .filter(c => c.group === card.group && selected.has(c.id))
-      .forEach(c => {
-        selected.delete(c.id);
-        removeFromOrder(c.id);
-      });
-  }
-
-  selected.add(id);
-  selectedOrder.push(id);
-  removeDependentCards();
-  updateAll();
-}
-
-function isGroupConflict(card) {
-  if (!card.group) return false;
-  if (selected.has(card.id)) return false;
-
-  return getAllCards().some(c =>
-    c.id !== card.id &&
-    c.group === card.group &&
-    selected.has(c.id)
-  );
-}
-
-function isDisabled(card) {
-  if (card.locked) return true;
-
-  if (card.requiresAny) {
-    return !card.requiresAny.some(id => selected.has(id));
-  }
-
-  return false;
-}
-
-function removeDependentCards() {
-  getAllCards().forEach(card => {
-    if (!card.requiresAny) return;
-
-    const stillUnlocked = card.requiresAny.some(id => selected.has(id));
-
-    if (!stillUnlocked) {
-      selected.delete(card.id);
-      removeFromOrder(card.id);
-    }
-  });
-}
-
-function renderPanel() {
-  const list = document.getElementById('panel-list');
-  const count = document.getElementById('selected-count');
-
-  count.textContent = selected.size;
-
-  if (selected.size === 0) {
-    list.innerHTML = '<div class="panel-empty">지표를 선택하면<br>여기에 표시됩니다</div>';
-    return;
-  }
-
-  list.innerHTML = '';
-
-  selectedOrder
-    .filter(id => selected.has(id))
-    .forEach(id => {
-      const card = getCard(id);
-      const tier = getTier(id);
-
-      const item = document.createElement('div');
-      item.className = `panel-item tier-${tier}`;
-
-      item.innerHTML = `
-        <div class="panel-score">${card.pts}★</div>
-        <div class="panel-icon">${card.icon}</div>
-        <div class="panel-content">
-          <div class="panel-name">${card.name}</div>
-          <div class="panel-desc">${card.desc || ''}</div>
-        </div>
-        <button class="panel-del">×</button>
-      `;
-
-      item.querySelector('.panel-del').addEventListener('click', () => {
-        selected.delete(id);
-        removeFromOrder(id);
-        removeDependentCards();
-        updateAll();
-      });
-
-      list.appendChild(item);
-    });
-}
-
-function updateTotal() {
-  let total = 0;
-
-  selected.forEach(id => {
-    const c = getCard(id);
-    if (c) total += c.pts;
-  });
-
-  document.getElementById('total-pts').textContent = total;
-  document.getElementById('warn-text').classList.toggle('visible', total >= 25);
-}
-
-function updateAll() {
-  buildGrid();
-  renderPanel();
-  updateTotal();
-}
-
-function removeFromOrder(id) {
-  const i = selectedOrder.indexOf(id);
-  if (i !== -1) selectedOrder.splice(i, 1);
-}
-
-function getAllCards() {
-  return ROWS.flatMap(r => r.cards);
-}
-
-function getCard(id) {
-  return getAllCards().find(c => c.id === id);
-}
-
-function getTier(id) {
-  return ROWS.find(r => r.cards.some(c => c.id === id))?.tier || 1;
-}
-
-const gridArea = document.getElementById('grid-area');
-
-gridArea.addEventListener('wheel', (e) => {
-  if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
-    e.preventDefault();
-    gridArea.scrollLeft += e.deltaY;
-  }
-}, { passive: false });
-
-updateAll();
-</script>
-
+<script src="script.js"></script>
 </body>
 </html>
