@@ -9,12 +9,14 @@
 <body>
 
 <div class="sim-wrapper">
+
   <header class="sim-header">
     <div class="small-title">// 위기 협약 재점화 실험 작전</div>
     <div class="main-title">지표 선택</div>
   </header>
 
   <main class="sim-body">
+
     <section class="board-wrap">
       <div id="grid-area" class="grid-area"></div>
     </section>
@@ -32,7 +34,28 @@
         </div>
       </div>
     </aside>
+
   </main>
+
+  <!-- 새로 추가: 하단 3분할 제약 리스트 -->
+  <section class="constraint-list-area">
+
+    <div class="constraint-column">
+      <div class="constraint-column-title">오퍼레이터 제약 지표 리스트</div>
+      <div id="operator-list" class="constraint-list"></div>
+    </div>
+
+    <div class="constraint-column">
+      <div class="constraint-column-title">적 제약 지표 리스트</div>
+      <div id="enemy-list" class="constraint-list"></div>
+    </div>
+
+    <div class="constraint-column">
+      <div class="constraint-column-title">환경 제약 지표 리스트</div>
+      <div id="environment-list" class="constraint-list"></div>
+    </div>
+
+  </section>
 
   <footer class="sim-footer">
     <div class="warn-text" id="warn-text">
@@ -45,6 +68,7 @@
       <span>★</span>
     </div>
   </footer>
+
 </div>
 
 <script src="script.js"></script>
