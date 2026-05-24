@@ -17,12 +17,12 @@ const ROWS = [
       {empty:true, col:11},
       {empty:true, col:12},
       {empty:true, col:13},
-      {empty:true, col:14},
 
-      {id:'1-15', col:15, icon:'◉', name:'해금 독립 I', pts:1, unlockable:true, requiresAny:['3-12','3-13']},
-      {id:'1-16', col:16, icon:'▧', name:'해금 그룹 I', pts:1, group:'unlock-group', unlockable:true, requiresAny:['3-12','3-13'], lineBottom:true}
+      {id:'1-15', col:14, icon:'◉', name:'해금 독립 I', pts:1, unlockable:true, requiresAny:['3-12','3-13']},
+      {id:'1-16', col:15, icon:'▧', name:'해금 그룹 I', pts:1, group:'unlock-group', unlockable:true, requiresAny:['3-12','3-13'], lineBottom:true}
     ]
   },
+
   {
     tier:2,
     cards:[
@@ -43,12 +43,12 @@ const ROWS = [
 
       {empty:true, col:12},
       {empty:true, col:13},
-      {empty:true, col:14},
 
-      {id:'2-15', col:15, icon:'◉', name:'해금 독립 II', pts:2, unlockable:true, requiresAny:['3-12','3-13']},
-      {id:'2-16', col:16, icon:'▧', name:'해금 그룹 II', pts:2, group:'unlock-group', unlockable:true, requiresAny:['3-12','3-13'], lineTop:true}
+      {id:'2-15', col:14, icon:'◉', name:'해금 독립 II', pts:2, unlockable:true, requiresAny:['3-12','3-13']},
+      {id:'2-16', col:15, icon:'▧', name:'해금 그룹 II', pts:2, group:'unlock-group', unlockable:true, requiresAny:['3-12','3-13'], lineTop:true}
     ]
   },
+
   {
     tier:3,
     cards:[
@@ -74,8 +74,7 @@ const ROWS = [
       {id:'3-13', col:13, icon:'🗝', name:'노란 열쇠 II', pts:3, group:'yellow-key', key:true, lineLeft:true},
 
       {empty:true, col:14},
-      {empty:true, col:15},
-      {empty:true, col:16}
+      {empty:true, col:15}
     ]
   }
 ];
@@ -101,7 +100,10 @@ function removeFromOrder(id){
 }
 
 function isGroupSelected(group){
-  return getAllCards().some(c => c.group === group && selected.has(c.id));
+  return getAllCards().some(c =>
+    c.group === group &&
+    selected.has(c.id)
+  );
 }
 
 function isDisabled(card){
@@ -122,8 +124,11 @@ function isGroupConflict(card){
 }
 
 function toggleCard(id){
+
   const card = getCard(id);
+
   if(!card) return;
+
   if(isDisabled(card)) return;
 
   if(selected.has(id)){
@@ -135,44 +140,60 @@ function toggleCard(id){
   }
 
   if(card.group){
+
     getAllCards()
-      .filter(c => c.group === card.group && selected.has(c.id))
+      .filter(c =>
+        c.group === card.group &&
+        selected.has(c.id)
+      )
       .forEach(c => {
         selected.delete(c.id);
         removeFromOrder(c.id);
       });
+
   }
 
   selected.add(id);
   selectedOrder.push(id);
 
   removeDependentCards();
+
   updateAll();
 }
 
 function removeDependentCards(){
+
   getAllCards().forEach(card => {
+
     if(!card.requiresAny) return;
 
-    const unlocked = card.requiresAny.some(id => selected.has(id));
+    const unlocked =
+      card.requiresAny.some(id => selected.has(id));
 
     if(!unlocked){
       selected.delete(card.id);
       removeFromOrder(card.id);
     }
+
   });
+
 }
 
 function buildGrid(){
+
   const area = document.getElementById('grid-area');
+
   area.innerHTML = '';
 
   ROWS.forEach(({tier,cards}) => {
+
     const wrap = document.createElement('div');
+
     wrap.className = 'row-wrap';
 
     wrap.innerHTML = `
       <div class="tier-bar t${tier}"></div>
+
       <div class="row-label">
         <span class="tier-num">${tier}</span>
         <span class="tier-icon">▰</span>
@@ -180,11 +201,15 @@ function buildGrid(){
     `;
 
     const row = document.createElement('div');
+
     row.className = 'cards-row';
 
     cards.forEach(card => {
+
       const el = document.createElement('div');
+
       el.className = 'card';
+
       el.style.gridColumn = card.col;
 
       if(card.lineTop) el.classList.add('line-top');
@@ -197,6 +222,7 @@ function buildGrid(){
       }
 
       if(card.empty){
+
         el.classList.add('empty');
 
         if(card.connectorOnly){
@@ -208,21 +234,37 @@ function buildGrid(){
           <span class="conn bottom"></span>
           <span class="conn left"></span>
           <span class="conn right"></span>
+
           ${card.connectorOnly ? '' : '<div class="card-x"></div>'}
         `;
 
         row.appendChild(el);
+
         return;
       }
 
       const disabled = isDisabled(card);
       const conflict = isGroupConflict(card);
 
-      if(selected.has(card.id)) el.classList.add('selected');
-      if(disabled) el.classList.add('disabled');
-      if(conflict) el.classList.add('group-conflict');
-      if(card.key) el.classList.add('key-card');
-      if(card.unlockable) el.classList.add('unlockable-card');
+      if(selected.has(card.id)){
+        el.classList.add('selected');
+      }
+
+      if(disabled){
+        el.classList.add('disabled');
+      }
+
+      if(conflict){
+        el.classList.add('group-conflict');
+      }
+
+      if(card.key){
+        el.classList.add('key-card');
+      }
+
+      if(card.unlockable){
+        el.classList.add('unlockable-card');
+      }
 
       el.innerHTML = `
         <span class="conn top"></span>
@@ -231,10 +273,14 @@ function buildGrid(){
         <span class="conn right"></span>
 
         <div class="card-icon">${card.icon}</div>
+
         <div class="card-check">✓</div>
+
         <div class="conflict-text">충돌</div>
         <div class="conflict-mark">⊘</div>
+
         <div class="card-pts">${card.pts}</div>
+
         ${disabled ? '<div class="lock-mark">🔒</div>' : ''}
       `;
 
@@ -243,26 +289,34 @@ function buildGrid(){
       }
 
       row.appendChild(el);
+
     });
 
     wrap.appendChild(row);
+
     area.appendChild(wrap);
+
   });
+
 }
 
 function renderPanel(){
+
   const list = document.getElementById('panel-list');
+
   const count = document.getElementById('selected-count');
 
   count.textContent = selected.size;
 
   if(selected.size === 0){
+
     list.innerHTML = `
       <div class="panel-empty">
         지표를 선택하면<br>
         여기에 표시됩니다
       </div>
     `;
+
     return;
   }
 
@@ -271,58 +325,91 @@ function renderPanel(){
   selectedOrder
     .filter(id => selected.has(id))
     .forEach(id => {
+
       const card = getCard(id);
+
       const tier = getTier(id);
 
       const item = document.createElement('div');
+
       item.className = `panel-item tier-${tier}`;
 
       item.innerHTML = `
         <div class="panel-score">${card.pts}★</div>
+
         <div class="panel-icon">${card.icon}</div>
+
         <div>
           <div class="panel-name">${card.name}</div>
-          <div class="panel-desc">선택된 제약입니다.</div>
+          <div class="panel-desc">
+            선택된 제약입니다.
+          </div>
         </div>
+
         <button class="panel-del">×</button>
       `;
 
-      item.querySelector('.panel-del').addEventListener('click', () => {
-        selected.delete(id);
-        removeFromOrder(id);
-        removeDependentCards();
-        updateAll();
-      });
+      item.querySelector('.panel-del')
+        .addEventListener('click', () => {
+
+          selected.delete(id);
+
+          removeFromOrder(id);
+
+          removeDependentCards();
+
+          updateAll();
+
+        });
 
       list.appendChild(item);
+
     });
+
 }
 
 function updateTotal(){
+
   let total = 0;
 
   selected.forEach(id => {
+
     const c = getCard(id);
+
     if(c) total += c.pts;
+
   });
 
-  document.getElementById('total-pts').textContent = total;
-  document.getElementById('warn-text').classList.toggle('visible', total >= 25);
+  document.getElementById('total-pts')
+    .textContent = total;
+
+  document.getElementById('warn-text')
+    .classList.toggle('visible', total >= 25);
+
 }
 
 function updateAll(){
+
   buildGrid();
+
   renderPanel();
+
   updateTotal();
+
 }
 
 const gridArea = document.getElementById('grid-area');
 
 gridArea.addEventListener('wheel', (e) => {
+
   if(Math.abs(e.deltaY) > Math.abs(e.deltaX)){
+
     e.preventDefault();
+
     gridArea.scrollLeft += e.deltaY;
+
   }
+
 }, { passive:false });
 
 updateAll();
