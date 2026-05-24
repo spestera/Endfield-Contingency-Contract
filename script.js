@@ -344,8 +344,8 @@ const ROWS = [
       {
         id: '3-12',
         col: 12,
-        icon: 'assets/icons/가속.png',
-        name: '환경: 가속',
+        icon: 'assets/icons/과속.png',
+        name: '환경: 과속',
         pts: 3,
         group: 'yellow-key',
         key: true,
