@@ -54,7 +54,7 @@ body{
   width:8px;
   height:52px;
   background:repeating-linear-gradient(
-    to bottom,
+    까지 bottom,
     #fff 0 8px,
     transparent 8px 12px
   );
@@ -474,6 +474,72 @@ body{
 
 .total-num{
   font-size:54px;
+}
+
+/* 선택된 지표 설명이 길 때 패널 밖으로 튀어나오지 않게 */
+.panel-item{
+  grid-template-columns:64px 44px minmax(0,1fr) 28px;
+  align-items:start;
+}
+
+.panel-item > div:nth-child(3){
+  min-width:0;
+}
+
+.panel-desc{
+  white-space:normal;
+  word-break:keep-all;
+  overflow-wrap:anywhere;
+  max-height:4.5em;
+  overflow-y:auto;
+  padding-right:4px;
+}
+
+/* 선택 초기화 버튼 */
+.reset-btn{
+  border:none;
+  padding:0 22px;
+  height:46px;
+  border-radius:999px;
+  background:rgba(255,255,255,.14);
+  color:#fff;
+  font-size:16px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.reset-btn:hover{
+  background:rgba(255,255,255,.24);
+}
+
+.panel-reset-btn{
+  height:26px;
+  padding:0 12px;
+  border:1px solid rgba(0,0,0,.25);
+  background:#222;
+  color:#fff;
+  font-size:12px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.panel-reset-btn:hover{
+  background:#444;
+}
+
+.warn-text{
+  margin-left:auto;
+  margin-right:16px;
+}
+
+.total-score{
+  background:rgba(255,255,255,.12);
+  box-shadow:none;
+}
+
+.total-score.danger{
+  background:linear-gradient(90deg,#ff9b1f,#ff001f);
+  box-shadow:0 0 30px rgba(255,80,0,.45);
 }
 
 @media (max-width:900px){
