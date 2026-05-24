@@ -3,89 +3,92 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Endfield CC Simulator</title>
+  <title>Endfield CC</title>
 
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="page">
+<div class="wrapper">
 
-  <div class="top-bar">
+  <div class="header">
     ENDFIELD / CONTINGENCY CONTRACT
   </div>
 
-  <!-- TREE BOARD -->
   <div class="board">
 
-    <!-- CONNECTION LINES -->
+    <!-- LINES -->
     <svg class="lines">
 
-      <!-- row 1 -->
-      <line x1="120" y1="80" x2="220" y2="80" />
-      <line x1="320" y1="80" x2="420" y2="80" />
-      <line x1="520" y1="80" x2="620" y2="80" />
+      <!-- top row -->
+      <line x1="90" y1="70" x2="170" y2="70"/>
+      <line x1="250" y1="70" x2="330" y2="70"/>
+      <line x1="410" y1="70" x2="490" y2="70"/>
 
-      <!-- row 2 -->
-      <line x1="220" y1="80" x2="220" y2="220" />
-      <line x1="420" y1="80" x2="420" y2="220" />
+      <!-- vertical -->
+      <line x1="170" y1="70" x2="170" y2="170"/>
+      <line x1="330" y1="70" x2="330" y2="170"/>
 
-      <line x1="220" y1="220" x2="320" y2="220" />
-      <line x1="420" y1="220" x2="520" y2="220" />
+      <!-- middle -->
+      <line x1="170" y1="170" x2="250" y2="170"/>
+      <line x1="330" y1="170" x2="410" y2="170"/>
 
-      <!-- row 3 -->
-      <line x1="320" y1="220" x2="320" y2="360" />
-      <line x1="520" y1="220" x2="520" y2="360" />
+      <!-- vertical -->
+      <line x1="250" y1="170" x2="250" y2="270"/>
+      <line x1="410" y1="170" x2="410" y2="270"/>
 
-      <line x1="320" y1="360" x2="420" y2="360" />
-      <line x1="520" y1="360" x2="620" y2="360" />
+      <!-- bottom -->
+      <line x1="250" y1="270" x2="330" y2="270"/>
+      <line x1="410" y1="270" x2="490" y2="270"/>
 
     </svg>
 
     <!-- NODES -->
 
-    <!-- TIER 1 -->
-    <div class="node active" style="left:80px; top:50px;">
+    <div class="node active" style="left:50px; top:30px;">
       A
     </div>
 
-    <div class="node" style="left:280px; top:50px;">
+    <div class="node" style="left:210px; top:30px;">
       B
     </div>
 
-    <div class="node" style="left:480px; top:50px;">
+    <div class="node" style="left:370px; top:30px;">
       C
     </div>
 
-    <div class="node locked" style="left:680px; top:50px;">
+    <div class="node locked" style="left:530px; top:30px;">
       D
     </div>
 
-    <!-- TIER 2 -->
-    <div class="node" style="left:280px; top:190px;">
+    <div class="node" style="left:210px; top:130px;">
       E
     </div>
 
-    <div class="node active" style="left:480px; top:190px;">
+    <div class="node active" style="left:370px; top:130px;">
       F
     </div>
 
-    <!-- TIER 3 -->
-    <div class="node locked" style="left:380px; top:330px;">
+    <div class="node locked" style="left:210px; top:230px;">
       G
     </div>
 
-    <div class="node" style="left:580px; top:330px;">
+    <div class="node" style="left:370px; top:230px;">
       H
+    </div>
+
+    <div class="node" style="left:530px; top:230px;">
+      I
     </div>
 
   </div>
 
   <!-- SELECTED -->
-  <div class="selected-panel">
+
+  <div class="selected-wrap">
 
     <div class="selected-title">
-      SELECTED CONSTRAINTS
+      SELECTED
     </div>
 
     <div class="selected-list">
@@ -95,7 +98,7 @@
       </div>
 
       <div class="selected-item">
-        DP Recovery Down
+        Max HP Down
       </div>
 
       <div class="selected-item">
