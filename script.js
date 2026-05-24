@@ -586,12 +586,12 @@ function renderPanel(){
 
         <div class="panel-icon">${card.icon}</div>
 
-        <div>
-          <div class="panel-name">${card.name}</div>
-          <div class="panel-desc">
-            ${card.desc || '설명이 아직 입력되지 않았습니다.'}
+          <div class="panel-content">
+            <div class="panel-name">${card.name}</div>
+            <div class="panel-desc">
+              ${card.desc || '설명이 아직 입력되지 않았습니다.'}
+            </div>
           </div>
-        </div>
 
         <button class="panel-del">×</button>
       `;
