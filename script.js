@@ -817,7 +817,7 @@ document.addEventListener('click', startBgmOnce, { once:true });
 
 function colorizeDesc(text){
   return text.replace(
-    /([+-]\d+%?|[+-]\d+초)/g,
+    /([+-]?\d+%|[+-]?\d+초)/g,
     '<span class="yellow-text">$1</span>'
   );
 }
