@@ -589,9 +589,17 @@ function buildGrid(){
         ${disabled ? '<div class="lock-mark">🔒</div>' : ''}
       `;
 
-      if(!disabled){
-        el.addEventListener('click', () => toggleCard(card.id));
-      }
+     if(!disabled){
+      el.addEventListener('click', () => toggleCard(card.id));
+    
+      el.addEventListener('mouseenter', () => {
+        showFloatingTooltip(card, el);
+      });
+    
+      el.addEventListener('mouseleave', () => {
+        hideFloatingTooltip();
+      });
+    }
 
       row.appendChild(el);
     });
@@ -688,6 +696,28 @@ function updateAll(){
   buildGrid();
   renderPanel();
   updateTotal();
+}
+
+const floatingTooltip = document.createElement('div');
+floatingTooltip.className = 'floating-tooltip';
+document.body.appendChild(floatingTooltip);
+
+function showFloatingTooltip(card, el){
+  const rect = el.getBoundingClientRect();
+
+  floatingTooltip.innerHTML = `
+    <div class="tooltip-title">${card.name}</div>
+    <div class="tooltip-desc">${card.desc || '설명이 없습니다.'}</div>
+  `;
+
+  floatingTooltip.style.left = `${rect.left + rect.width / 2}px`;
+  floatingTooltip.style.top = `${rect.top}px`;
+
+  floatingTooltip.classList.add('visible');
+}
+
+function hideFloatingTooltip(){
+  floatingTooltip.classList.remove('visible');
 }
 
 const boardWrap = document.querySelector('.board-wrap');
