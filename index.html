@@ -4,9 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Endfield CC Simulator</title>
+
   <link rel="stylesheet" href="style.css"/>
   <link rel="icon" type="image/png" href="favicon.png">
 </head>
+
 <body>
 
 <div id="intro-screen">
@@ -16,10 +18,18 @@
 <div class="sim-wrapper">
 
   <header class="sim-header">
-    <div class="music-player">
-      <span class="music-title">♬ 명일방주 위기협약 정죄 작전 OST ♬</span>
 
-      <button id="music-toggle" class="music-toggle" type="button">
+    <div class="music-player">
+
+      <span class="music-title">
+        ♬ 명일방주 위기협약 정죄 작전 OST ♬
+      </span>
+
+      <button
+        id="music-toggle"
+        class="music-toggle"
+        type="button"
+      >
         ▶
       </button>
 
@@ -33,58 +43,96 @@
         value="0.3"
       />
 
-      <audio id="bgm" src="assets/audio/Battleplan_Extinguished_Sins.mp3" loop></audio>
-      <audio id="sfx-select" src="assets/audio/select.mp3"></audio>
-      <audio id="sfx-cancel" src="assets/audio/cancel.mp3"></audio>
+      <audio
+        id="bgm"
+        src="assets/audio/Battleplan_Extinguished_Sins.mp3"
+        loop
+      ></audio>
+
+      <audio
+        id="sfx-select"
+        src="assets/audio/select.mp3"
+      ></audio>
+
+      <audio
+        id="sfx-cancel"
+        src="assets/audio/cancel.mp3"
+      ></audio>
+
     </div>
 
-    <div class="small-title">// 엔드필드 위기 협약 : 재점화 실험 작전</div>
-    <div class="main-title">지표 선택</div>
+    <div class="small-title">
+      // 엔드필드 위기 협약 : 재점화 실험 작전
+    </div>
+
+    <div class="main-title">
+      지표 선택
+    </div>
+
   </header>
 
-  <main class="sim-main">
+  <main class="sim-body">
 
-    <section class="main-left">
-
-      <div class="sim-body">
-        <section class="board-wrap">
-          <div id="grid-area" class="grid-area"></div>
-        </section>
-      </div>
-
-      <footer class="sim-footer">
-        <div class="warn-text" id="warn-text">
-          ⚠ 현재 지표 난도가 높습니다. 신중하게 행동해 주세요.
-        </div>
-
-        <div class="total-score">
-          <span class="total-label">총 합계</span>
-          <span class="total-num" id="total-pts">0</span>
-          <span>★</span>
-        </div>
-      </footer>
-
+    <section class="board-wrap">
+      <div id="grid-area" class="grid-area"></div>
     </section>
 
     <aside class="side-panel">
+
       <div class="panel-header">
+
         <span>선택된 지표</span>
-        <button class="panel-reset-btn" onclick="resetSelected()">선택 초기화</button>
+
+        <button
+          class="panel-reset-btn"
+          onclick="resetSelected()"
+        >
+          선택 초기화
+        </button>
+
         <span id="selected-count">0</span>
+
       </div>
 
       <div id="panel-list" class="panel-list">
+
         <div class="panel-empty">
           지표를 선택하면<br>
           여기에 표시됩니다
         </div>
+
       </div>
+
     </aside>
 
   </main>
 
+  <footer class="sim-footer">
+
+    <div class="warn-text" id="warn-text">
+      ⚠ 현재 지표 난도가 높습니다.
+      신중하게 행동해 주세요.
+    </div>
+
+    <div class="total-score">
+
+      <span class="total-label">
+        총 합계
+      </span>
+
+      <span class="total-num" id="total-pts">
+        0
+      </span>
+
+      <span>★</span>
+
+    </div>
+
+  </footer>
+
 </div>
 
 <script src="script.js"></script>
+
 </body>
 </html>
