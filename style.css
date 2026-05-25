@@ -37,8 +37,8 @@ body{
 
   background:
     linear-gradient(
-      rgba(0,0,0,.48),
-      rgba(0,0,0,.68)
+      rgba(0,0,0,.58),
+      rgba(0,0,0,.78)
     );
 }
 
@@ -53,7 +53,6 @@ body{
   background-position:center;
   background-repeat:no-repeat;
 
-  animation:bgSlowMove 38s ease-in-out infinite alternate;
 
   pointer-events:none;
 }
@@ -63,15 +62,6 @@ body{
   z-index:1;
 }
 
-@keyframes bgSlowMove{
-  0%{
-    transform:translate3d(-1%, -1%, 0) scale(1.04);
-  }
-
-  100%{
-    transform:translate3d(1.5%, .8%, 0) scale(1.08);
-  }
-}
 
 .sim-wrapper::after{
   content:"";
@@ -91,10 +81,13 @@ body{
       transparent 32%
     );
 
-  opacity:.75;
+  opacity:.18;
   pointer-events:none;
 
-  animation:redLightMove 8s ease-in-out infinite alternate;
+  animation:redLightMove 18s ease-in-out infinite alternate;
+  animation:
+    redLightMove 18s ease-in-out infinite alternate,
+    subtleNoise 3s infinite;
 }
 
 @keyframes redLightMove{
@@ -108,7 +101,19 @@ body{
     opacity:.85;
   }
 }
+@keyframes subtleNoise{
+  0%{
+    filter:brightness(1);
+  }
 
+  50%{
+    filter:brightness(1.03);
+  }
+
+  100%{
+    filter:brightness(1);
+  }
+}
 .sim-header{
   position:relative;
   padding:18px 32px 28px;
