@@ -824,6 +824,15 @@ body{
   font-weight:700;
 }
 
+.defense-text{
+  color:#d7a56a;
+  font-weight:700;
+}
+
+.arts-text{
+  color:#69c7ff;
+  font-weight:700;
+}
 
 /* =========================================================
    Responsive
