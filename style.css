@@ -42,9 +42,21 @@ body{
     ),
     url('assets/bg.png');
 
-  background-size:cover;
+  background-size:110% 110%;
   background-position:center;
   background-repeat:no-repeat;
+
+  animation:bgSlowMove 26s ease-in-out infinite alternate;
+}
+
+@keyframes bgSlowMove{
+  0%{
+    background-position:50% 50%;
+  }
+
+  100%{
+    background-position:54% 48%;
+  }
 }
 
 .sim-header{
@@ -892,6 +904,39 @@ body{
   -webkit-user-select:none;
   -webkit-user-drag:none;
   draggable:false;
+}
+
+.screen-flash{
+  position:fixed;
+  inset:0;
+  z-index:99998;
+  pointer-events:none;
+  opacity:0;
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(255,0,0,.08),
+      rgba(255,0,0,.22) 58%,
+      rgba(255,0,0,.38) 100%
+    );
+}
+
+.screen-flash.active{
+  animation:screenFlash .18s ease-out;
+}
+
+@keyframes screenFlash{
+  0%{
+    opacity:0;
+  }
+
+  35%{
+    opacity:1;
+  }
+
+  100%{
+    opacity:0;
+  }
 }
 
 /* =========================================================
