@@ -230,7 +230,7 @@ const ROWS = [
         id: '2-10',
         col: 10,
         icon: 'assets/icons/모름2.png',
-        name: '조작: ??',
+        name: '조작: 가속',
         pts: 2,
         desc: '적 이동속도 관련 제약'
       },
