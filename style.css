@@ -1082,6 +1082,23 @@ body{
   text-transform:uppercase;
 }
 
+.result-btn{
+  margin-right:auto;
+  height:46px;
+  padding:0 22px;
+  border:none;
+  border-radius:999px;
+  background:rgba(255,255,255,.14);
+  color:#fff;
+  font-size:16px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.result-btn:hover{
+  background:rgba(255,255,255,.24);
+}
+
 /* =========================================================
    Responsive
 ========================================================= */
