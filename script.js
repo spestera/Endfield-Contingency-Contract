@@ -457,9 +457,14 @@ function toggleCard(id){
 
   if(selected.has(id)){
     deselectCard(id, true);
+  
+    if(lastSelectedId === id){
+      lastSelectedId = null;
+    }
+  
     removeDependentCards();
     playSfx(sfxCancel);
-    
+  
     saveState();
     updateAll();
     return;
@@ -558,6 +563,9 @@ function buildGrid(){
       const conflict = isGroupConflict(card);
 
       if(selected.has(card.id)) el.classList.add('selected');
+      if(card.id === lastSelectedId && selected.has(card.id)){
+        el.classList.add('select-flash');
+      }
       if(disabled) el.classList.add('disabled');
       if(conflict) el.classList.add('group-conflict');
       if(card.key) el.classList.add('key-card');
