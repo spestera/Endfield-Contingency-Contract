@@ -779,6 +779,40 @@ body{
   }
 }
 
+.card-tooltip{
+  position:absolute;
+  left:50%;
+  bottom:108%;
+  transform:translateX(-50%);
+  min-width:220px;
+  max-width:280px;
+  padding:10px 12px;
+  background:rgba(8,10,18,.96);
+  border:1px solid rgba(255,255,255,.18);
+  box-shadow:0 8px 30px rgba(0,0,0,.45);
+  opacity:0;
+  pointer-events:none;
+  transition:.14s;
+  z-index:999;
+}
+
+.card:hover .card-tooltip{
+  opacity:1;
+  transform:translateX(-50%) translateY(-4px);
+}
+
+.tooltip-title{
+  font-size:14px;
+  font-weight:900;
+  margin-bottom:6px;
+}
+
+.tooltip-desc{
+  font-size:12px;
+  line-height:1.45;
+  color:#d6d6d6;
+}
+
 /* =========================================================
    Responsive
 ========================================================= */
