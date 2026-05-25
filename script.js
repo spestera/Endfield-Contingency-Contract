@@ -816,10 +816,23 @@ document.addEventListener('click', startBgmOnce, { once:true });
 
 
 function colorizeDesc(text){
-  return text.replace(
-    /([+-]?\d+%|[+-]?\d+초)/g,
-    '<span class="yellow-text">$1</span>'
-  );
+
+  return text
+
+    .replace(
+      /방어불능/g,
+      '<span class="defense-text">방어불능</span>'
+    )
+
+    .replace(
+      /아츠부착/g,
+      '<span class="arts-text">아츠부착</span>'
+    )
+
+    .replace(
+      /([+-]?\d+%|[+-]?\d+초)/g,
+      '<span class="yellow-text">$1</span>'
+    );
 }
 
 
