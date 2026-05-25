@@ -783,33 +783,34 @@ body{
 }
 
 .card-tooltip{
-  position:absolute;
-  left:50%;
-  bottom:108%;
-  transform:translateX(-50%);
+  display:none;
+}
+
+.floating-tooltip{
+  position:fixed;
   min-width:220px;
-  max-width:280px;
+  max-width:300px;
   padding:10px 12px;
   background:rgba(8,10,18,.96);
   border:1px solid rgba(255,255,255,.18);
   box-shadow:0 8px 30px rgba(0,0,0,.45);
-  opacity:0;
+  z-index:99999;
   pointer-events:none;
-  transition:
-     opacity .14s,
-     transform .14s;
-  z-index:999;
+  opacity:0;
+  transform:translate(-50%, -8px);
+  transition:opacity .12s, transform .12s;
 }
 
-.card:hover .card-tooltip{
+.floating-tooltip.visible{
   opacity:1;
-  transform:translateX(-50%) translateY(-4px);
+  transform:translate(-50%, -14px);
 }
 
 .tooltip-title{
   font-size:14px;
   font-weight:900;
   margin-bottom:6px;
+  color:#fff;
 }
 
 .tooltip-desc{
