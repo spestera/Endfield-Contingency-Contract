@@ -582,7 +582,7 @@ function buildGrid(){
           <div class="tooltip-title">${card.name}</div>
         
           <div class="tooltip-desc">
-            ${card.desc || '설명이 없습니다.'}
+            ${colorizeDesc(card.desc || '설명이 없습니다.')}
           </div>
         </div>
         
@@ -655,7 +655,9 @@ function renderPanel(){
           <div class="panel-content">
             <div class="panel-name">${card.name}</div>
             <div class="panel-desc">
-              ${card.desc || '설명이 아직 입력되지 않았습니다.'}
+              ${colorizeDesc(
+                card.desc || '설명이 아직 입력되지 않았습니다.'
+              )}
             </div>
           </div>
 
@@ -809,6 +811,15 @@ function startBgmOnce(){
 }
 
 document.addEventListener('click', startBgmOnce, { once:true });
+
+
+function colorizeDesc(text){
+  return text.replace(
+    /([+-]\d+%?|[+-]\d+초)/g,
+    '<span class="yellow-text">$1</span>'
+  );
+}
+
 
 function saveState(){
   localStorage.setItem(
