@@ -39,23 +39,37 @@ body{
     linear-gradient(
       rgba(0,0,0,.38),
       rgba(0,0,0,.58)
-    ),
-    url('assets/bg.png');
+    );
+}
 
-  background-size:110% 110%;
+.sim-wrapper::before{
+  content:"";
+  position:absolute;
+  inset:-5%;
+  z-index:0;
+
+  background:url('assets/bg.png');
+  background-size:cover;
   background-position:center;
   background-repeat:no-repeat;
 
-  animation:bgSlowMove 26s ease-in-out infinite alternate;
+  animation:bgSlowMove 38s ease-in-out infinite alternate;
+
+  pointer-events:none;
+}
+
+.sim-wrapper > *{
+  position:relative;
+  z-index:1;
 }
 
 @keyframes bgSlowMove{
   0%{
-    background-position:50% 50%;
+    transform:translate3d(-1%, -1%, 0) scale(1.04);
   }
 
   100%{
-    background-position:54% 48%;
+    transform:translate3d(1.5%, .8%, 0) scale(1.08);
   }
 }
 
@@ -906,38 +920,7 @@ body{
   draggable:false;
 }
 
-.screen-flash{
-  position:fixed;
-  inset:0;
-  z-index:99998;
-  pointer-events:none;
-  opacity:0;
-  background:
-    radial-gradient(
-      circle at center,
-      rgba(255,0,0,.08),
-      rgba(255,0,0,.22) 58%,
-      rgba(255,0,0,.38) 100%
-    );
-}
 
-.screen-flash.active{
-  animation:screenFlash .18s ease-out;
-}
-
-@keyframes screenFlash{
-  0%{
-    opacity:0;
-  }
-
-  35%{
-    opacity:1;
-  }
-
-  100%{
-    opacity:0;
-  }
-}
 
 /* =========================================================
    Responsive
