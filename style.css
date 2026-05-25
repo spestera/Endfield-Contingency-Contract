@@ -387,9 +387,12 @@ body{
   border-left-color:#ffd400;
 }
 
-.panel-item.tier-1 .panel-score{
-  background:#ffd400;
-  color:#111;
+.panel-item.tier-2{
+  border-left-color:#ff7a00;
+}
+
+.panel-item.tier-3{
+  border-left-color:#ff2030;
 }
 
 .panel-item.tier-1 .panel-score{
