@@ -166,6 +166,7 @@ body{
 
 .card:hover{
   border-color:rgba(255,255,255,.5);
+  z-index:200;
 }
 
 .card.selected{
@@ -792,7 +793,9 @@ body{
   box-shadow:0 8px 30px rgba(0,0,0,.45);
   opacity:0;
   pointer-events:none;
-  transition:.14s;
+  transition:
+     opacity .14s,
+     transform .14s;
   z-index:999;
 }
 
