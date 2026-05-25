@@ -733,6 +733,45 @@ boardWrap.addEventListener('wheel', (e) => {
   }
 }, { passive:false });
 
+let isDragging = false;
+let startX = 0;
+let scrollLeft = 0;
+
+boardWrap.addEventListener('mousedown', (e) => {
+
+  if(
+    e.target.closest('.card') ||
+    e.target.closest('.selected-item')
+  ){
+    return;
+  }
+
+  isDragging = true;
+
+  boardWrap.classList.add('dragging');
+
+  startX = e.pageX - boardWrap.offsetLeft;
+  scrollLeft = boardWrap.scrollLeft;
+});
+
+window.addEventListener('mouseup', () => {
+  isDragging = false;
+  boardWrap.classList.remove('dragging');
+});
+
+boardWrap.addEventListener('mousemove', (e) => {
+
+  if(!isDragging) return;
+
+  e.preventDefault();
+
+  const x = e.pageX - boardWrap.offsetLeft;
+
+  const walk = (x - startX) * 1.15;
+
+  boardWrap.scrollLeft = scrollLeft - walk;
+});
+
 
 function resetSelected(){
   selected.clear();
