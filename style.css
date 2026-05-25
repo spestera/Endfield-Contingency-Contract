@@ -1127,15 +1127,13 @@ body{
 .result-scale-wrap{
   width:100vw;
   height:100vh;
-  overflow:auto;
+  overflow:hidden;
 }
 
 .result-wrapper{
   width:1920px;
-  min-height:1080px;
-
+  height:1080px;
   padding:28px 32px 40px;
-
   transform-origin:top left;
 }
 
