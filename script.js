@@ -486,7 +486,8 @@ function toggleCard(id){
 
   removeDependentCards();
   playSfx(sfxSelect);
-
+  playScreenFlash();
+  
   saveState();
   updateAll();
 }
@@ -927,5 +928,16 @@ function loadState(){
   removeDependentCards();
   updateAll();
 }
+
+const screenFlash = document.createElement('div');
+screenFlash.className = 'screen-flash';
+document.body.appendChild(screenFlash);
+
+function playScreenFlash(){
+  screenFlash.classList.remove('active');
+  void screenFlash.offsetWidth;
+  screenFlash.classList.add('active');
+}
+
 
 loadState();
