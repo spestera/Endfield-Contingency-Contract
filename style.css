@@ -994,14 +994,18 @@ body{
 
 
 .stats-hud{
-  height:130px;
-  margin:12px 24px 0;
+  height:120px;
+  margin:14px 28px 0 28px;
   padding:14px 18px;
+
   display:grid;
-  grid-template-columns:150px minmax(0,1fr);
+  grid-template-columns:130px minmax(0,1fr);
   gap:22px;
-  background:rgba(0,0,0,.38);
+
+  background:rgba(0,0,0,.28);
   border:1px solid rgba(255,255,255,.08);
+
+  align-self:start;
 }
 
 .pie-chart{
@@ -1018,48 +1022,42 @@ body{
   justify-content:center;
 }
 
-.stats-bars{
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  gap:14px;
-}
-
-.bar-row{
+.block-row{
   display:grid;
   grid-template-columns:54px minmax(0,1fr) 30px;
   align-items:center;
   gap:10px;
+
   font-size:13px;
   font-weight:900;
 }
 
-.bar-track{
-  height:10px;
-  background:rgba(255,255,255,.10);
-  overflow:hidden;
+.block-track{
+  display:flex;
+  gap:4px;
+  min-height:14px;
 }
 
-.bar-fill{
-  height:100%;
-  width:0%;
-  transition:width .25s ease;
+.stat-block{
+  width:18px;
+  height:12px;
+  border-radius:2px;
+  background:rgba(255,255,255,.16);
 }
 
-.bar-row.team .bar-fill{
-  background:linear-gradient(90deg,#2b72ff,#6ec3ff);
+.block-row.team .stat-block{
+  background:#4ea1ff;
+  box-shadow:0 0 8px rgba(78,161,255,.45);
 }
 
-.bar-row.control .bar-fill{
-  background:linear-gradient(90deg,#ff7b00,#ffbf66);
+.block-row.control .stat-block{
+  background:#ff9a3d;
+  box-shadow:0 0 8px rgba(255,154,61,.45);
 }
 
-.bar-row.env .bar-fill{
-  background:linear-gradient(90deg,#24b95d,#79ff9f);
-}
-
-.bar-value{
-  text-align:right;
+.block-row.env .stat-block{
+  background:#52d273;
+  box-shadow:0 0 8px rgba(82,210,115,.45);
 }
 
 /* =========================================================
