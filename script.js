@@ -373,6 +373,7 @@ const ROWS = [
 const selected = new Set();
 const selectedOrder = [];
 let lastSelectedId = null;
+let flashCardId = null;
 
 const exitingPanelItems = new Map();
 const PANEL_EXIT_MS = 240;
@@ -458,10 +459,6 @@ function toggleCard(id){
   if(selected.has(id)){
     deselectCard(id, true);
 
-    if(lastSelectedId === id){
-      lastSelectedId = null;
-    }
-
     removeDependentCards();
     playSfx(sfxCancel);
 
@@ -488,6 +485,7 @@ function toggleCard(id){
   }
 
   lastSelectedId = id;
+  flashCardId = id;
 
   removeDependentCards();
   playSfx(sfxSelect);
@@ -495,11 +493,7 @@ function toggleCard(id){
   saveState();
   updateAll();
 
-  setTimeout(() => {
-    if(lastSelectedId === id){
-      lastSelectedId = null;
-    }
-  }, 450);
+  flashCardId = null;
 }
 
 function removeDependentCards(){
@@ -569,8 +563,13 @@ function buildGrid(){
       const conflict = isGroupConflict(card);
 
       if(selected.has(card.id)) el.classList.add('selected');
-      if(card.id === lastSelectedId && selected.has(card.id)){
+
+      if(card.id === flashCardId && selected.has(card.id)){
         el.classList.add('select-flash');
+      
+        setTimeout(() => {
+          el.classList.remove('select-flash');
+        }, 450);
       }
       if(disabled) el.classList.add('disabled');
       if(conflict) el.classList.add('group-conflict');
