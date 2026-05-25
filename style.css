@@ -448,6 +448,9 @@ body{
   display:flex;
   flex-direction:column;
   min-height:0;
+
+  margin-bottom:-88px;
+  padding-bottom:88px;
 }
 
 .panel-header{
@@ -696,9 +699,9 @@ body{
 }
 
 .sim-footer{
-  display:flex;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto 420px;
   align-items:center;
-  justify-content:space-between;
   padding:0 22px;
   background:linear-gradient(90deg,rgba(60,0,0,.3),rgba(140,0,0,.55));
 }
@@ -720,12 +723,15 @@ body{
   align-items:center;
   justify-content:center;
   gap:10px;
+
   width:240px;
   height:64px;
   border-radius:999px;
+
   background:rgba(255,255,255,.12);
   box-shadow:none;
   font-weight:900;
+  justify-self:end;
 }
 
 .total-score.danger{
