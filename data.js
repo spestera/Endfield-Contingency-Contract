@@ -1,1 +1,372 @@
 
+const ROWS = [
+  {
+    tier: 1,
+    cards: [
+      {
+        id: '1-1',
+        col: 1,
+        icon: 'assets/icons/위축1.png',
+        name: '팀: 위축 I',
+        pts: 1,
+        group: 'g1',
+        lineBottom: true,
+        desc: '오퍼레이터의 주요 능력치 -10%'
+      },
+      {
+        id: '1-2',
+        col: 2,
+        icon: 'assets/icons/공격1.png',
+        name: '조작: 공격 I',
+        pts: 1,
+        group: 'g2',
+        lineBottom: true,
+        desc: '적이 주는 피해 +30%'
+      },
+      {
+        id: '1-3',
+        col: 3,
+        icon: 'assets/icons/시간1.png',
+        name: '환경: 시간 제한 I',
+        pts: 1,
+        group: 'g3',
+        lineBottom: true,
+        desc: '카운트다운 -100초'
+      },
+      {
+        id: '1-4',
+        col: 4,
+        icon: 'assets/icons/활성1.png',
+        name: '조작: 활성 I',
+        pts: 1,
+        group: 'g4',
+        lineBottom: true,
+        desc: '적 생명력 +50%'
+      },
+      {
+        id: '1-5',
+        col: 5,
+        icon: 'assets/icons/억제1.png',
+        name: '팀: 억제 I',
+        pts: 1,
+        group: 'g5',
+        lineBottom: true,
+        desc: '오퍼레이터가 적의 방어불능 또는 아츠부착 스택 수치를 증가시키면, 해당 오퍼레이터가 주는 해당 유형의 피해 -45%, 10초간 지속'
+      },
+      {
+        id: '1-6',
+        col: 6,
+        icon: 'assets/icons/참수1.png',
+        name: '팀: 참수 I',
+        pts: 1,
+        group: 'g6',
+        lineBottom: true,
+        desc: '메인 컨트롤 오퍼레이터가 받는 피해 +50%'
+      },
+      {
+        id: '1-7',
+        col: 7,
+        icon: 'assets/icons/호흡.png',
+        name: '환경: 호흡 불가',
+        pts: 1,
+        group: 'g7',
+        lineBottom: true,
+        desc: '기력 회복 속도 -50%'
+      },
+      {
+        id: '1-8',
+        col: 8,
+        icon: 'assets/icons/쇠퇴1.png',
+        name: '환경: 쇠퇴 I',
+        pts: 1,
+        group: 'g8',
+        lineBottom: true,
+        desc: '웨이브 사이에 치유 물질이 1개만 생성'
+      },
+      {
+        id: '1-9',
+        col: 9,
+        icon: 'assets/icons/칼날1.png',
+        name: '팀: 부러진 칼날 I',
+        pts: 1,
+        group: 'g9',
+        lineBottom: true,
+        desc: '오퍼레이터가 궁극기를 1회 사용할 때마다, 해당 오퍼레이터가 이후 사용하는 궁극기 피해 -50% 감소'
+      },
+      {
+        id: '1-10',
+        col: 10,
+        icon: 'assets/icons/보호벽.png',
+        name: '조작: 보호벽',
+        pts: 1,
+        desc: '각 적은 5초마다 방어불능 또는 같은 유형의 아츠부착을 1회만 부여받을 수 있음'
+      },
+
+      { empty: true, col: 11 },
+      { empty: true, col: 12 },
+      { empty: true, col: 13 },
+
+      {
+        id: '1-15',
+        col: 14,
+        icon: 'assets/icons/모름1.png',
+        name: '조작: 부착',
+        pts: 1,
+        unlockable: true,
+        requiresAny: ['3-12', '3-13'],
+        desc: '적에게 부착된 방어불능 또는 아츠부착 1단계마다 해당 적이 받는 부착 스택과 대응되는 데미지 -10%(해당 버프는 부착 지속시간 종료 0.1초후에 소멸)'
+      },
+      {
+        id: '1-16',
+        col: 15,
+        icon: 'assets/icons/독성1.png',
+        name: '조작: 독성 I',
+        pts: 1,
+        group: 'unlock-group',
+        unlockable: true,
+        requiresAny: ['3-12', '3-13'],
+        lineBottom: true,
+        desc: '처치 당한 적이 독성 물질을 남기고 오퍼레이터가 독성 물질의 범위에 있을 때, 매초마다 최대 생명력의 2% 피해를 입음'
+      }
+    ]
+  },
+
+  {
+    tier: 2,
+    cards: [
+      {
+        id: '2-1',
+        col: 1,
+        icon: 'assets/icons/위축2.png',
+        name: '팀: 위축 II',
+        pts: 2,
+        group: 'g1',
+        lineTop: true,
+        lineBottom: true,
+        desc: '오퍼레이터의 주요 능력치 -20%'
+      },
+      {
+        id: '2-2',
+        col: 2,
+        icon: 'assets/icons/공격2.png',
+        name: '조작: 공격 II',
+        pts: 2,
+        group: 'g2',
+        lineTop: true,
+        desc: '적이 주는 피해 +80%'
+      },
+      {
+        id: '2-3',
+        col: 3,
+        icon: 'assets/icons/시간2.png',
+        name: '환경: 시간 제한 II',
+        pts: 2,
+        group: 'g3',
+        lineTop: true,
+        lineBottom: true,
+        desc: '카운트다운 -200초'
+      },
+      {
+        id: '2-4',
+        col: 4,
+        icon: 'assets/icons/활성2.png',
+        name: '조작: 활성 II',
+        pts: 2,
+        group: 'g4',
+        lineTop: true,
+        lineBottom: true,
+        desc: '적 생명력 +100%'
+      },
+      {
+        id: '2-5',
+        col: 5,
+        icon: 'assets/icons/억제2.png',
+        name: '팀: 억제 II',
+        pts: 2,
+        group: 'g5',
+        lineTop: true,
+        desc: '오퍼레이터가 적의 방어불능 또는 아츠부착 스택 수치를 증가시키면, 해당 오퍼레이터가 주는 해당 유형의 피해 -90%, 10초간 지속'
+      },
+      {
+        id: '2-6',
+        col: 6,
+        icon: 'assets/icons/참수2.png',
+        name: '팀: 참수 II',
+        pts: 2,
+        group: 'g6',
+        lineTop: true,
+        desc: '메인 컨트롤 오퍼레이터가 받는 피해 +100%'
+      },
+
+      {
+        empty: true,
+        col: 7,
+        group: 'g7',
+        connectorOnly: true,
+        lineTop: true,
+        lineBottom: true
+      },
+
+      {
+        id: '2-8',
+        col: 8,
+        icon: 'assets/icons/쇠퇴2.png',
+        name: '환경: 쇠퇴 II',
+        pts: 2,
+        group: 'g8',
+        lineTop: true,
+        desc: '웨이브 사이에 치유 물질이 생성되지 않음'
+      },
+      {
+        id: '2-9',
+        col: 9,
+        icon: 'assets/icons/칼날2.png',
+        name: '팀: 부러진 칼날 II',
+        pts: 2,
+        group: 'g9',
+        lineTop: true,
+        desc: '오퍼레이터가 궁극기를 1회 사용할 때마다, 해당 오퍼레이터가 이후 사용하는 궁극기 피해 -100% 감소'
+      },
+      {
+        id: '2-10',
+        col: 10,
+        icon: 'assets/icons/모름2.png',
+        name: '조작: 가속',
+        pts: 2,
+        desc: '적 이동속도 관련 제약'
+      },
+      {
+        id: '2-11',
+        col: 11,
+        icon: 'assets/icons/모름3.png',
+        name: '환경: 동시 성장',
+        pts: 2,
+        desc: '메인 컨트롤 오퍼레이터가 최대 HP의 10% 이상으로 회복하거나 20% 이상에 해당하는 보호막을 얻을 때, 전장의 모든 적도 최대 HP의 8%를 회복한다'
+      },
+
+      { empty: true, col: 12 },
+      { empty: true, col: 13 },
+
+      {
+        id: '2-15',
+        col: 14,
+        icon: 'assets/icons/분리.png',
+        name: '환경: 분리',
+        pts: 2,
+        unlockable: true,
+        requiresAny: ['3-12', '3-13'],
+        desc: '전투가 시작된 후 메인 컨트롤 오퍼레이터 전환 불가'
+      },
+      {
+        id: '2-16',
+        col: 15,
+        icon: 'assets/icons/독성2.png',
+        name: '조작: 독성 II',
+        pts: 2,
+        group: 'unlock-group',
+        unlockable: true,
+        requiresAny: ['3-12', '3-13'],
+        lineTop: true,
+        desc: '처치 당한 적이 독성 물질을 남기고 오퍼레이터가 독성 물질의 범위에 있을 때, 매초마다 최대 생명력의 5% 피해를 입음'
+      }
+    ]
+  },
+
+  {
+    tier: 3,
+    cards: [
+      {
+        id: '3-1',
+        col: 1,
+        icon: 'assets/icons/위축3.png',
+        name: '팀: 위축 III',
+        pts: 3,
+        group: 'g1',
+        lineTop: true,
+        desc: '오퍼레이터의 주요 능력치 -40%'
+      },
+
+      { empty: true, col: 2 },
+
+      {
+        id: '3-3',
+        col: 3,
+        icon: 'assets/icons/시간3.png',
+        name: '환경: 시간 제한 III',
+        pts: 3,
+        group: 'g3',
+        lineTop: true,
+        desc: '카운트다운 -300초'
+      },
+      {
+        id: '3-4',
+        col: 4,
+        icon: 'assets/icons/활성3.png',
+        name: '조작: 활성 III',
+        pts: 3,
+        group: 'g4',
+        lineTop: true,
+        desc: '적 생명력 +200%'
+      },
+
+      { empty: true, col: 5 },
+      { empty: true, col: 6 },
+
+      {
+        id: '3-7',
+        col: 7,
+        icon: 'assets/icons/속박.png',
+        name: '환경: 속박',
+        pts: 3,
+        group: 'g7',
+        lineTop: true,
+        desc: '회피 불가'
+      },
+
+      { empty: true, col: 8 },
+      { empty: true, col: 9 },
+
+      {
+        id: '3-10',
+        col: 10,
+        icon: 'assets/icons/피로.png',
+        name: '팀: 피로',
+        pts: 3,
+        desc: '오퍼레이터의 일반공격 피해 -70%'
+      },
+      {
+        id: '3-11',
+        col: 11,
+        icon: 'assets/icons/쇠퇴.png',
+        name: '팀: 쇠퇴',
+        pts: 3,
+        desc: '오퍼레이터가 받은 데미지에 비례한 수치만큼 최대 체력 감소(근거리:30%,원거리50%)'
+      },
+      {
+        id: '3-12',
+        col: 12,
+        icon: 'assets/icons/과속.png',
+        name: '환경: 과속',
+        pts: 3,
+        group: 'yellow-key',
+        key: true,
+        lineRight: true,
+        desc: '오퍼레이터 연계스킬 쿨타임 -60%, 배틀스킬 피해 -60%'
+      },
+      {
+        id: '3-13',
+        col: 13,
+        icon: 'assets/icons/충격.png',
+        name: '환경: 충격',
+        pts: 3,
+        group: 'yellow-key',
+        key: true,
+        lineLeft: true,
+        desc: '오퍼레이터 일반공격, 배틀스킬,연계스킬, 궁극기 이외의 피해 +100%, 배틀스킬 피해 -60%'
+      },
+
+      { empty: true, col: 14 },
+      { empty: true, col: 15 }
+    ]
+  }
+];
