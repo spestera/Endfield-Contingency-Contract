@@ -587,7 +587,7 @@ body{
    Selected Panel Animations
 ========================================================= */
 .panel-item.new-item{
-  animation:panelSliceIn .24s ease-out both;
+  animation:panelSliceIn .28s cubic-bezier(.16,.9,.25,1.15) both;
   transform-origin:right center;
 }
 
@@ -603,20 +603,20 @@ body{
 @keyframes panelSliceIn{
   0%{
     opacity:0;
-    transform:translateX(38px) scaleX(.08);
-    clip-path:inset(0 0 0 94%);
+    transform:translateX(46px) scaleX(.12) scaleY(.94);
+    filter:brightness(1.8);
   }
 
-  60%{
+  55%{
     opacity:1;
-    transform:translateX(0) scaleX(1.02);
-    clip-path:inset(0 0 0 0);
+    transform:translateX(-4px) scaleX(1.03) scaleY(1);
+    filter:brightness(1.25);
   }
 
   100%{
     opacity:1;
-    transform:translateX(0) scaleX(1);
-    clip-path:inset(0 0 0 0);
+    transform:translateX(0) scaleX(1) scaleY(1);
+    filter:brightness(1);
   }
 }
 
@@ -624,13 +624,13 @@ body{
   0%{
     opacity:1;
     transform:translateX(0) scaleX(1);
-    clip-path:inset(0 0 0 0);
+    filter:brightness(1);
   }
 
   100%{
     opacity:0;
-    transform:translateX(42px) scaleX(.08);
-    clip-path:inset(0 0 0 92%);
+    transform:translateX(46px) scaleX(.08);
+    filter:brightness(1.8);
   }
 }
 
