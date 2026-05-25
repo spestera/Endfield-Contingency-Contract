@@ -109,7 +109,7 @@ const ROWS = [
         id: '1-15',
         col: 14,
         icon: 'assets/icons/모름1.png',
-        name: '조작: ??',
+        name: '조작: 부착',
         pts: 1,
         unlockable: true,
         requiresAny: ['3-12', '3-13'],
@@ -238,7 +238,7 @@ const ROWS = [
         id: '2-11',
         col: 11,
         icon: 'assets/icons/모름3.png',
-        name: '조작: ??',
+        name: '환경: 동시 성장',
         pts: 2,
         desc: '메인 컨트롤 오퍼레이터가 최대 HP의 10% 이상으로 회복하거나 20% 이상에 해당하는 보호막을 얻을 때, 전장의 모든 적도 최대 HP의 8%를 회복한다'
       },
