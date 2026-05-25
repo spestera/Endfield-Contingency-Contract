@@ -1,1 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
 
+  <title>선택 결과</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <script src="result.js" defer></script>
+</head>
+
+<body class="result-page">
+
+  <div class="result-wrapper">
+
+    <header class="result-header">
+
+      <div>
+        <div class="small-title">
+          CONTINGENCY CONTRACT
+        </div>
+
+        <h1 class="main-title">
+          선택 결과
+        </h1>
+      </div>
+
+      <button
+        class="result-back-btn"
+        onclick="location.href='index.html'"
+      >
+        돌아가기
+      </button>
+
+    </header>
+
+    <main class="result-main">
+
+      <section class="result-summary-card">
+
+        <div class="result-total-label">
+          총 위험도
+        </div>
+
+        <div class="result-total-score">
+          <span id="result-total">0</span>
+          <span>★</span>
+        </div>
+
+      </section>
+
+      <section class="result-section">
+
+        <div class="result-section-title team">
+          팀 제약
+        </div>
+
+        <div
+          class="result-list"
+          id="result-team"
+        ></div>
+
+      </section>
+
+      <section class="result-section">
+
+        <div class="result-section-title control">
+          조작 제약
+        </div>
+
+        <div
+          class="result-list"
+          id="result-control"
+        ></div>
+
+      </section>
+
+      <section class="result-section">
+
+        <div class="result-section-title env">
+          환경 제약
+        </div>
+
+        <div
+          class="result-list"
+          id="result-env"
+        ></div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+</body>
+</html>
