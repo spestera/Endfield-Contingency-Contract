@@ -1039,18 +1039,23 @@ function playScreenFlash(){
   void screenFlash.offsetWidth;
   screenFlash.classList.add('active');
 }
+
+
 const resultScreen = document.getElementById('result-screen');
 const resultBtn = document.querySelector('.result-btn');
 
 let isResultOpen = false;
 
-resultBtn.addEventListener('click', () => {
-  isResultOpen = !isResultOpen;
+if(resultScreen && resultBtn){
+  resultBtn.addEventListener('click', () => {
+    isResultOpen = !isResultOpen;
 
+    resultScreen.classList.toggle('active', isResultOpen);
 
-  resultBtn.textContent = isResultOpen
-    ? '돌아가기'
-    : '선택 결과';
-});
+    resultBtn.textContent = isResultOpen
+      ? '돌아가기'
+      : '선택 결과';
+  });
+}
 
 loadState();
