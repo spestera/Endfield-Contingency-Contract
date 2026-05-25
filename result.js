@@ -210,3 +210,32 @@ function fitResultScreen(){
 
 window.addEventListener('load', fitResultScreen);
 window.addEventListener('resize', fitResultScreen);
+
+const guideList =
+  document.getElementById('result-guide-list');
+
+const guideCards = [...selectedCards].sort((a, b) => {
+  if(a.col !== b.col){
+    return a.col - b.col;
+  }
+
+  return a.pts - b.pts;
+});
+
+guideCards.forEach(card => {
+  const item = document.createElement('div');
+
+  item.className = `guide-item ${getTierClass(card)}`;
+
+  item.innerHTML = `
+    <img
+      src="${card.icon}"
+      alt="${card.name}"
+      draggable="false"
+    >
+
+    <span>${card.pts}★</span>
+  `;
+
+  guideList.appendChild(item);
+});
