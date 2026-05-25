@@ -107,7 +107,7 @@ const ROWS = [
       { empty: true, col: 13 },
 
       {
-        id: '1-15',
+        id: '1-14',
         col: 14,
         icon: 'assets/icons/모름1.png',
         name: '조작: 부착',
@@ -117,16 +117,112 @@ const ROWS = [
         desc: '적에게 부착된 방어불능 또는 아츠부착 1단계마다 해당 적이 받는 부착 스택과 대응되는 데미지 -10%(해당 버프는 부착 지속시간 종료 0.1초후에 소멸)'
       },
       {
-        id: '1-16',
+        id: '1-15',
         col: 15,
         icon: 'assets/icons/독성1.png',
         name: '조작: 독성 I',
         pts: 1,
-        group: 'unlock-group',
+        group: 'g11',
         unlockable: true,
         requiresAny: ['3-12', '3-13'],
         lineBottom: true,
         desc: '처치 당한 적이 독성 물질을 남기고 오퍼레이터가 독성 물질의 범위에 있을 때, 매초마다 최대 생명력의 2% 피해를 입음'
+      }
+      {
+        id: '1-16',
+        col: 16,
+        icon: 'assets/icons/temp.png',
+        name: '임시: 추가 제약 I',
+        pts: 1,
+        group: 'g12',
+        unlockable: true,
+        requiresAny: ['3-12', '3-13'],
+        lineBottom: true,
+        desc: '임시 설명'
+      },
+      {
+        id: '1-17',
+        col: 17,
+        icon: 'assets/icons/temp.png',
+        name: '임시: 추가 제약 I',
+        pts: 1,
+        group: 'g13',
+        unlockable: true,
+        requiresAny: ['3-12', '3-13'],
+        lineBottom: true,
+        desc: '임시 설명'
+      },
+      {
+        id: '1-18',
+        col: 18,
+        icon: 'assets/icons/temp.png',
+        name: '임시: 추가 제약 I',
+        pts: 1,
+        group: 'g14',
+        unlockable: true,
+        requiresAny: ['3-12', '3-13'],
+        lineRight: true,
+        desc: '임시 설명'
+      },
+      {
+        id: '1-19',
+        col: 19,
+        icon: 'assets/icons/temp.png',
+        name: '임시: 추가 제약 I',
+        pts: 1,
+        group: 'g14',
+        unlockable: true,
+        requiresAny: ['3-12', '3-13'],
+        lineLeft: true,
+        lineRight: true,
+        desc: '임시 설명'
+      },
+      {
+        id: '1-20',
+        col: 20,
+        icon: 'assets/icons/temp.png',
+        name: '임시: 추가 제약 I',
+        pts: 1,
+        group: 'g14',
+        unlockable: true,
+        requiresAny: ['3-12', '3-13'],
+        lineLeft: true,
+        lineRight: true,
+        desc: '임시 설명'
+      },
+      {
+        id: '1-21',
+        col: 21,
+        icon: 'assets/icons/temp.png',
+        name: '임시: 추가 제약 I',
+        pts: 1,
+        group: 'g14',
+        unlockable: true,
+        requiresAny: ['3-12', '3-13'],
+        lineLeft: true,
+        desc: '임시 설명'
+      },
+      {
+        id: '1-22',
+        col: 22,
+        icon: 'assets/icons/temp.png',
+        name: '임시: 추가 제약 I',
+        pts: 1,
+        group: 'g15',
+        unlockable: true,
+        requiresAny: ['3-12', '3-13'],
+        lineBottom: true,
+        desc: '임시 설명'
+      },
+      {
+        id: '1-23',
+        col: 23,
+        icon: 'assets/icons/temp.png',
+        name: '임시: 추가 제약 I',
+        pts: 1,
+        unlockable: true,
+        requiresAny: ['3-12', '3-13'],
+        desc: '임시 설명'
       }
     ]
   },
@@ -248,7 +344,7 @@ const ROWS = [
       { empty: true, col: 13 },
 
       {
-        id: '2-15',
+        id: '2-14',
         col: 14,
         icon: 'assets/icons/분리.png',
         name: '환경: 분리',
@@ -258,17 +354,58 @@ const ROWS = [
         desc: '전투가 시작된 후 메인 컨트롤 오퍼레이터 전환 불가'
       },
       {
-        id: '2-16',
+        id: '2-15',
         col: 15,
         icon: 'assets/icons/독성2.png',
         name: '조작: 독성 II',
         pts: 2,
-        group: 'unlock-group',
+        group: 'g11',
         unlockable: true,
         requiresAny: ['3-12', '3-13'],
         lineTop: true,
         desc: '처치 당한 적이 독성 물질을 남기고 오퍼레이터가 독성 물질의 범위에 있을 때, 매초마다 최대 생명력의 5% 피해를 입음'
       }
+      {
+        id: '2-16',
+        col: 16,
+        icon: 'assets/icons/temp.png',
+        name: '임시: 추가 제약 II',
+        pts: 2,
+        group: 'g12',
+        unlockable: true,
+        requiresAny: ['3-12', '3-13'],
+        lineTop: true,
+        desc: '임시 설명'
+      },
+      {
+        id: '2-17',
+        col: 17,
+        icon: 'assets/icons/temp.png',
+        name: '임시: 추가 제약 II',
+        pts: 2,
+        group: 'g13',
+        unlockable: true,
+        requiresAny: ['3-12', '3-13'],
+        lineTop: true,
+        desc: '임시 설명'
+      },
+      { empty: true, col: 18 },
+      { empty: true, col: 19 },
+      { empty: true, col: 20 },
+      { empty: true, col: 21 },
+      {
+        id: '2-22',
+        col: 22,
+        icon: 'assets/icons/temp.png',
+        name: '임시: 추가 제약 II',
+        pts: 2,
+        group: 'g15',
+        unlockable: true,
+        requiresAny: ['3-12', '3-13'],
+        lineTop: true,
+        desc: '임시 설명'
+      },
+      { empty: true, col: 23 }
     ]
   },
 
@@ -366,7 +503,24 @@ const ROWS = [
       },
 
       { empty: true, col: 14 },
-      { empty: true, col: 15 }
+      { empty: true, col: 15 },
+      { empty: true, col: 16 },
+      { empty: true, col: 17 },
+      {
+        id: '3-18',
+        col: 18,
+        icon: 'assets/icons/temp.png',
+        name: '임시: 추가 제약 III',
+        pts: 3,
+        unlockable: true,
+        requiresAny: ['3-12', '3-13'],
+        desc: '임시 설명'
+      },
+      { empty: true, col: 19 },
+      { empty: true, col: 20 },
+      { empty: true, col: 21 },
+      { empty: true, col: 22 },
+      { empty: true, col: 23 }
     ]
   }
 ];
