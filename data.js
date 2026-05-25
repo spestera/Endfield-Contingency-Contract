@@ -475,7 +475,7 @@ const ROWS = [
         id: '3-11',
         col: 11,
         icon: 'assets/icons/쇠퇴.png',
-        name: '팀: 쇠퇴',
+        name: '팀: 쇠약',
         pts: 3,
         desc: '오퍼레이터가 받은 데미지에 비례한 수치만큼 최대 체력 감소(근거리:30%,원거리50%)'
       },
