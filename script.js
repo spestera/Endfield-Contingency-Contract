@@ -457,14 +457,14 @@ function toggleCard(id){
 
   if(selected.has(id)){
     deselectCard(id, true);
-  
+
     if(lastSelectedId === id){
       lastSelectedId = null;
     }
-  
+
     removeDependentCards();
     playSfx(sfxCancel);
-  
+
     saveState();
     updateAll();
     return;
@@ -491,9 +491,15 @@ function toggleCard(id){
 
   removeDependentCards();
   playSfx(sfxSelect);
-  
+
   saveState();
   updateAll();
+
+  setTimeout(() => {
+    if(lastSelectedId === id){
+      lastSelectedId = null;
+    }
+  }, 450);
 }
 
 function removeDependentCards(){
