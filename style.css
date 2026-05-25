@@ -868,6 +868,15 @@ body{
   font-weight:700;
 }
 
+.board-wrap{
+  cursor:grab;
+}
+
+.board-wrap.dragging{
+  cursor:grabbing;
+  user-select:none;
+}
+
 /* =========================================================
    Responsive
 ========================================================= */
