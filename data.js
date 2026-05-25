@@ -131,98 +131,98 @@ const ROWS = [
       {
         id: '1-16',
         col: 16,
-        icon: 'assets/icons/temp.png',
-        name: '임시: 추가 제약 I',
+        icon: 'assets/icons/한기1.png',
+        name: '팀: 저체온증 I',
         pts: 1,
         group: 'g12',
         unlockable: true,
         requiresAny: ['3-12', '3-13'],
         lineBottom: true,
-        desc: '임시 설명'
+        desc: '오퍼레이터가 '배틀스킬'을 2회 사용할 때마다 메인 컨트롤 오퍼레이터에게 냉기부착 1스택 부여. 각 오퍼레이터당 발동 가능 쿨타임 3초'
       },
       {
         id: '1-17',
         col: 17,
-        icon: 'assets/icons/temp.png',
-        name: '임시: 추가 제약 I',
+        icon: 'assets/icons/손실1.png',
+        name: '팀: 열 손실 I',
         pts: 1,
         group: 'g13',
         unlockable: true,
         requiresAny: ['3-12', '3-13'],
         lineBottom: true,
-        desc: '임시 설명'
+        desc: '오퍼레이터가 '연계스킬'을 2회 사용할 때마다 메인 컨트롤 오퍼레이터에게 냉기부착 1스택 부여. 각 오퍼레이터당 발동 가능 쿨타임 3초'
       },
       {
         id: '1-18',
         col: 18,
-        icon: 'assets/icons/temp.png',
-        name: '임시: 추가 제약 I',
+        icon: 'assets/icons/열기분해.png',
+        name: '환경: 열기분해',
         pts: 1,
         group: 'g14',
         unlockable: true,
         requiresAny: ['3-12', '3-13'],
         lineRight: true,
-        desc: '임시 설명'
+        desc: '오퍼레이터가 받는 동결 지속시간 15초 증가. 속성이 열기인 스킬을 사용할 경우, 즉시 동결 해제'
       },
       {
         id: '1-19',
         col: 19,
-        icon: 'assets/icons/temp.png',
-        name: '임시: 추가 제약 I',
+        icon: 'assets/icons/자연분해.png',
+        name: '환경: 자연분해',
         pts: 1,
         group: 'g14',
         unlockable: true,
         requiresAny: ['3-12', '3-13'],
         lineLeft: true,
         lineRight: true,
-        desc: '임시 설명'
+        desc: '오퍼레이터가 받는 동결 지속시간 15초 증가. 속성이 자연인 스킬을 사용할 경우, 즉시 동결 해제'
       },
       {
         id: '1-20',
         col: 20,
-        icon: 'assets/icons/temp.png',
-        name: '임시: 추가 제약 I',
+        icon: 'assets/icons/전기분해.png',
+        name: '환경: 전기분해',
         pts: 1,
         group: 'g14',
         unlockable: true,
         requiresAny: ['3-12', '3-13'],
         lineLeft: true,
         lineRight: true,
-        desc: '임시 설명'
+        desc: '오퍼레이터가 받는 동결 지속시간 15초 증가. 속성이 전기인 스킬을 사용할 경우, 즉시 동결 해제'
       },
       {
         id: '1-21',
         col: 21,
-        icon: 'assets/icons/temp.png',
-        name: '임시: 추가 제약 I',
+        icon: 'assets/icons/절삭.png',
+        name: '환경: 절삭',
         pts: 1,
         group: 'g14',
         unlockable: true,
         requiresAny: ['3-12', '3-13'],
         lineLeft: true,
-        desc: '임시 설명'
+        desc: '오퍼레이터가 받는 동결 지속시간 15초 증가. 속성이 물리인 스킬을 사용할 경우, 즉시 동결 해제'
       },
       {
         id: '1-22',
         col: 22,
-        icon: 'assets/icons/temp.png',
-        name: '임시: 추가 제약 I',
+        icon: 'assets/icons/치유1.png',
+        name: '조작: 치유 I',
         pts: 1,
         group: 'g15',
         unlockable: true,
         requiresAny: ['3-12', '3-13'],
         lineBottom: true,
-        desc: '임시 설명'
+        desc: '적이 5초 동안 현재 조작중인 오퍼레이터에게 데미지를 받지 않을 경우, 1초마다 최대 HP의 5?10?%를 회복'
       },
       {
         id: '1-23',
         col: 23,
-        icon: 'assets/icons/temp.png',
-        name: '임시: 추가 제약 I',
+        icon: 'assets/icons/재구성.png',
+        name: '환경: 재구성',
         pts: 1,
         unlockable: true,
         requiresAny: ['3-12', '3-13'],
-        desc: '임시 설명'
+        desc: '최종 웨이브의 쌍뿔아겔로스,삼미아겔로스가 각각 알파개체로 변경'
       }
     ]
   },
@@ -368,26 +368,26 @@ const ROWS = [
       {
         id: '2-16',
         col: 16,
-        icon: 'assets/icons/temp.png',
-        name: '임시: 추가 제약 II',
+        icon: 'assets/icons/한기2.png',
+        name: '팀: 저체온증 II',
         pts: 2,
         group: 'g12',
         unlockable: true,
         requiresAny: ['3-12', '3-13'],
         lineTop: true,
-        desc: '임시 설명'
+        desc: '오퍼레이터가 '배틀스킬'을 1회 사용할 때마다 메인 컨트롤 오퍼레이터에게 냉기부착 1스택 부여. 각 오퍼레이터당 발동 가능 쿨타임 3초'
       },
       {
         id: '2-17',
         col: 17,
-        icon: 'assets/icons/temp.png',
-        name: '임시: 추가 제약 II',
+        icon: 'assets/icons/손실2.png',
+        name: '팀: 열 손실 II',
         pts: 2,
         group: 'g13',
         unlockable: true,
         requiresAny: ['3-12', '3-13'],
         lineTop: true,
-        desc: '임시 설명'
+        desc: '오퍼레이터가 '연계스킬'을 2회 사용할 때마다 메인 컨트롤 오퍼레이터에게 냉기부착 1스택 부여. 각 오퍼레이터당 발동 가능 쿨타임 3초'
       },
       { empty: true, col: 18 },
       { empty: true, col: 19 },
@@ -396,14 +396,14 @@ const ROWS = [
       {
         id: '2-22',
         col: 22,
-        icon: 'assets/icons/temp.png',
-        name: '임시: 추가 제약 II',
+        icon: 'assets/icons/치유2.png',
+        name: '조작: 치유 II',
         pts: 2,
         group: 'g15',
         unlockable: true,
         requiresAny: ['3-12', '3-13'],
         lineTop: true,
-        desc: '임시 설명'
+        desc: '적이 5초 동안 현재 조작중인 오퍼레이터에게 데미지를 받지 않을 경우, 1초마다 최대 HP의 15%를 회복'
       },
       { empty: true, col: 23 }
     ]
@@ -509,12 +509,12 @@ const ROWS = [
       {
         id: '3-18',
         col: 18,
-        icon: 'assets/icons/temp.png',
-        name: '임시: 추가 제약 III',
+        icon: 'assets/icons/열량흡수.png',
+        name: '조작: 열량 흡수',
         pts: 3,
         unlockable: true,
         requiresAny: ['3-12', '3-13'],
-        desc: '임시 설명'
+        desc: '메인 컨트롤 오퍼레이터가 냉기 부착을 받을 경우, 즉시 동결'
       },
       { empty: true, col: 19 },
       { empty: true, col: 20 },
