@@ -711,8 +711,8 @@ function showFloatingTooltip(card, el){
   `;
 
   floatingTooltip.style.left = `${rect.left + rect.width / 2}px`;
-  floatingTooltip.style.top = `${rect.top}px`;
-
+  floatingTooltip.style.top = `${rect.top - 18}px`;
+  
   floatingTooltip.classList.add('visible');
 }
 
