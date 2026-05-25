@@ -44,7 +44,9 @@
 
   <main class="sim-main">
 
-    <section class="main-left">
+  <section class="main-left">
+
+    <div class="selection-view" id="selection-view">
 
       <div class="sim-body">
         <section class="board-wrap">
@@ -53,40 +55,45 @@
       </div>
 
       <div class="stats-hud">
+
         <div class="stats-title">
           // 지표 분포 분석
         </div>
+
         <div class="stats-pie">
           <div class="pie-chart" id="type-pie"></div>
         </div>
-      
+
         <div class="stats-bars">
+
           <div class="block-row team">
             <span class="bar-label">팀</span>
             <span class="bar-value" id="value-team">0</span>
             <div class="block-track" id="blocks-team"></div>
           </div>
-        
+
           <div class="block-row control">
             <span class="bar-label">조작</span>
             <span class="bar-value" id="value-control">0</span>
             <div class="block-track" id="blocks-control"></div>
           </div>
-        
+
           <div class="block-row env">
             <span class="bar-label">환경</span>
             <span class="bar-value" id="value-env">0</span>
             <div class="block-track" id="blocks-env"></div>
           </div>
+
         </div>
+
       </div>
-      
+
       <footer class="sim-footer">
 
         <button class="result-btn" type="button">
           선택 결과
         </button>
-        
+
         <div class="warn-text" id="warn-text">
           ⚠ 현재 지표 난도가 높습니다. 신중하게 행동해 주세요.
         </div>
@@ -96,9 +103,26 @@
           <span class="total-num" id="total-pts">0</span>
           <span>★</span>
         </div>
+
       </footer>
 
+    </div>
+
+    <section class="result-view" id="result-view">
+
+      <div class="result-view-header">
+        <div class="result-view-title">
+          선택 결과
+        </div>
+      </div>
+
+      <div class="result-view-body" id="result-view-body">
+        선택 결과가 여기에 표시됩니다.
+      </div>
+
     </section>
+
+  </section>
 
     <aside class="side-panel">
       <div class="panel-header">
