@@ -15,6 +15,15 @@ const controlBox =
 const envBox =
   document.getElementById('result-env');
 
+const teamScoreEl =
+  document.getElementById('team-score');
+
+const controlScoreEl =
+  document.getElementById('control-score');
+
+const envScoreEl =
+  document.getElementById('env-score');
+
 const selectedCards = [];
 
 let totalScore = 0;
@@ -129,12 +138,20 @@ const grouped = {
   control: [],
   env: []
 };
+const categoryScores = {
+  team: 0,
+  control: 0,
+  env: 0
+};
 
 selectedCards.forEach(card => {
   const type = getType(card.name);
 
   if(grouped[type]){
     grouped[type].push(card);
+  }
+  if(categoryScores[type] !== undefined){
+  categoryScores[type] += card.pts;
   }
 });
 
@@ -161,5 +178,14 @@ if(grouped.control.length === 0){
 if(grouped.env.length === 0){
   renderEmpty(envBox);
 }
+
+teamScoreEl.textContent =
+  `${categoryScores.team}★`;
+
+controlScoreEl.textContent =
+  `${categoryScores.control}★`;
+
+envScoreEl.textContent =
+  `${categoryScores.env}★`;
 
 resultTotal.textContent = totalScore;
