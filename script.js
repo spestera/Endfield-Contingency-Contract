@@ -1047,7 +1047,6 @@ let isResultOpen = false;
 resultBtn.addEventListener('click', () => {
   isResultOpen = !isResultOpen;
 
-  resultScreen.classList.toggle('active', isResultOpen);
 
   resultBtn.textContent = isResultOpen
     ? '돌아가기'
