@@ -15,6 +15,8 @@ const controlBox =
 const envBox =
   document.getElementById('result-env');
 
+const selectedCards = [];
+
 let totalScore = 0;
 
 function getType(name){
@@ -32,6 +34,14 @@ function getType(name){
   }
 
   return 'etc';
+}
+
+function getTierClass(card){
+  if(card.pts === 1) return 'tier-1';
+  if(card.pts === 2) return 'tier-2';
+  if(card.pts === 3) return 'tier-3';
+
+  return '';
 }
 
 function colorizeDesc(text){
@@ -56,31 +66,24 @@ function colorizeDesc(text){
 
 function createResultCard(card){
 
-  totalScore += card.pts;
-
   const el = document.createElement('div');
 
-  el.className = 'result-card';
+  el.className = `result-card ${getTierClass(card)}`;
 
   el.innerHTML = `
-    <div class="result-card-left">
+    <div class="result-card-score">
+      ${card.pts}★
+    </div>
 
-      <div class="result-card-score">
-        ${card.pts}★
-      </div>
-
-      <div class="result-card-icon">
-        <img
-          src="${card.icon}"
-          alt="${card.name}"
-          draggable="false"
-        >
-      </div>
-
+    <div class="result-card-icon">
+      <img
+        src="${card.icon}"
+        alt="${card.name}"
+        draggable="false"
+      >
     </div>
 
     <div class="result-card-content">
-
       <div class="result-card-name">
         ${card.name}
       </div>
@@ -90,23 +93,18 @@ function createResultCard(card){
           card.desc || '설명이 없습니다.'
         )}
       </div>
-
     </div>
   `;
 
-  const type = getType(card.name);
+  return el;
+}
 
-  if(type === 'team'){
-    teamBox.appendChild(el);
-  }
-
-  else if(type === 'control'){
-    controlBox.appendChild(el);
-  }
-
-  else if(type === 'env'){
-    envBox.appendChild(el);
-  }
+function renderEmpty(box){
+  box.innerHTML = `
+    <div class="result-empty">
+      선택된 제약 없음
+    </div>
+  `;
 }
 
 ROWS.forEach(row => {
@@ -116,11 +114,52 @@ ROWS.forEach(row => {
     if(!card.id) return;
 
     if(saved.includes(card.id)){
-      createResultCard(card);
+      selectedCards.push(card);
+      totalScore += card.pts;
     }
 
   });
 
 });
+
+selectedCards.sort((a, b) => b.pts - a.pts);
+
+const grouped = {
+  team: [],
+  control: [],
+  env: []
+};
+
+selectedCards.forEach(card => {
+  const type = getType(card.name);
+
+  if(grouped[type]){
+    grouped[type].push(card);
+  }
+});
+
+grouped.team.forEach(card => {
+  teamBox.appendChild(createResultCard(card));
+});
+
+grouped.control.forEach(card => {
+  controlBox.appendChild(createResultCard(card));
+});
+
+grouped.env.forEach(card => {
+  envBox.appendChild(createResultCard(card));
+});
+
+if(grouped.team.length === 0){
+  renderEmpty(teamBox);
+}
+
+if(grouped.control.length === 0){
+  renderEmpty(controlBox);
+}
+
+if(grouped.env.length === 0){
+  renderEmpty(envBox);
+}
 
 resultTotal.textContent = totalScore;
