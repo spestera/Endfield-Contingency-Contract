@@ -229,6 +229,8 @@ body{
     0 0 0 2px rgba(255,255,255,.75),
     0 0 16px rgba(255,0,0,.9),
     0 0 34px rgba(255,0,0,.55);
+}
+.card.select-flash{
   animation:selectedCardPulse .32s ease-out;
 }
 
