@@ -63,7 +63,7 @@ body{
 
 .sim-main{
   display:grid;
-  grid-template-columns:minmax(0,1fr) 420px;
+  grid-template-columns:minmax(0,1fr) clamp(420px, 24vw, 560px);
   min-width:0;
   min-height:0;
 }
@@ -99,7 +99,7 @@ body{
 .main-title{
   position:relative;
   padding-left:18px;
-  font-size:52px;
+  font-size:clamp(52px, 3.2vw, 76px);
   font-weight:900;
   letter-spacing:-.03em;
 }
@@ -159,7 +159,7 @@ body{
   display:grid;
   grid-template-columns:90px 1fr;
   min-width:2400px;
-  height:140px;
+  height:clamp(140px, 8vw, 180px);
   border-bottom:4px solid rgba(140,140,160,.25);
   overflow:visible;
 }
@@ -210,8 +210,8 @@ body{
 .cards-row{
   position:relative;
   display:grid;
-  grid-template-columns:repeat(24,72px);
-  column-gap:42px;
+  grid-template-columns:repeat(24, clamp(72px, 4vw, 96px));
+  column-gap:clamp(42px, 2.4vw, 64px);
   align-items:center;
   padding-left:32px;
 }
@@ -221,8 +221,8 @@ body{
 ========================================================= */
 .card{
   position:relative;
-  width:72px;
-  height:92px;
+  width:clamp(72px, 4vw, 96px);
+  height:clamp(92px, 5.2vw, 122px);
   border:1px solid rgba(255,255,255,.25);
   background:linear-gradient(135deg,rgba(255,255,255,.12),rgba(255,255,255,.03));
   display:flex;
@@ -283,8 +283,8 @@ body{
 }
 
 .card-icon img{
-  width:60px;
-  height:60px;
+  width:clamp(60px, 3.2vw, 78px);
+  height:clamp(60px, 3.2vw, 78px);
   object-fit:contain;
   display:block;
 }
