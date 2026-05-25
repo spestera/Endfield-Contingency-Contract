@@ -996,8 +996,8 @@ body{
 .stats-hud{
   height:120px;
   margin:14px 28px 18px 28px;
-  padding:14px 18px;
-
+  padding:32px 18px 14px;
+  
   display:grid;
   grid-template-columns:130px minmax(0,1fr);
   gap:22px;
@@ -1007,6 +1007,7 @@ body{
 
   align-self:start;
   align-items:center;
+  position:relative;
 }
 
 .pie-chart{
@@ -1066,6 +1067,19 @@ body{
   flex-direction:column;
   justify-content:center;
   gap:12px;
+}
+
+.stats-title{
+  position:absolute;
+  top:10px;
+  left:18px;
+
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:.08em;
+
+  color:rgba(255,255,255,.72);
+  text-transform:uppercase;
 }
 
 /* =========================================================
