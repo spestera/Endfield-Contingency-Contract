@@ -709,7 +709,9 @@ function showFloatingTooltip(card, el){
 
   floatingTooltip.innerHTML = `
     <div class="tooltip-title">${card.name}</div>
-    <div class="tooltip-desc">${card.desc || '설명이 없습니다.'}</div>
+    <div class="tooltip-desc">
+      ${colorizeDesc(card.desc || '설명이 없습니다.')}
+    </div>
   `;
 
   floatingTooltip.style.left = `${rect.left + rect.width / 2}px`;
