@@ -1176,7 +1176,7 @@ body{
 .result-columns{
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:18px;
+  gap:12px;
 }
 
 .result-column{
@@ -1220,12 +1220,13 @@ body{
 
 .result-card{
   display:grid;
-  grid-template-columns:54px 48px minmax(0,1fr);
+  grid-template-columns:46px 40px minmax(0,1fr);
+  
   gap:10px;
   align-items:center;
 
-  min-height:88px;
-  padding:10px;
+  min-height:74px;
+  padding:8px;
 
   background:linear-gradient(
     90deg,
