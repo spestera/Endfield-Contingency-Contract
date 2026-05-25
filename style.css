@@ -1174,12 +1174,14 @@ body{
 }
 
 .result-columns{
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:12px;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  gap:18px;
 }
 
 .result-column{
+  width:520px;
   min-height:540px;
   padding:14px;
   background:rgba(0,0,0,.42);
