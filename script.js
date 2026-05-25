@@ -604,7 +604,15 @@ function buildGrid(){
       `;
 
      if(!disabled){
-      el.addEventListener('click', () => toggleCard(card.id));
+      el.addEventListener('click', (e) => {
+      
+        if(dragMoved){
+          e.preventDefault();
+          return;
+        }
+      
+        toggleCard(card.id);
+      });
     
       el.addEventListener('mouseenter', () => {
         showFloatingTooltip(card, el);
@@ -751,17 +759,20 @@ boardWrap.addEventListener('wheel', (e) => {
 let isDragging = false;
 let startX = 0;
 let scrollLeft = 0;
+let dragMoved = false;
 
 boardWrap.addEventListener('mousedown', (e) => {
 
   if(
-    e.target.closest('.card') ||
-    e.target.closest('.selected-item')
+    e.target.closest('.panel-item') ||
+    e.target.closest('.panel-del') ||
+    e.target.closest('.floating-tooltip')
   ){
     return;
   }
 
   isDragging = true;
+  dragMoved = false;
 
   boardWrap.classList.add('dragging');
 
@@ -771,7 +782,12 @@ boardWrap.addEventListener('mousedown', (e) => {
 
 window.addEventListener('mouseup', () => {
   isDragging = false;
+
   boardWrap.classList.remove('dragging');
+
+  setTimeout(() => {
+    dragMoved = false;
+  }, 0);
 });
 
 boardWrap.addEventListener('mousemove', (e) => {
@@ -783,6 +799,10 @@ boardWrap.addEventListener('mousemove', (e) => {
   const x = e.pageX - boardWrap.offsetLeft;
 
   const walk = (x - startX) * 1.15;
+
+  if(Math.abs(walk) > 4){
+    dragMoved = true;
+  }
 
   boardWrap.scrollLeft = scrollLeft - walk;
 });
