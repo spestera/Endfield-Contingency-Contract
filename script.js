@@ -459,6 +459,8 @@ function toggleCard(id){
     deselectCard(id, true);
     removeDependentCards();
     playSfx(sfxCancel);
+    
+    saveState();
     updateAll();
     return;
   }
@@ -484,6 +486,8 @@ function toggleCard(id){
 
   removeDependentCards();
   playSfx(sfxSelect);
+
+  saveState();
   updateAll();
 }
 
@@ -574,6 +578,14 @@ function buildGrid(){
         <div class="conflict-text">충돌</div>
         <div class="conflict-mark">⊘</div>
 
+        <div class="card-tooltip">
+          <div class="tooltip-title">${card.name}</div>
+        
+          <div class="tooltip-desc">
+            ${card.desc || '설명이 없습니다.'}
+          </div>
+        </div>
+        
         ${disabled ? '<div class="lock-mark">🔒</div>' : ''}
       `;
 
@@ -647,6 +659,8 @@ function renderPanel(){
           deselectCard(id, true);
           removeDependentCards();
           playSfx(sfxCancel);
+          
+          saveState();
           updateAll();
         });
 
@@ -689,6 +703,8 @@ boardWrap.addEventListener('wheel', (e) => {
 function resetSelected(){
   selected.clear();
   selectedOrder.length = 0;
+  
+  saveState();
   updateAll();
 }
 
@@ -710,6 +726,7 @@ if(bgm && musicToggle && musicVolume){
         bgm.pause();
         musicToggle.textContent = '▶';
       }
+      saveState();
     }
     catch(error){
       console.warn('음악 재생 실패:', error);
@@ -718,6 +735,8 @@ if(bgm && musicToggle && musicVolume){
 
   musicVolume.addEventListener('input', () => {
     bgm.volume = Number(musicVolume.value);
+
+    saveState();
   });
 }
 
@@ -761,4 +780,57 @@ function startBgmOnce(){
 
 document.addEventListener('click', startBgmOnce, { once:true });
 
-updateAll();
+function saveState(){
+  localStorage.setItem(
+    'selectedConstraints',
+    JSON.stringify(selectedOrder)
+  );
+
+  if(musicVolume){
+    localStorage.setItem(
+      'musicVolume',
+      musicVolume.value
+    );
+  }
+
+  if(bgm){
+    localStorage.setItem(
+      'musicPlaying',
+      !bgm.paused
+    );
+  }
+}
+
+function loadState(){
+  const saved =
+    localStorage.getItem('selectedConstraints');
+
+  if(saved){
+    try{
+      const arr = JSON.parse(saved);
+
+      arr.forEach(id => {
+        selected.add(id);
+
+        if(!selectedOrder.includes(id)){
+          selectedOrder.push(id);
+        }
+      });
+    }
+    catch(error){
+      console.warn('저장 데이터 복원 실패');
+    }
+  }
+
+  const savedVolume =
+    localStorage.getItem('musicVolume');
+
+  if(savedVolume && bgm && musicVolume){
+    musicVolume.value = savedVolume;
+    bgm.volume = Number(savedVolume);
+  }
+  removeDependentCards();
+  updateAll();
+}
+
+loadState();
