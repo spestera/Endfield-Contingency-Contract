@@ -877,6 +877,23 @@ body{
   user-select:none;
 }
 
+.card,
+.card *{
+  user-select:none;
+  -webkit-user-select:none;
+  -webkit-user-drag:none;
+}
+
+.card img,
+.panel-icon img,
+.card-icon img{
+  pointer-events:none;
+  user-select:none;
+  -webkit-user-select:none;
+  -webkit-user-drag:none;
+  draggable:false;
+}
+
 /* =========================================================
    Responsive
 ========================================================= */
