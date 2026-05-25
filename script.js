@@ -486,7 +486,6 @@ function toggleCard(id){
 
   removeDependentCards();
   playSfx(sfxSelect);
-  playScreenFlash();
   
   saveState();
   updateAll();
