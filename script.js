@@ -717,10 +717,65 @@ function updateTotal(){
   .classList.toggle('danger', total >= 25);
 }
 
+function getType(card){
+  if(card.name.startsWith('팀:')) return 'team';
+  if(card.name.startsWith('조작:')) return 'control';
+  if(card.name.startsWith('환경:')) return 'env';
+  return 'etc';
+}
+
+function updateStatsHud(){
+  const stats = {
+    team: 0,
+    control: 0,
+    env: 0
+  };
+
+  selected.forEach(id => {
+    const card = getCard(id);
+    if(!card) return;
+
+    const type = getType(card);
+
+    if(stats[type] !== undefined){
+      stats[type] += card.pts;
+    }
+  });
+
+  const total = stats.team + stats.control + stats.env;
+
+  const teamRate = total ? stats.team / total * 100 : 0;
+  const controlRate = total ? stats.control / total * 100 : 0;
+  const envRate = total ? stats.env / total * 100 : 0;
+
+  const pie = document.getElementById('type-pie');
+
+  if(pie){
+    pie.style.background = `
+      conic-gradient(
+        #4ea1ff 0 ${teamRate}%,
+        #ff9a3d ${teamRate}% ${teamRate + controlRate}%,
+        #52d273 ${teamRate + controlRate}% 100%
+      )
+    `;
+  }
+
+  const max = Math.max(stats.team, stats.control, stats.env, 1);
+
+  document.getElementById('bar-team').style.width = `${stats.team / max * 100}%`;
+  document.getElementById('bar-control').style.width = `${stats.control / max * 100}%`;
+  document.getElementById('bar-env').style.width = `${stats.env / max * 100}%`;
+
+  document.getElementById('value-team').textContent = stats.team;
+  document.getElementById('value-control').textContent = stats.control;
+  document.getElementById('value-env').textContent = stats.env;
+}
+
 function updateAll(){
   buildGrid();
   renderPanel();
   updateTotal();
+  updateStatsHud();
 }
 
 const floatingTooltip = document.createElement('div');
