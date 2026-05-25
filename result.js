@@ -189,3 +189,24 @@ envScoreEl.textContent =
   `${categoryScores.env}★`;
 
 resultTotal.textContent = totalScore;
+
+function fitResultScreen(){
+  const baseWidth = 1920;
+  const baseHeight = 1080;
+
+  const scale = Math.min(
+    window.innerWidth / baseWidth,
+    window.innerHeight / baseHeight
+  );
+
+  const wrapper =
+    document.querySelector('.result-wrapper');
+
+  if(!wrapper) return;
+
+  wrapper.style.transform =
+    `scale(${scale})`;
+}
+
+window.addEventListener('load', fitResultScreen);
+window.addEventListener('resize', fitResultScreen);
