@@ -37,8 +37,8 @@ body{
 
   background:
     linear-gradient(
-      rgba(0,0,0,.38),
-      rgba(0,0,0,.58)
+      rgba(0,0,0,.48),
+      rgba(0,0,0,.68)
     );
 }
 
@@ -70,6 +70,42 @@ body{
 
   100%{
     transform:translate3d(1.5%, .8%, 0) scale(1.08);
+  }
+}
+
+.sim-wrapper::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+
+  background:
+    radial-gradient(
+      circle at 20% 40%,
+      rgba(255,0,0,.22),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 80% 65%,
+      rgba(255,80,0,.16),
+      transparent 32%
+    );
+
+  opacity:.75;
+  pointer-events:none;
+
+  animation:redLightMove 8s ease-in-out infinite alternate;
+}
+
+@keyframes redLightMove{
+  0%{
+    transform:translateX(-4%) translateY(-2%);
+    opacity:.45;
+  }
+
+  100%{
+    transform:translateX(5%) translateY(3%);
+    opacity:.85;
   }
 }
 
