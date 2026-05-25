@@ -112,8 +112,9 @@ body{
 }
 
 .sim-body{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 420px;
   min-height:0;
-  display:block;
 }
 
 /* =========================================================
@@ -458,7 +459,7 @@ body{
   background:rgba(0,0,0,.58);
   display:flex;
   flex-direction:column;
-  min-height:0;
+  min-height:calc(100% + 88px);
 
   margin-bottom:-88px;
   padding-bottom:88px;
@@ -710,21 +711,34 @@ body{
 }
 
 .sim-footer{
-  display:grid;
-  grid-template-columns:minmax(0,1fr) 420px;
-  align-items:center;
-  padding:0 22px;
-  background:none;
   position:relative;
+
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+
+  padding:0 22px;
+
+  background:none;
 }
+
 .sim-footer::before{
   content:"";
+
   position:absolute;
+
   left:0;
-  right:420px;
   top:0;
   bottom:0;
-  background:linear-gradient(90deg,rgba(60,0,0,.3),rgba(140,0,0,.55));
+  right:420px;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(60,0,0,.3),
+      rgba(140,0,0,.55)
+    );
+
   z-index:0;
 }
 
