@@ -1,3 +1,6 @@
+/* =========================================================
+   Base / Reset
+========================================================= */
 *{
   margin:0;
   padding:0;
@@ -19,6 +22,9 @@ body{
     radial-gradient(circle at right,#3b0010 0%,#020814 55%);
 }
 
+/* =========================================================
+   Main Layout
+========================================================= */
 .sim-wrapper{
   width:100%;
   height:100vh;
@@ -27,16 +33,16 @@ body{
 }
 
 .sim-header{
+  position:relative;
   padding:18px 32px 28px;
   border-bottom:1px solid rgba(255,255,255,.08);
-  position:relative;
 }
 
 .small-title{
+  margin-bottom:10px;
   font-size:14px;
   font-weight:700;
   color:#d7d7d7;
-  margin-bottom:10px;
 }
 
 .main-title{
@@ -67,6 +73,9 @@ body{
   min-height:0;
 }
 
+/* =========================================================
+   Constraint Board
+========================================================= */
 .board-wrap{
   overflow-x:auto;
   overflow-y:hidden;
@@ -93,8 +102,8 @@ body{
   align-items:center;
   justify-content:center;
   gap:8px;
-  background:rgba(0,0,0,.45);
   overflow:hidden;
+  background:rgba(0,0,0,.45);
 }
 
 .tier-num{
@@ -139,6 +148,9 @@ body{
   padding-left:32px;
 }
 
+/* =========================================================
+   Constraint Cards
+========================================================= */
 .card{
   position:relative;
   width:72px;
@@ -166,6 +178,13 @@ body{
   font-size:34px;
   color:#f2f2f2;
   z-index:2;
+}
+
+.card-icon img{
+  width:60px;
+  height:60px;
+  object-fit:contain;
+  display:block;
 }
 
 .card-check{
@@ -212,16 +231,26 @@ body{
   opacity:.45;
 }
 
-.connector-only{
-  background:transparent;
-  border:none;
-  opacity:1;
+.disabled{
+  opacity:.4;
 }
 
-.connector-only .card-x{
-  display:none;
+.lock-mark{
+  position:absolute;
+  left:6px;
+  bottom:4px;
+  font-size:16px;
+  z-index:20;
 }
 
+.key-card{
+  border-color:#ffd400;
+  box-shadow:0 0 12px rgba(255,212,0,.35);
+}
+
+/* =========================================================
+   Group Connection Lines
+========================================================= */
 .conn{
   position:absolute;
   background:#dfe7f2;
@@ -262,6 +291,16 @@ body{
   right:-42px;
 }
 
+.connector-only{
+  background:transparent;
+  border:none;
+  opacity:1;
+}
+
+.connector-only .card-x{
+  display:none;
+}
+
 .connector-only.line-top.line-bottom::before{
   content:"";
   position:absolute;
@@ -281,7 +320,9 @@ body{
   display:none !important;
 }
 
-
+/* =========================================================
+   Conflict Indicators
+========================================================= */
 .group-conflict{
   opacity:.72;
 }
@@ -311,23 +352,9 @@ body{
   display:none;
 }
 
-.disabled{
-  opacity:.4;
-}
-
-.lock-mark{
-  position:absolute;
-  left:6px;
-  bottom:4px;
-  font-size:16px;
-  z-index:20;
-}
-
-.key-card{
-  border-color:#ffd400;
-  box-shadow:0 0 12px rgba(255,212,0,.35);
-}
-
+/* =========================================================
+   Selected Indicator Side Panel
+========================================================= */
 .side-panel{
   border-left:1px solid rgba(255,255,255,.08);
   background:rgba(0,0,0,.58);
@@ -347,6 +374,21 @@ body{
   padding:0 14px;
   font-weight:900;
   font-size:16px;
+}
+
+.panel-reset-btn{
+  height:26px;
+  padding:0 12px;
+  border:1px solid rgba(0,0,0,.25);
+  background:#222;
+  color:#fff;
+  font-size:12px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.panel-reset-btn:hover{
+  background:#444;
 }
 
 .panel-list{
@@ -377,7 +419,6 @@ body{
   border-left:5px solid #ff7a00;
   overflow:hidden;
 }
-
 
 .panel-item > div:nth-child(3){
   min-width:0;
@@ -410,14 +451,6 @@ body{
   color:#fff;
 }
 
-.panel-content{
-  grid-area:content;
-  min-width:0;
-  align-self:start;
-  padding-top:2px;
-
-}
-
 .panel-score{
   grid-area:left;
   justify-self:start;
@@ -438,15 +471,24 @@ body{
   grid-area:left;
   align-self:end;
   justify-self:start;
-  margin:0 0 6px 0;
   display:flex;
   align-items:center;
   justify-content:center;
-  margin-bottom:2px;
-  margin-left:2px;
-  margin-top:8px;
+  margin:8px 0 2px 2px;
+}
 
+.panel-icon img{
+  width:40px;
+  height:40px;
+  object-fit:contain;
+  display:block;
+}
 
+.panel-content{
+  grid-area:content;
+  min-width:0;
+  align-self:start;
+  padding-top:2px;
 }
 
 .panel-name{
@@ -492,274 +534,9 @@ body{
   color:#000;
 }
 
-.constraint-list-area{
-  display:none !important;
-}
-
-.sim-footer{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 22px;
-  background:linear-gradient(90deg,rgba(60,0,0,.3),rgba(140,0,0,.55));
-}
-
-.warn-text{
-  opacity:0;
-  transition:.2s;
-  font-size:16px;
-}
-
-.warn-text.visible{
-  opacity:1;
-}
-
-.total-score{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-  width:240px;
-  height:64px;
-  border-radius:999px;
-  background:linear-gradient(90deg,#ff9b1f,#ff001f);
-  font-weight:900;
-}
-
-.total-label{
-  font-size:20px;
-}
-
-.total-num{
-  font-size:54px;
-}
-
-
-/* 선택 초기화 버튼 */
-.reset-btn{
-  border:none;
-  padding:0 22px;
-  height:46px;
-  border-radius:999px;
-  background:rgba(255,255,255,.14);
-  color:#fff;
-  font-size:16px;
-  font-weight:900;
-  cursor:pointer;
-}
-
-.reset-btn:hover{
-  background:rgba(255,255,255,.24);
-}
-
-.panel-reset-btn{
-  height:26px;
-  padding:0 12px;
-  border:1px solid rgba(0,0,0,.25);
-  background:#222;
-  color:#fff;
-  font-size:12px;
-  font-weight:900;
-  cursor:pointer;
-}
-
-.panel-reset-btn:hover{
-  background:#444;
-}
-
-.warn-text{
-  margin-left:auto;
-  margin-right:16px;
-}
-
-.total-score{
-  background:rgba(255,255,255,.12);
-  box-shadow:none;
-}
-
-.total-score.danger{
-  background:linear-gradient(90deg,#ff9b1f,#ff001f);
-  box-shadow:0 0 30px rgba(255,80,0,.45);
-}
-
-.music-player{
-  position:absolute;
-  top:18px;
-  right:24px;
-
-  display:flex;
-  align-items:center;
-  gap:10px;
-
-  z-index:100;
-}
-
-.music-title{
-  font-size:13px;
-  font-weight:700;
-  color:#d8d8d8;
-  opacity:.9;
-  max-width:220px;
-  white-space:nowrap;
-  overflow:hidden;
-  text-overflow:ellipsis;
-}
-
-.music-toggle{
-  width:34px;
-  height:28px;
-  border:1px solid rgba(255,255,255,.25);
-  background:rgba(255,255,255,.1);
-  color:#fff;
-  font-weight:900;
-  cursor:pointer;
-}
-
-.music-toggle:hover{
-  background:rgba(255,255,255,.2);
-}
-
-.music-volume{
-  width:110px;
-  accent-color:#ffcc33;
-}
-
-
-/* =========================
-   Intro Splash
-========================= */
-
-#intro-screen{
-  position:fixed;
-  inset:0;
-  z-index:99999;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  background:#000;
-
-  animation:introFadeOut 2.6s forwards;
-}
-
-#intro-screen img{
-  width:100vw;
-  height:100vh;
-
-  object-fit:cover;
-
-  opacity:0;
-
-  animation:introLogo 2s ease forwards;
-}
-
-@keyframes introLogo{
-  0%{
-    opacity:0;
-    transform:scale(.96);
-    filter:blur(12px);
-  }
-
-  20%{
-    opacity:1;
-    transform:scale(1);
-    filter:blur(0);
-  }
-
-  72%{
-    opacity:1;
-    transform:scale(1);
-    filter:blur(0);
-  }
-
-  100%{
-    opacity:0;
-    transform:scale(1.02);
-    filter:blur(4px);
-  }
-}
-
-@keyframes introFadeOut{
-  0%{
-    opacity:1;
-    visibility:visible;
-  }
-
-  85%{
-    opacity:1;
-    visibility:visible;
-  }
-
-  100%{
-    opacity:0;
-    visibility:hidden;
-    pointer-events:none;
-  }
-}
-
-
-@media (max-width:900px){
-  body{
-    overflow:auto;
-  }
-
-  .sim-wrapper{
-    height:auto;
-    min-height:100dvh;
-    grid-template-rows:auto minmax(0,1fr) 90px;
-  }
-
-  .main-title{
-    font-size:34px;
-  }
-
-  .main-title::before{
-    height:34px;
-  }
-
-  .sim-body{
-    grid-template-columns:minmax(0,1fr) 220px;
-  }
-
-  .row-wrap{
-    min-width:1320px;
-    height:100px;
-    grid-template-columns:70px 1fr;
-  }
-
-  .cards-row{
-    grid-template-columns:repeat(16,56px);
-    column-gap:28px;
-  }
-
-  .card{
-    width:56px;
-    height:72px;
-  }
-
-  .card-icon{
-    font-size:26px;
-  }
-
-  .tier-num{
-    font-size:42px;
-  }
-
-  .panel-item{
-    grid-template-columns:48px 30px 1fr 22px;
-    min-height:82px;
-  }
-
-  .panel-name{
-    font-size:15px;
-  }
-
-  .panel-desc{
-    font-size:12px;
-  }
-}
-
+/* =========================================================
+   Selected Panel Animations
+========================================================= */
 .panel-item.new-item{
   animation:panelSliceIn .24s ease-out both;
   transform-origin:right center;
@@ -824,16 +601,249 @@ body{
   }
 }
 
-.card-icon img{
-  width:60px;
-  height:60px;
-  object-fit:contain;
-  display:block;
+/* =========================================================
+   Footer / Total Score
+========================================================= */
+.constraint-list-area{
+  display:none !important;
 }
 
-.panel-icon img{
-  width:40px;
-  height:40px;
-  object-fit:contain;
-  display:block;
+.sim-footer{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 22px;
+  background:linear-gradient(90deg,rgba(60,0,0,.3),rgba(140,0,0,.55));
+}
+
+.warn-text{
+  opacity:0;
+  transition:.2s;
+  font-size:16px;
+  margin-left:auto;
+  margin-right:16px;
+}
+
+.warn-text.visible{
+  opacity:1;
+}
+
+.total-score{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  width:240px;
+  height:64px;
+  border-radius:999px;
+  background:rgba(255,255,255,.12);
+  box-shadow:none;
+  font-weight:900;
+}
+
+.total-score.danger{
+  background:linear-gradient(90deg,#ff9b1f,#ff001f);
+  box-shadow:0 0 30px rgba(255,80,0,.45);
+}
+
+.total-label{
+  font-size:20px;
+}
+
+.total-num{
+  font-size:54px;
+}
+
+.reset-btn{
+  border:none;
+  padding:0 22px;
+  height:46px;
+  border-radius:999px;
+  background:rgba(255,255,255,.14);
+  color:#fff;
+  font-size:16px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.reset-btn:hover{
+  background:rgba(255,255,255,.24);
+}
+
+/* =========================================================
+   Music Player
+========================================================= */
+.music-player{
+  position:absolute;
+  top:18px;
+  right:24px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  z-index:100;
+}
+
+.music-title{
+  font-size:13px;
+  font-weight:700;
+  color:#d8d8d8;
+  opacity:.9;
+  max-width:220px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.music-toggle{
+  width:34px;
+  height:28px;
+  border:1px solid rgba(255,255,255,.25);
+  background:rgba(255,255,255,.1);
+  color:#fff;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.music-toggle:hover{
+  background:rgba(255,255,255,.2);
+}
+
+.music-volume{
+  width:110px;
+  accent-color:#ffcc33;
+}
+
+/* =========================================================
+   Intro Splash
+========================================================= */
+#intro-screen{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#000;
+  animation:introFadeOut 2.6s forwards;
+}
+
+#intro-screen img{
+  width:100vw;
+  height:100vh;
+  object-fit:cover;
+  opacity:0;
+  animation:introLogo 2s ease forwards;
+}
+
+@keyframes introLogo{
+  0%{
+    opacity:0;
+    transform:scale(.96);
+    filter:blur(12px);
+  }
+
+  20%{
+    opacity:1;
+    transform:scale(1);
+    filter:blur(0);
+  }
+
+  72%{
+    opacity:1;
+    transform:scale(1);
+    filter:blur(0);
+  }
+
+  100%{
+    opacity:0;
+    transform:scale(1.02);
+    filter:blur(4px);
+  }
+}
+
+@keyframes introFadeOut{
+  0%{
+    opacity:1;
+    visibility:visible;
+  }
+
+  85%{
+    opacity:1;
+    visibility:visible;
+  }
+
+  100%{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+  }
+}
+
+/* =========================================================
+   Responsive
+========================================================= */
+@media (max-width:900px){
+  body{
+    overflow:auto;
+  }
+
+  .sim-wrapper{
+    height:auto;
+    min-height:100dvh;
+    grid-template-rows:auto minmax(0,1fr) 90px;
+  }
+
+  .main-title{
+    font-size:34px;
+  }
+
+  .main-title::before{
+    height:34px;
+  }
+
+  .sim-body{
+    grid-template-columns:minmax(0,1fr) 220px;
+  }
+
+  .row-wrap{
+    min-width:1320px;
+    height:100px;
+    grid-template-columns:70px 1fr;
+  }
+
+  .cards-row{
+    grid-template-columns:repeat(16,56px);
+    column-gap:28px;
+  }
+
+  .card{
+    width:56px;
+    height:72px;
+  }
+
+  .card-icon{
+    font-size:26px;
+  }
+
+  .card-icon img{
+    width:60px;
+    height:60px;
+  }
+
+  .tier-num{
+    font-size:42px;
+  }
+
+  .panel-item{
+    grid-template-columns:48px 30px 1fr 22px;
+    min-height:82px;
+  }
+
+  .panel-name{
+    font-size:15px;
+  }
+
+  .panel-desc{
+    font-size:12px;
+  }
 }
