@@ -992,6 +992,76 @@ body{
   background:rgba(255,255,255,.20);
 }
 
+
+.stats-hud{
+  height:130px;
+  margin:12px 24px 0;
+  padding:14px 18px;
+  display:grid;
+  grid-template-columns:150px minmax(0,1fr);
+  gap:22px;
+  background:rgba(0,0,0,.38);
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.pie-chart{
+  width:96px;
+  height:96px;
+  border-radius:50%;
+  background:conic-gradient(#333 0 100%);
+  box-shadow:0 0 24px rgba(0,0,0,.45);
+}
+
+.stats-pie{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.stats-bars{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:14px;
+}
+
+.bar-row{
+  display:grid;
+  grid-template-columns:54px minmax(0,1fr) 30px;
+  align-items:center;
+  gap:10px;
+  font-size:13px;
+  font-weight:900;
+}
+
+.bar-track{
+  height:10px;
+  background:rgba(255,255,255,.10);
+  overflow:hidden;
+}
+
+.bar-fill{
+  height:100%;
+  width:0%;
+  transition:width .25s ease;
+}
+
+.bar-row.team .bar-fill{
+  background:linear-gradient(90deg,#2b72ff,#6ec3ff);
+}
+
+.bar-row.control .bar-fill{
+  background:linear-gradient(90deg,#ff7b00,#ffbf66);
+}
+
+.bar-row.env .bar-fill{
+  background:linear-gradient(90deg,#24b95d,#79ff9f);
+}
+
+.bar-value{
+  text-align:right;
+}
+
 /* =========================================================
    Responsive
 ========================================================= */
