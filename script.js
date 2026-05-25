@@ -570,7 +570,7 @@ function buildGrid(){
         <span class="conn right"></span>
 
         <div class="card-icon">
-          <img src="${card.icon}" alt="${card.name}">
+          <img src="${card.icon}" alt="${card.name}" draggable="false">
         </div>
 
         <div class="card-check">✓</div>
@@ -649,7 +649,7 @@ function renderPanel(){
         <div class="panel-score">${card.pts}★</div>
 
         <div class="panel-icon">
-          <img src="${card.icon}" alt="${card.name}">
+          <img src="${card.icon}" alt="${card.name}" draggable="false">
         </div>
 
           <div class="panel-content">
