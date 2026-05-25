@@ -374,6 +374,7 @@ const selected = new Set();
 const selectedOrder = [];
 let lastSelectedId = null;
 let flashCardId = null;
+let panelNewItemId = null;
 
 const exitingPanelItems = new Map();
 const PANEL_EXIT_MS = 240;
@@ -486,7 +487,7 @@ function toggleCard(id){
 
   lastSelectedId = id;
   flashCardId = id;
-
+  panelNewItemId = id;
   removeDependentCards();
   playSfx(sfxSelect);
 
@@ -650,7 +651,7 @@ function renderPanel(){
       const item = document.createElement('div');
       item.className = `panel-item tier-${tier}`;
       
-      if(id === lastSelectedId && selected.has(id)){
+      if(id === panelNewItemId && selected.has(id)){
         item.classList.add('new-item');
       }
       
@@ -689,6 +690,7 @@ function renderPanel(){
 
       list.prepend(item);
     });
+  panelNewItemId = null;
 }
 
 function updateTotal(){
