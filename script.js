@@ -762,9 +762,21 @@ function updateStatsHud(){
 
   const max = Math.max(stats.team, stats.control, stats.env, 1);
 
-  document.getElementById('bar-team').style.width = `${stats.team / max * 100}%`;
-  document.getElementById('bar-control').style.width = `${stats.control / max * 100}%`;
-  document.getElementById('bar-env').style.width = `${stats.env / max * 100}%`;
+  function renderBlocks(id, count){
+    const target = document.getElementById(id);
+    if(!target) return;
+  
+    target.innerHTML = '';
+  
+    for(let i = 0; i < count; i++){
+      const block = document.createElement('span');
+      block.className = 'stat-block';
+      target.appendChild(block);
+    }
+  }
+  renderBlocks('blocks-team', stats.team);
+  renderBlocks('blocks-control', stats.control);
+  renderBlocks('blocks-env', stats.env);
 
   document.getElementById('value-team').textContent = stats.team;
   document.getElementById('value-control').textContent = stats.control;
