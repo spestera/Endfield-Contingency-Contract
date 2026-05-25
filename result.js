@@ -18,14 +18,43 @@ const envBox =
 let totalScore = 0;
 
 function getType(name){
-  if(name.startsWith('팀:')) return 'team';
-  if(name.startsWith('조작:')) return 'control';
-  if(name.startsWith('환경:')) return 'env';
+
+  if(name.startsWith('팀:')){
+    return 'team';
+  }
+
+  if(name.startsWith('조작:')){
+    return 'control';
+  }
+
+  if(name.startsWith('환경:')){
+    return 'env';
+  }
 
   return 'etc';
 }
 
-function createCard(card){
+function colorizeDesc(text){
+
+  return text
+
+    .replace(
+      /방어불능/g,
+      '<span class="defense-text">방어불능</span>'
+    )
+
+    .replace(
+      /아츠부착/g,
+      '<span class="arts-text">아츠부착</span>'
+    )
+
+    .replace(
+      /([+-]?\d+%|[+-]?\d+초)/g,
+      '<span class="yellow-text">$1</span>'
+    );
+}
+
+function createResultCard(card){
 
   totalScore += card.pts;
 
@@ -70,9 +99,11 @@ function createCard(card){
   if(type === 'team'){
     teamBox.appendChild(el);
   }
+
   else if(type === 'control'){
     controlBox.appendChild(el);
   }
+
   else if(type === 'env'){
     envBox.appendChild(el);
   }
@@ -85,7 +116,7 @@ ROWS.forEach(row => {
     if(!card.id) return;
 
     if(saved.includes(card.id)){
-      createCard(card);
+      createResultCard(card);
     }
 
   });
