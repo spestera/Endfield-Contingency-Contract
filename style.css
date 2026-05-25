@@ -210,7 +210,7 @@ body{
 .cards-row{
   position:relative;
   display:grid;
-  grid-template-columns:repeat(16,72px);
+  grid-template-columns:repeat(24,72px);
   column-gap:42px;
   align-items:center;
   padding-left:32px;
@@ -1172,7 +1172,7 @@ body{
   }
 
   .row-wrap{
-    min-width:1180px;
+    min-width:1500px;
     height:96px;
     grid-template-columns:58px 1fr;
   }
