@@ -1101,7 +1101,7 @@ body{
 
 .result-page{
   min-height:100vh;
-  overflow:auto;
+  overflow:hidden;
   color:#fff;
   background:#020814;
 }
@@ -1124,9 +1124,19 @@ body{
   background-repeat:no-repeat;
 }
 
+.result-scale-wrap{
+  width:100vw;
+  height:100vh;
+  overflow:auto;
+}
+
 .result-wrapper{
-  min-height:100vh;
+  width:1920px;
+  min-height:1080px;
+
   padding:28px 32px 40px;
+
+  transform-origin:top left;
 }
 
 .result-header{
