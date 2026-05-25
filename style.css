@@ -1010,8 +1010,8 @@ body{
 }
 
 .pie-chart{
-  width:96px;
-  height:96px;
+  width:112px;
+  height:112px;
   border-radius:50%;
   background:conic-gradient(#333 0 100%);
   box-shadow:0 0 24px rgba(0,0,0,.45);
@@ -1025,24 +1025,24 @@ body{
 
 .block-row{
   display:grid;
-  grid-template-columns:54px 30px minmax(0,1fr);
+  grid-template-columns:62px 34px minmax(0,1fr);
   align-items:center;
-  gap:10px;
+  gap:14px;
 
-  font-size:13px;
+  font-size:16px;
   font-weight:900;
 }
 
 .block-track{
   display:flex;
-  gap:4px;
-  min-height:14px;
+  gap:7px;
+  min-height:20px;
 }
 
 .stat-block{
-  width:18px;
-  height:12px;
-  border-radius:2px;
+  width:28px;
+  height:18px;
+  border-radius:3px;
   background:rgba(255,255,255,.16);
 }
 
@@ -1059,6 +1059,13 @@ body{
 .block-row.env .stat-block{
   background:#52d273;
   box-shadow:0 0 8px rgba(82,210,115,.45);
+}
+
+.stats-bars{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:12px;
 }
 
 /* =========================================================
