@@ -496,9 +496,15 @@ body{
 
 .panel-list{
   flex:1;
+  min-height:0;
+
   overflow-y:auto;
+  overflow-x:hidden;
+
   padding:10px;
-  display:block;
+
+  scrollbar-width:thin;
+  scrollbar-color:rgba(255,255,255,.10) transparent;
 }
 
 .panel-empty{
@@ -969,7 +975,22 @@ body{
   draggable:false;
 }
 
+.panel-list::-webkit-scrollbar{
+  width:6px;
+}
 
+.panel-list::-webkit-scrollbar-track{
+  background:transparent;
+}
+
+.panel-list::-webkit-scrollbar-thumb{
+  background:rgba(255,255,255,.10);
+  border-radius:999px;
+}
+
+.panel-list::-webkit-scrollbar-thumb:hover{
+  background:rgba(255,255,255,.20);
+}
 
 /* =========================================================
    Responsive
