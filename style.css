@@ -995,7 +995,7 @@ body{
 
 .stats-hud{
   height:120px;
-  margin:14px 28px 0 28px;
+  margin:14px 28px 18px 28px;
   padding:14px 18px;
 
   display:grid;
@@ -1006,6 +1006,7 @@ body{
   border:1px solid rgba(255,255,255,.08);
 
   align-self:start;
+  align-items:center;
 }
 
 .pie-chart{
