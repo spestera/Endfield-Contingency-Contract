@@ -87,7 +87,7 @@ const ROWS = [
         id: '1-9',
         col: 9,
         icon: 'assets/icons/칼날1.png',
-        name: '팀: 부러진 칼날 I',
+        name: '팀: 내구도 감소 I',
         pts: 1,
         group: 'g9',
         lineBottom: true,
@@ -317,7 +317,7 @@ const ROWS = [
         id: '2-9',
         col: 9,
         icon: 'assets/icons/칼날2.png',
-        name: '팀: 부러진 칼날 II',
+        name: '팀: 내구도 감소 II',
         pts: 2,
         group: 'g9',
         lineTop: true,
@@ -327,9 +327,9 @@ const ROWS = [
         id: '2-10',
         col: 10,
         icon: 'assets/icons/모름2.png',
-        name: '조작: 가속',
+        name: '조작: 질주',
         pts: 2,
-        desc: '적 이동속도 관련 제약'
+        desc: '적 이동속도 증가(?)'
       },
       {
         id: '2-11',
