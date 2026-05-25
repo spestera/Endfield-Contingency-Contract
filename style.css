@@ -1099,6 +1099,62 @@ body{
   background:rgba(255,255,255,.24);
 }
 
+.result-screen{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+
+  display:none;
+  flex-direction:column;
+
+  background:
+    linear-gradient(
+      rgba(0,0,0,.78),
+      rgba(0,0,0,.88)
+    );
+
+  backdrop-filter:blur(8px);
+}
+
+.result-screen.active{
+  display:flex;
+}
+
+.result-top{
+  height:88px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 28px;
+
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.result-title{
+  font-size:34px;
+  font-weight:900;
+}
+
+.result-close{
+  height:48px;
+  padding:0 24px;
+
+  border:none;
+  background:rgba(255,255,255,.12);
+
+  color:#fff;
+  font-size:16px;
+  font-weight:900;
+
+  cursor:pointer;
+}
+
+.result-body{
+  flex:1;
+}
+
 /* =========================================================
    Responsive
 ========================================================= */
