@@ -1148,28 +1148,30 @@ body{
 }
 
 .result-total-box{
-  min-width:260px;
-  height:auto;
-  padding:0 26px;
+  height:52px;
+  min-width:180px;
+  padding:0 22px;
 
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:10px;
+  gap:8px;
 
-  border-radius:22px;
+  align-self:start;
+
+  border-radius:999px;
   background:linear-gradient(90deg,#ff9b1f,#ff001f);
-  box-shadow:0 0 30px rgba(255,80,0,.4);
+  box-shadow:0 0 24px rgba(255,80,0,.35);
 
   font-weight:900;
 }
 
 .result-total-box span{
-  font-size:20px;
+  font-size:17px;
 }
 
 .result-total-box strong{
-  font-size:54px;
+  font-size:38px;
   line-height:1;
 }
 
@@ -1333,9 +1335,9 @@ body{
   margin:0 auto 22px;
 
   display:grid;
-  grid-template-columns:minmax(0,1fr) 260px;
+  grid-template-columns:minmax(0,1fr) auto;
   gap:18px;
-  align-items:stretch;
+  align-items:start;
 }
 
 .result-guide-title{
