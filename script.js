@@ -636,9 +636,13 @@ function colorizeDesc(text){
 
 
 function saveState(){
+
+  const selectedOnly =
+    selectedOrder.filter(id => selected.has(id));
+
   localStorage.setItem(
     'selectedConstraints',
-    JSON.stringify(selectedOrder)
+    JSON.stringify(selectedOnly)
   );
 
   if(musicVolume){
