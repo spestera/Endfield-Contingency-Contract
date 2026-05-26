@@ -1148,8 +1148,8 @@ body{
 }
 
 .result-total-box{
-  min-width:220px;
-  height:72px;
+  min-width:260px;
+  height:auto;
   padding:0 26px;
 
   display:flex;
@@ -1157,7 +1157,7 @@ body{
   justify-content:center;
   gap:10px;
 
-  border-radius:999px;
+  border-radius:22px;
   background:linear-gradient(90deg,#ff9b1f,#ff001f);
   box-shadow:0 0 30px rgba(255,80,0,.4);
 
@@ -1322,11 +1322,20 @@ body{
 }
 
 .result-guide{
-  width:calc(520px * 3 + 18px * 2);
-  margin:28px auto 0;
+  margin:0;
   padding:18px;
   background:rgba(0,0,0,.42);
   border:1px solid rgba(255,255,255,.1);
+}
+
+.result-guide-row{
+  width:calc(520px * 3 + 18px * 2);
+  margin:0 auto 22px;
+
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 260px;
+  gap:18px;
+  align-items:stretch;
 }
 
 .result-guide-title{
