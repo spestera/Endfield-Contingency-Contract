@@ -1148,6 +1148,7 @@ body{
 }
 
 .result-total-box{
+  flex:0 0 auto;
   height:52px;
   min-width:180px;
   padding:0 22px;
@@ -1156,8 +1157,6 @@ body{
   align-items:center;
   justify-content:center;
   gap:8px;
-
-  align-self:start;
 
   border-radius:999px;
   background:linear-gradient(90deg,#ff9b1f,#ff001f);
@@ -1324,20 +1323,18 @@ body{
 }
 
 .result-guide{
-  margin:0;
-  padding:18px;
+  width:calc(520px * 3 + 18px * 2);
+  margin:0 auto 22px;
+  padding:18px 20px;
   background:rgba(0,0,0,.42);
   border:1px solid rgba(255,255,255,.1);
 }
-
-.result-guide-row{
-  width:calc(520px * 3 + 18px * 2);
-  margin:0 auto 22px;
-
-  display:grid;
-  grid-template-columns:minmax(0,1fr) auto;
+.result-guide-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
   gap:18px;
-  align-items:start;
+  margin-bottom:16px;
 }
 
 .result-guide-title{
