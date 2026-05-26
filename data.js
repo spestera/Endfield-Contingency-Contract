@@ -31,7 +31,7 @@ const ROWS = [
         pts: 1,
         group: 'g3',
         lineBottom: true,
-        desc: '카운트다운 -100초'
+        desc: '카운트다운 -100초 (제한시간 8분20초)'
       },
       {
         id: '1-4',
@@ -260,7 +260,7 @@ const ROWS = [
         group: 'g3',
         lineTop: true,
         lineBottom: true,
-        desc: '카운트다운 -200초'
+        desc: '카운트다운 -200초 (제한시간 6분40초)'
       },
       {
         id: '2-4',
@@ -433,7 +433,7 @@ const ROWS = [
         pts: 3,
         group: 'g3',
         lineTop: true,
-        desc: '카운트다운 -300초'
+        desc: '카운트다운 -300초 (제한시간 5분)'
       },
       {
         id: '3-4',
