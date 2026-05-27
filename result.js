@@ -254,7 +254,7 @@ if(copyResultBtn){
 
       const canvas = await html2canvas(target, {
         scale: 2,
-        backgroundColor: null,
+        backgroundColor: '#020814',
         useCORS: true
       });
 
