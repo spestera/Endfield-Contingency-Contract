@@ -337,7 +337,7 @@ body{
 }
 
 .empty{
-  opacity:.45;
+  opacity:.10;
 }
 
 .disabled{
@@ -433,11 +433,11 @@ body{
    Conflict Indicators
 ========================================================= */
 .group-conflict{
-  opacity:.32;
+  opacity:.52;
 
   filter:
-    grayscale(.95)
-    brightness(.42)
+    grayscale(.85)
+    brightness(.65)
     contrast(.9);
 }
 
