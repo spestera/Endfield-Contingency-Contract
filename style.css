@@ -337,7 +337,13 @@ body{
 }
 
 .empty{
-  opacity:.4;
+  opacity:.18;
+}
+
+.card.empty{
+  border:none !important;
+  background:none !important;
+  box-shadow:none !important;
 }
 
 .disabled{
