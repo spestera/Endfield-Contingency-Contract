@@ -218,6 +218,8 @@ function buildGrid(){
         </div>
 
         <div class="card-check">✓</div>
+        
+        ${conflict ? '<div class="conflict-dim"></div>' : ''}
 
         <div class="conflict-text">충돌</div>
         <div class="conflict-mark">⊘</div>
