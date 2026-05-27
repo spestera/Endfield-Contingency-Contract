@@ -1230,7 +1230,7 @@ body{
   gap:10px;
   align-items:center;
 
-  min-height:96px;
+  min-height:82px;
   padding:8px;
 
   background:linear-gradient(
@@ -1294,7 +1294,9 @@ body{
 .result-card-icon{
   grid-area:left;
   justify-self:center;
-  align-self:end;
+  align-self:start;
+
+  margin-top:28px;
 
   display:flex;
   align-items:center;
