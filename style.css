@@ -1223,12 +1223,14 @@ body{
 
 .result-card{
   display:grid;
-  grid-template-columns:46px 40px minmax(0,1fr);
-  
+  grid-template-columns:86px minmax(0,1fr);
+  grid-template-areas:
+    "left content";
+
   gap:10px;
   align-items:center;
 
-  min-height:86px;
+  min-height:96px;
   padding:8px;
 
   background:linear-gradient(
@@ -1239,6 +1241,8 @@ body{
 
   border-left:5px solid #ff7a00;
 }
+
+
 
 .result-card.tier-1{
   border-left-color:#ffd400;
@@ -1253,14 +1257,18 @@ body{
 }
 
 .result-card-score{
-  width:44px;
-  height:20px;
+  grid-area:left;
+  justify-self:center;
+  align-self:start;
+
+  width:48px;
+  height:22px;
 
   display:flex;
   align-items:center;
   justify-content:center;
 
-  font-size:12px;
+  font-size:13px;
   font-weight:900;
   border-radius:2px;
 
@@ -1284,19 +1292,24 @@ body{
 }
 
 .result-card-icon{
+  grid-area:left;
+  justify-self:center;
+  align-self:end;
+
   display:flex;
   align-items:center;
   justify-content:center;
 }
 
 .result-card-icon img{
-  width:42px;
-  height:42px;
+  width:47px;
+  height:47px;
   object-fit:contain;
   display:block;
 }
 
 .result-card-content{
+  grid-area:content;
   min-width:0;
 }
 
