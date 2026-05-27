@@ -433,12 +433,19 @@ body{
    Conflict Indicators
 ========================================================= */
 .group-conflict{
-  opacity:.62;
+  opacity:1;
+  filter:none;
+}
 
-  filter:
-    grayscale(.85)
-    brightness(.65)
-    contrast(.9);
+.conflict-dim{
+  position:absolute;
+  inset:0;
+  z-index:25;
+
+  background:rgba(0,0,0,.42);
+  backdrop-filter:grayscale(.8) brightness(.75);
+
+  pointer-events:none;
 }
 
 .conflict-text{
