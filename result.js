@@ -247,7 +247,7 @@ const copyResultBtn =
 if(copyResultBtn){
   copyResultBtn.addEventListener('click', async () => {
     const target =
-      document.querySelector('.result-wrapper');
+      document.getElementById('capture-area');
 
     try{
       copyResultBtn.textContent = '복사 중...';
