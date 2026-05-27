@@ -433,7 +433,12 @@ body{
    Conflict Indicators
 ========================================================= */
 .group-conflict{
-  opacity:.72;
+  opacity:.32;
+
+  filter:
+    grayscale(.95)
+    brightness(.42)
+    contrast(.9);
 }
 
 .conflict-text{
