@@ -8,8 +8,10 @@
 
   <link rel="stylesheet" href="style.css">
 
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
   <script src="data.js"></script>
   <script src="result.js" defer></script>
+  
 </head>
 
 <body class="result-page">
@@ -30,7 +32,9 @@
               왼쪽부터 순서대로 선택하기 쉽게 나열했습니다.
             </div>
           </div>
-      
+          <button class="copy-result-btn" id="copy-result-btn">
+            고해상도 이미지로 복사
+          </button>
           <div class="result-total-box">
             <span>총 합계</span>
             <strong id="result-total">0</strong>
