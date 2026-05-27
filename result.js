@@ -239,3 +239,38 @@ guideCards.forEach(card => {
 
   guideList.appendChild(item);
 });
+
+
+const copyResultBtn =
+  document.getElementById('copy-result-btn');
+
+if(copyResultBtn){
+  copyResultBtn.addEventListener('click', async () => {
+    const target =
+      document.querySelector('.result-wrapper');
+
+    try{
+      copyResultBtn.textContent = '복사 중...';
+
+      const canvas = await html2canvas(target, {
+        scale: 2,
+        backgroundColor: null,
+        useCORS: true
+      });
+
+      canvas.toBlob(async blob => {
+        await navigator.clipboard.write([
+          new ClipboardItem({
+            'image/png': blob
+          })
+        ]);
+
+        copyResultBtn.textContent = '복사 완료';
+      });
+    }
+    catch(error){
+      console.warn(error);
+      copyResultBtn.textContent = '복사 실패';
+    }
+  });
+}
