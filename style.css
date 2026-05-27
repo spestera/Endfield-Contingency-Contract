@@ -238,13 +238,20 @@ body{
 }
 
 .card.selected{
-  background:linear-gradient(180deg,#ff0000 0%,#c30000 100%);
-  border-color:#ff6b6b;
+  background:linear-gradient(
+    180deg,
+    #d21820 0%,
+    #8f1015 100%
+  );
+
+  border-color:#ff7070;
+
   box-shadow:
-    0 0 0 2px rgba(255,255,255,.75),
-    0 0 16px rgba(255,0,0,.9),
-    0 0 34px rgba(255,0,0,.55);
+    0 0 0 1px rgba(255,255,255,.45),
+    0 0 10px rgba(255,40,40,.38),
+    0 0 18px rgba(255,0,0,.22);
 }
+
 .card.select-flash{
   animation:selectedCardPulse .32s ease-out;
 }
