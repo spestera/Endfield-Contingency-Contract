@@ -546,8 +546,27 @@ const bgm = document.getElementById('bgm');
 const musicToggle = document.getElementById('music-toggle');
 const musicVolume = document.getElementById('music-volume');
 
+function getLimitedVolume(){
+  const raw = Number(musicVolume.value);
+
+  return Math.min(raw, 0.5);
+}
+
+function applyMusicVolume(){
+  if(!bgm || !musicVolume) return;
+
+  const limitedVolume = getLimitedVolume();
+
+  bgm.volume = limitedVolume;
+
+  if(Number(musicVolume.value) > 0.5){
+    musicVolume.value = 0.25;
+    bgm.volume = 0.25;
+  }
+}
+
 if(bgm && musicToggle && musicVolume){
-  bgm.volume = Number(musicVolume.value);
+  applyMusicVolume();
 
   musicToggle.addEventListener('click', async () => {
     try{
@@ -567,7 +586,8 @@ if(bgm && musicToggle && musicVolume){
   });
 
   musicVolume.addEventListener('input', () => {
-    bgm.volume = Number(musicVolume.value);
+    bgm.volume = Number(musicVolume.value) * 0.5;
+
 
     saveState();
   });
@@ -685,8 +705,13 @@ function loadState(){
     localStorage.getItem('musicVolume');
 
   if(savedVolume && bgm && musicVolume){
-    musicVolume.value = savedVolume;
-    bgm.volume = Number(savedVolume);
+  musicVolume.value = savedVolume;
+
+  if(Number(musicVolume.value) > 0.5){
+    musicVolume.value = 0.25;
+  }
+
+  bgm.volume = Number(musicVolume.value) * 0.5;
   }
   removeDependentCards();
   updateAll();
