@@ -99,7 +99,7 @@ const ROWS = [
         icon: 'assets/icons/보호벽.png',
         name: '조작: 보호벽',
         pts: 1,
-        desc: '각 적은 5초마다 방어불능 또는 같은 유형의 아츠부착을 1회만 부여받을 수 있음'
+        desc: '각 적은 10초마다 방어불능 또는 같은 유형의 아츠부착을 1회만 부여받을 수 있음'
       },
 
       { empty: true, col: 11 },
