@@ -222,7 +222,7 @@ const ROWS = [
         pts: 1,
         unlockable: true,
         requiresAny: ['3-12', '3-13'],
-        desc: '최종 웨이브의 쌍뿔아겔로스,삼미아겔로스가 각각 알파개체로 변경'
+        desc: '최종 웨이브의 쌍뿔아겔로스,삼미아겔로스가 각각 알파개체로 변경(6/26 추가 예정 제약)'
       }
     ]
   },
@@ -433,7 +433,7 @@ const ROWS = [
         pts: 3,
         group: 'g3',
         lineTop: true,
-        desc: '카운트다운 -300초 (제한시간 5분)'
+        desc: '카운트다운 -300초 (제한시간 5분)(6/26 추가 예정 제약)'
       },
       {
         id: '3-4',
@@ -514,7 +514,7 @@ const ROWS = [
         pts: 3,
         unlockable: true,
         requiresAny: ['3-12', '3-13'],
-        desc: '메인 컨트롤 오퍼레이터가 냉기 부착을 받을 경우, 즉시 동결'
+        desc: '메인 컨트롤 오퍼레이터가 냉기 부착을 받을 경우, 즉시 동결(6/26 추가 예정 제약)'
       },
       { empty: true, col: 19 },
       { empty: true, col: 20 },
