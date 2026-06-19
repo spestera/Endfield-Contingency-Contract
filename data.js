@@ -87,7 +87,7 @@ const ROWS = [
         id: '1-9',
         col: 9,
         icon: 'assets/icons/칼날1.png',
-        name: '팀: 내구도 감소 I',
+        name: '팀: 부러진 칼날 I',
         pts: 1,
         group: 'g9',
         lineBottom: true,
@@ -317,7 +317,7 @@ const ROWS = [
         id: '2-9',
         col: 9,
         icon: 'assets/icons/칼날2.png',
-        name: '팀: 내구도 감소 II',
+        name: '팀: 부러진 칼날 II',
         pts: 2,
         group: 'g9',
         lineTop: true,
@@ -329,7 +329,7 @@ const ROWS = [
         icon: 'assets/icons/모름2.png',
         name: '조작: 질주',
         pts: 2,
-        desc: '적 이동속도 +100%'
+        desc: '적 이동속도 +100%, 0.1초 내에 받는 피해는 최대 생명력의 25%를 초과하지 않음'
       },
       {
         id: '2-11',
