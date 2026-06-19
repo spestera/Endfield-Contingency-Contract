@@ -162,7 +162,7 @@ const ROWS = [
         unlockable: true,
         requiresAny: ['3-12', '3-13'],
         lineRight: true,
-        desc: '오퍼레이터가 받는 동결 지속시간 15초 증가. 속성이 열기인 스킬을 사용할 경우, 즉시 동결 해제'
+        desc: '오퍼레이터가 받는 동결 지속시간 15초 증가. 열기 유형 스킬을 사용할 경우, 동결 해제 가능'
       },
       {
         id: '1-19',
@@ -175,7 +175,7 @@ const ROWS = [
         requiresAny: ['3-12', '3-13'],
         lineLeft: true,
         lineRight: true,
-        desc: '오퍼레이터가 받는 동결 지속시간 15초 증가. 속성이 자연인 스킬을 사용할 경우, 즉시 동결 해제'
+        desc: '오퍼레이터가 받는 동결 지속시간 15초 증가. 자연 유형 스킬을 사용할 경우, 동결 해제 가능'
       },
       {
         id: '1-20',
@@ -188,7 +188,7 @@ const ROWS = [
         requiresAny: ['3-12', '3-13'],
         lineLeft: true,
         lineRight: true,
-        desc: '오퍼레이터가 받는 동결 지속시간 15초 증가. 속성이 전기인 스킬을 사용할 경우, 즉시 동결 해제'
+        desc: '오퍼레이터가 받는 동결 지속시간 15초 증가. 전기 유형 스킬을 사용할 경우, 동결 해제 가능'
       },
       {
         id: '1-21',
@@ -200,7 +200,7 @@ const ROWS = [
         unlockable: true,
         requiresAny: ['3-12', '3-13'],
         lineLeft: true,
-        desc: '오퍼레이터가 받는 동결 지속시간 15초 증가. 속성이 물리인 스킬을 사용할 경우, 즉시 동결 해제'
+        desc: '오퍼레이터가 받는 동결 지속시간 15초 증가. 물리 유형 스킬을 사용할 경우, 동결 해제 가능'
       },
       {
         id: '1-22',
@@ -212,7 +212,7 @@ const ROWS = [
         unlockable: true,
         requiresAny: ['3-12', '3-13'],
         lineBottom: true,
-        desc: '적이 5초 동안 현재 조작중인 오퍼레이터에게 데미지를 받지 않을 경우, 1초마다 최대 HP의 5%를 회복'
+        desc: '적이 제어 효과의 영향을 받을 때, 매초마다 최대 HP의 5%를 회복'
       },
       {
         id: '1-23',
@@ -403,7 +403,7 @@ const ROWS = [
         unlockable: true,
         requiresAny: ['3-12', '3-13'],
         lineTop: true,
-        desc: '적이 5초 동안 현재 조작중인 오퍼레이터에게 데미지를 받지 않을 경우, 1초마다 최대 HP의 15%를 회복'
+        desc: '적이 제어 효과의 영향을 받을 때, 매초마다 최대 HP의 15%를 회복'
       },
       { empty: true, col: 23 }
     ]
