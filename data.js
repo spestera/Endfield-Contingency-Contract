@@ -419,6 +419,7 @@ const ROWS = [
         name: '환경: 재구성 I',
         pts: 2,
         group: 'g16',
+        lineBottom: true,
         unlockable: true,
         requiresAny: ['3-12', '3-13'],
         desc: '최종 웨이브의 쌍뿔아겔로스,삼미아겔로스가 알파개체로 변경(알파개체 : 체력 50% 증가)'
@@ -535,6 +536,7 @@ const ROWS = [
         name: '환경: 재구성 II',
         pts: 3,
         group: 'g16',
+        lineTop: true,
         unlockable: true,
         requiresAny: ['3-12', '3-13'],
         desc: '3,4 웨이브의 쌍뿔아겔로스,삼미아겔로스가 알파개체로 변경(알파개체 : 체력 50% 증가)'
