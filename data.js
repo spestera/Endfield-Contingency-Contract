@@ -221,16 +221,7 @@ const ROWS = [
         lineBottom: true,
         desc: '적이 제어 효과의 영향을 받을 때, 매초마다 최대 HP의 5%를 회복'
       },
-      {
-        id: '1-23',
-        col: 23,
-        icon: 'assets/icons/재구성.png',
-        name: '환경: 재구성',
-        pts: 1,
-        unlockable: true,
-        requiresAny: ['3-12', '3-13'],
-        desc: '최종 웨이브의 쌍뿔아겔로스,삼미아겔로스가 각각 알파개체로 변경(6/26 추가 예정 제약)'
-      }
+      { empty: true, col: 23 }
     ]
   },
 
@@ -421,7 +412,16 @@ const ROWS = [
         lineTop: true,
         desc: '적이 제어 효과의 영향을 받을 때, 매초마다 최대 HP의 15%를 회복'
       },
-      { empty: true, col: 23 }
+      {
+        id: '2-23',
+        col: 23,
+        icon: 'assets/icons/재구성.png',
+        name: '환경: 재구성',
+        pts: 2,
+        unlockable: true,
+        requiresAny: ['3-12', '3-13'],
+        desc: '최종 웨이브의 쌍뿔아겔로스,삼미아겔로스가 알파개체로 변경(알파개체 : 체력 50% 증가)'
+      }
     ]
   },
 
@@ -449,7 +449,7 @@ const ROWS = [
         pts: 3,
         group: 'g3',
         lineTop: true,
-        desc: '카운트다운 -300초 (제한시간 5분)(6/26 추가 예정 제약)'
+        desc: '카운트다운 -300초 (제한시간 5분)'
       },
       {
         id: '3-4',
@@ -536,7 +536,16 @@ const ROWS = [
       { empty: true, col: 20 },
       { empty: true, col: 21 },
       { empty: true, col: 22 },
-      { empty: true, col: 23 }
+      {
+        id: '3-23',
+        col: 23,
+        icon: 'assets/icons/재구성.png',
+        name: '환경: 재구성',
+        pts: 3,
+        unlockable: true,
+        requiresAny: ['3-12', '3-13'],
+        desc: '3,4 웨이브의 쌍뿔아겔로스,삼미아겔로스가 알파개체로 변경(알파개체 : 체력 50% 증가)'
+      }
     ]
   }
 ];
