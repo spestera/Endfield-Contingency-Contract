@@ -102,7 +102,14 @@ const ROWS = [
         desc: '각 적은 5초마다 방어불능 또는 같은 유형의 아츠부착을 1회만 부여받을 수 있음'
       },
 
-      { empty: true, col: 11 },
+      {
+        id: '1-11',
+        col: 11,
+        icon: 'assets/icons/중압.png',
+        name: '팀: 중압',
+        pts: 1,
+        desc: '메인 컨트롤 오퍼가 12초 내 적에게 강력한 일격 피해를 주지 않으면, 스킬 게이지 자연회복 중단'
+      },
       { empty: true, col: 12 },
       { empty: true, col: 13 },
 
@@ -389,7 +396,16 @@ const ROWS = [
         lineTop: true,
         desc: '오퍼레이터가 연계 스킬을 1회 사용할 때마다 메인 컨트롤 오퍼레이터에게 냉기부착 1스택 부여. 각 오퍼레이터당 발동 가능 쿨타임 3초'
       },
-      { empty: true, col: 18 },
+      {
+        id: '2-18',
+        col: 18,
+        icon: 'assets/icons/열량흡수.png',
+        name: '조작: 열량 흡수',
+        pts: 2,
+        unlockable: true,
+        requiresAny: ['3-12', '3-13'],
+        desc: '적이 메인 컨트롤 오퍼에게 냉기 부착을 부여하는 대신, 즉시 동결'
+      },
       { empty: true, col: 19 },
       { empty: true, col: 20 },
       { empty: true, col: 21 },
